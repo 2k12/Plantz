@@ -60,7 +60,7 @@ function Formregistro() {
                         }
                     </div>
                     <div className="mb-4">
-                        <label className="block text-white text-sm font-normalmb-2" htmlFor="usuario">
+                        <label className="block text-white text-sm font-normal mb-2" htmlFor="usuario">
                             Usuario
                         </label>
                         <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="usuario" type="text" {...register('usuario', { required: true })} placeholder="Usuario" />
@@ -73,7 +73,7 @@ function Formregistro() {
                         }
                     </div>
                     <div className="mb-4">
-                        <label className="block text-white text-sm font-normalmb-2" htmlFor="email">
+                        <label className="block text-white text-sm font-normal mb-2" htmlFor="email">
                             Email
                         </label>
                         <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" {...register('email', { required: true })} placeholder="Email" />

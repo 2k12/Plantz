@@ -6,7 +6,7 @@ const router = Router();
 
 router.get('/registrotaxonomico', autenticacionRequeridaTaxonomo,leerRegistros );
 router.get('/registrotaxonomico/:id', autenticacionRequeridaTaxonomo, leerRegistro);
-router.post('/registrotaxonomico/agregar',autenticacionRequeridaTaxonomo, crearRegistro );
+router.post('/registrotaxonomico',autenticacionRequeridaTaxonomo, crearRegistro );
 router.put('/registrotaxonomico/:id', autenticacionRequeridaTaxonomo, editarRegistro);
 router.delete('/registrotaxonomico/:id', autenticacionRequeridaTaxonomo, eliminarRegistro);
 
