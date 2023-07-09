@@ -1,0 +1,8 @@
+#princ {
+    /* margin-top: -2em !important; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* Opcional para ocupar toda la altura de la ventana */
+}

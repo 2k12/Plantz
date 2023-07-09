@@ -1,0 +1,11 @@
+# node
+node_modules
+# variables de entorno
+.env
+
+.vscode
+
+notas.txt
+
+/testing
+/coverage
