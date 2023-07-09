@@ -1,6 +1,7 @@
 import { useState } from "react";
 import './nuevaespecie.css';
 import { useForm } from "react-hook-form";
+import {useEspecie}  from "../context/RegistroEspecieContext";
 
 function Stepper() {
     const [currentStep, setCurrentStep] = useState(1);
@@ -8,11 +9,11 @@ function Stepper() {
         setCurrentStep(step);
     };
 
-
-    
     const { register, handleSubmit } = useForm();
+    const {agregarEspecie }= useEspecie();
+
     const onSubmit = handleSubmit((data ) => {
-        clg(data);
+        agregarEspecie(data);
     });
 
     return (
@@ -102,6 +103,7 @@ function Stepper() {
                                     type="text"
                                     className="w-full px-3 py-1 border dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  rounded-md"
                                     {...register('familia')}
+                                    placeholder="Familia"
                                 />
                             </div>
                             <div className="mb-4">
@@ -110,6 +112,8 @@ function Stepper() {
                                     type="text"
                                     className="w-full px-3 py-1 border dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 rounded-md"
                                     {...register('genero')}
+                                    placeholder="Género"
+
                                 />
                             </div>
                             <div className="mb-4">
@@ -118,6 +122,7 @@ function Stepper() {
                                     type="text"
                                     className="w-full px-3 py-1 border dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 rounded-md"
                                     {...register('especie')}
+                                    placeholder="Especie"
                                 />
                             </div>
                             <div className="mb-4">
@@ -126,6 +131,8 @@ function Stepper() {
                                     type="text"
                                     className="w-full px-3 py-1 border rounded-md dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 "
                                     {...register('nci')}
+                                    placeholder="Nombre Científico"
+
                                 />
                             </div>
                             <div className="mb-4">
@@ -134,6 +141,7 @@ function Stepper() {
                                     type="text"
                                     className="w-full px-3 py-1 rounded-md dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 "
                                     {...register('nco')}
+                                    placeholder="Nombre Común"
                                 />
                             </div>
                             <button

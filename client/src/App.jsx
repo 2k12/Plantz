@@ -11,9 +11,11 @@ import NuevoRegistroTaxonomico from "./pages/NuevoRegistro";
 
 
 import ProtectedRoute from "./ProtectedRoute";
+import { EspecieProvider } from "./context/RegistroEspecieContext";
 function App() {
   return (
     <AuthProvider>
+      <EspecieProvider>
         <BrowserRouter>
           <Breadcrumbs />
           <Routes>
@@ -32,7 +34,7 @@ function App() {
             </Route>
           </Routes>
         </BrowserRouter>
-
+      </EspecieProvider>
     </AuthProvider>
   )
 }

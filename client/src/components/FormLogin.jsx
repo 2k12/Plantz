@@ -53,7 +53,7 @@ function FormLogin() {
                         <label className="block text-white text-sm font-normal mb-2" htmlFor="email">
                             Email
                         </label>
-                        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" {...register('email', { required: true })} placeholder="Email" />
+                        <input className="border-gray-300 rounded-md dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 py-1 px-3 w-full" id="email" type="email" {...register('email', { required: true })} placeholder="Email" />
                         {
                             errors.email && (
                                 <p className="text-red-500">
@@ -62,11 +62,11 @@ function FormLogin() {
                             )
                         }
                     </div>
-                    <div className="mb-6">
+                    <div className="mb-9">
                         <label className="block text-white text-sm font-normal mb-2" htmlFor="contrasena">
                             Contraseña
                         </label>
-                        <input className="shadow appearance-none rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="contrasena" type="password" {...register('contrasena', { required: true })} placeholder="**********" />
+                        <input className="border-gray-300 rounded-md dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 py-1 px-3 w-full" id="contrasena" type="password" {...register('contrasena', { required: true })} placeholder="**********" />
                         {
                             errors.contrasena && (
                                 <p className="text-red-500">
@@ -78,7 +78,7 @@ function FormLogin() {
                     </div>
 
                     <div className="flex items-center justify-between">
-                        <button className="bg-green-700 dark:hover:bg-green-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full" type="submit" >
+                        <button className="bg-green-700 dark:hover:bg-green-500 text-white font-bold py-1 px-3 rounded focus:outline-none focus:shadow-outline w-full" type="submit" >
                             Ingresar
                         </button>
 
