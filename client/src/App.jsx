@@ -28,7 +28,7 @@ function App() {
             <Route element={<ProtectedRoute />}>
               <Route path='/registrotaxonomico' element={<RegistroTaxonomico />} />
               <Route path='/agregar-registrotaxonomico' element={<NuevoRegistroTaxonomico />} />
-              <Route path='/editar-registrotaxonomico' element={<h1>editar registro taxonomico</h1>} />
+              <Route path='/editar-registrotaxonomico/:id' element={<NuevoRegistroTaxonomico/>} />
               <Route path='/eliminar-registrotaxonomico' element={<h1>eliminar registro taxonomico</h1>} />
               <Route path='/registrotaxonomico/:id' element={<h1>Mostrar un registro economico</h1>} />
 

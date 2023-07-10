@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { peticionagregarEspecie, peticioneliminarEspecie, peticionleerEspecies } from "../api/especies";
+import { peticionagregarEspecie, peticioneliminarEspecie, peticionleerEspecies  , peticionleerEspecie, peticioneditarEspecie} from "../api/especies";
 
 const EspecieContext = createContext();
 
@@ -29,6 +29,19 @@ export function EspecieProvider({ children }) {
         }
     }
 
+    const leerEspecie = async (id) =>{
+        const res = await peticionleerEspecie(id);
+        // console.log(res.data.rows[0]);
+        // console.log(res.data.especie)
+        return res.data.especie;
+    }
+    const editarEspecie = async (id, especie) =>{
+        try {
+            const res = await peticioneditarEspecie(id,especie);
+        } catch (error) {
+            console.log(error)
+        }
+    }
     const eliminarEspecie = async(id) =>{
         try {
             const res = await peticioneliminarEspecie(id);
@@ -44,8 +57,10 @@ export function EspecieProvider({ children }) {
         <EspecieContext.Provider value={{
             especie,
             leerEspecies,
+            leerEspecie,
             agregarEspecie,
             eliminarEspecie,
+            editarEspecie,
         }}>
             {children}
         </EspecieContext.Provider>

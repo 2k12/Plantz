@@ -1,7 +1,7 @@
 import imagendefondo from "../assets/fondo.png";
 // import Navbar from "../components/Navbar";
 // import Footer from "../components/Footer";
-import Formregistro from "../components/formregistro";
+import Formregistro from "../components/Formregistro";
 import { useAuth } from "../context/AuthContext";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";

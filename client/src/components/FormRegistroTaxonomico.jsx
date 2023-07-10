@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import './nuevaespecie.css';
 import { useForm } from "react-hook-form";
-import {useEspecie}  from "../context/RegistroEspecieContext";
-import { useNavigate  } from "react-router-dom";
+import { useEspecie } from "../context/RegistroEspecieContext";
+import { useNavigate, useParams } from "react-router-dom";
 
 function Stepper() {
     const [currentStep, setCurrentStep] = useState(1);
@@ -10,14 +10,40 @@ function Stepper() {
         setCurrentStep(step);
     };
 
-    const { register, handleSubmit } = useForm();
-    const {agregarEspecie }= useEspecie();
+    const { register, handleSubmit, setValue } = useForm();
+    const { agregarEspecie, leerEspecie , editarEspecie} = useEspecie();
 
     const navigate = useNavigate();
+    const params = useParams();
+
+    useEffect(() => {
+        async function cargarEspecie() {
+            if (params.id) {
+                const especie = await leerEspecie(params.id);
+                // console.log(especie.nombre_comun)
+                setValue('nco', especie.nombre_comun)
+                setValue('nci', especie.nombre_cientifico)
+                setValue('reino', especie.reino)
+                setValue('filo', especie.filo)
+                setValue('clase', especie.clase)
+                setValue('orden', especie.orden)
+                setValue('familia', especie.familia)
+                setValue('genero', especie.genero)
+                setValue('especie', especie.especie)
+            }
+        }
+        cargarEspecie();
+    }, []);
 
     const onSubmit = handleSubmit((data) => {
-        agregarEspecie(data);
+        if (params.id) {
+            editarEspecie(params.id,data)
+        } else {
+            agregarEspecie(data);
+        }
         navigate('/registrotaxonomico');
+
+
     });
 
     return (
@@ -48,7 +74,7 @@ function Stepper() {
 
                 {currentStep === 1 && (
                     <>
-                        <h2 id='nuevaespecie' className="text-2xl font-bold mb-4 text-white mx-auto">Registro de Nueva Especie</h2>
+                        {/* <h2 id='nuevaespecie' className="text-2xl font-bold mb-4 text-white mx-auto">Registro de Nueva Especie</h2> */}
                         <form className="w-80 mx-auto" onSubmit={onSubmit}>
                             <div className="mb-4">
 

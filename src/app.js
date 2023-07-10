@@ -8,7 +8,7 @@ const adminRoutes = require("./routes/admin.routes.js");
 const app = express();
 
 // settings
-app.set('port', 4000);
+app.set('port',process.env.PORT || 4000);
 app.set('url', `http://localhost:${app.get('port')}`);
 
 

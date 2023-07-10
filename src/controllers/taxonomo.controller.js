@@ -20,13 +20,15 @@ const leerRegistros = async (req, res) => {
 const leerRegistro = async (req, res) => {
     try {
         const { id } = req.params;
-        const registroEncotrado = await pool.query("SELECT * FROM plantas WHERE id=$1 AND usuario_id=$2", [id, req.decoded.id]);
+        const registroEncotrado = await pool.query("SELECT * FROM plantas WHERE id=$1", [id]);
         if (!registroEncotrado) {
             return res.status(400).json({ message: 'La Especie no fue encontrada' });
         }
-        else {
-            const leertaxonomia = await pool.query('SELECT * FROM taxonomia WHERE id=$1', [registroEncotrado.rows[0].id])
-            res.json({
+        const idtx = registroEncotrado.rows[0].taxonomia_id;
+        const leertaxonomia = await pool.query('SELECT * FROM taxonomia WHERE id=$1', [idtx])
+
+        res.json({
+            especie: {
                 "nombre_comun": registroEncotrado.rows[0].nombrecomun,
                 "nombre_cientifico": registroEncotrado.rows[0].nombrecientifio,
                 "reino": leertaxonomia.rows[0].reino,
@@ -36,8 +38,10 @@ const leerRegistro = async (req, res) => {
                 "familia": leertaxonomia.rows[0].familia,
                 "genero": leertaxonomia.rows[0].genero,
                 "especie": leertaxonomia.rows[0].especie
-            })
-        }
+            }
+
+        })
+        // }
         // res.json(registroEncotrado.rows[0]);
     } catch (error) {
         if (error instanceof Error) {
@@ -80,7 +84,7 @@ const crearRegistro = async (req, res) => {
                 nplanta.getUsuarioID(), nplanta.getTaxonomiaID(), nplanta.getNombreComun(), nplanta.getNombreCientifico()
             ])
 
-            res.sendStatus(200);
+        res.sendStatus(200);
         //     res.json({
         //     id: resultplant.rows[0].id,
         //     userid: resultplant.rows[0].usuario_id,
