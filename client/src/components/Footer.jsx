@@ -3,7 +3,7 @@ function Footer() {
     return (
         <>
             <footer
-                className="bg-gray-900 text-center dark:bg-gray-900 lg:text-left border-t dark:border-purple-500">
+                className="bg-gray-900 text-center dark:bg-gray-900 lg:text-left border-t dark:border-purple-500 py-2">
                 <div className=" text-center text-neutral-700 dark:text-white ">
                     © 2023 Copyright:
                     <a

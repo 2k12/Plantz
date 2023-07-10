@@ -1,15 +1,15 @@
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+// import Navbar from "../components/Navbar";
+// import Footer from "../components/Footer";
 import MyComponent from "../components/Plantz";
 // import Breadcrumbs from "../components/Breadcrumbs";
 import imagendefondo from "../assets/fondo.png";
 function IndexPage() {
     return (
         <div className="bg-gradient-to-r from-blue-500 to-purple-500 bg-cover bg-center" style={{ backgroundImage: `url(${imagendefondo})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh' }}>
-            <Navbar />
+            {/* <Navbar /> */}
             {/* <Breadcrumbs/> */}
             <MyComponent />
-            <Footer />
+            {/* <Footer /> */}
         </div>
     )
 }

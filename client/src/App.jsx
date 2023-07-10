@@ -8,7 +8,8 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import RegistroTaxonomico from "./pages/RegistroTaxonomico";
 import NuevoRegistroTaxonomico from "./pages/NuevoRegistro";
-
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 import ProtectedRoute from "./ProtectedRoute";
 import { EspecieProvider } from "./context/RegistroEspecieContext";
@@ -18,6 +19,7 @@ function App() {
       <EspecieProvider>
         <BrowserRouter>
           <Breadcrumbs />
+          <Navbar />
           <Routes>
             <Route path='/' element={<IndexPage />} />
             <Route path='/login' element={<LoginPage />} />
@@ -33,6 +35,7 @@ function App() {
               <Route path='/profile' element={<h1>Profile</h1>} />
             </Route>
           </Routes>
+          <Footer />
         </BrowserRouter>
       </EspecieProvider>
     </AuthProvider>

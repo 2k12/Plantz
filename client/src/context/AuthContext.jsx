@@ -11,7 +11,9 @@ export const useAuth = () => {
     return context;
 }
 export const AuthProvider = ({ children }) => {
+    
     const [user, setUser] = useState(null)
+
     const [estalogeado, setEstalogeado] = useState(false);
 
     const [errores, setErrors] = useState([]);
@@ -47,6 +49,18 @@ export const AuthProvider = ({ children }) => {
                 setErrors(error.response.data.error);
             }
         }
+    }
+
+    const logout = async() => {
+        try {
+            Cookies.remove('token');
+            setEstalogeado(false);
+            setUser(null);
+
+        } catch (error) {
+            console.log(error);
+        }
+
     }
 
     useEffect(() => {
@@ -85,6 +99,7 @@ export const AuthProvider = ({ children }) => {
             value={{
                 iniciodeSesion,
                 login,
+                logout,
                 user,
                 estalogeado,
                 errores,

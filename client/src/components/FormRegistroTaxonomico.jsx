@@ -2,6 +2,7 @@ import { useState } from "react";
 import './nuevaespecie.css';
 import { useForm } from "react-hook-form";
 import {useEspecie}  from "../context/RegistroEspecieContext";
+import { useNavigate  } from "react-router-dom";
 
 function Stepper() {
     const [currentStep, setCurrentStep] = useState(1);
@@ -12,8 +13,11 @@ function Stepper() {
     const { register, handleSubmit } = useForm();
     const {agregarEspecie }= useEspecie();
 
-    const onSubmit = handleSubmit((data ) => {
+    const navigate = useNavigate();
+
+    const onSubmit = handleSubmit((data) => {
         agregarEspecie(data);
+        navigate('/registrotaxonomico');
     });
 
     return (
@@ -145,9 +149,7 @@ function Stepper() {
                                 />
                             </div>
                             <button
-                                type="submit"
-                                className=" mt-5 bg-green-700 hover:bg-green-500 text-white font-bold py-2 px-4 rounded w-full"
-                            >
+                                className=" mt-5 bg-green-700 hover:bg-green-500 text-white font-bold py-2 px-4 rounded w-full">
                                 Agregar Especie
                             </button>
                         </form>

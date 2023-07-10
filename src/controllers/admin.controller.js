@@ -102,7 +102,7 @@ const editartaxonomia = async (req, res) => {
 const eliminartaxonomia = async (req, res) => {
     try {
         const { id } = req.params;
-        const result = await pool.query('DELETE * FROM taxonomia WHERE id = $1', [id]);
+        const result = await pool.query('DELETE FROM taxonomia WHERE id = $1', [id]);
         if (result.rowCount === 0) return res.status(400).json({ message: "La Taxonomia no existe" });
     } catch (error) {
         if (error instanceof Error) {

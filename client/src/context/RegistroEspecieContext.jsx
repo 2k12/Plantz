@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { peticionagregarEspecie, peticionleerEspecies } from "../api/especies";
+import { peticionagregarEspecie, peticioneliminarEspecie, peticionleerEspecies } from "../api/especies";
 
 const EspecieContext = createContext();
 
@@ -22,17 +22,30 @@ export function EspecieProvider({ children }) {
     const leerEspecies = async () => {
         try {
             const res = await peticionleerEspecies();
+            // if(res.status === 404){}
             setEspecie(res.data);
         } catch (error) {
             console.log(error);
         }
     }
 
+    const eliminarEspecie = async(id) =>{
+        try {
+            const res = await peticioneliminarEspecie(id);
+            // console.log(res);
+            if(res.status === 204) setEspecie(especie.filter((esp) => esp.id !== id )) ;
+            
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <EspecieContext.Provider value={{
             especie,
-            agregarEspecie,
             leerEspecies,
+            agregarEspecie,
+            eliminarEspecie,
         }}>
             {children}
         </EspecieContext.Provider>

@@ -1,6 +1,6 @@
 import imagendefondo from "../assets/fondo.png";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+// import Navbar from "../components/Navbar";
+// import Footer from "../components/Footer";
 import Formregistro from "../components/formregistro";
 import { useAuth } from "../context/AuthContext";
 import { useEffect } from "react";
@@ -18,9 +18,9 @@ function RegisterPage() {
   },[estalogeado]);
   return (
     <div className="bg-gradient-to-r from-blue-500 to-purple-500 bg-cover bg-center" style={{ backgroundImage: `url(${imagendefondo})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh' }}>
-      <Navbar />
+      {/* <Navbar /> */}
       <Formregistro/>
-      <Footer />
+      {/* <Footer /> */}
 
     </div>
   )

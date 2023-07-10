@@ -8,9 +8,9 @@ const pool = require('../db.js');
 
 const leerRegistros = async (req, res) => {
     try {
-        const tdsregistros = await pool.query('SELECT * FROM plantas WHERE usuario_id=$1 ',[req.decoded.id]);
-        if(tdsregistros.rowCount === 0)return res.status(404).json({message: "No existen registros taxonomicos"});
-        res.json(tdsregistros.rows);
+        const tdsregistros = await pool.query('SELECT * FROM plantas WHERE usuario_id=$1 ', [req.decoded.id]);
+        if (tdsregistros.rowCount === 0) return res.status(404);
+        res.status(200).json(tdsregistros.rows);
     } catch (error) {
         if (error instanceof Error) {
             res.send(error.message);
@@ -20,7 +20,7 @@ const leerRegistros = async (req, res) => {
 const leerRegistro = async (req, res) => {
     try {
         const { id } = req.params;
-        const registroEncotrado = await pool.query("SELECT * FROM plantas WHERE id=$1 AND usuario_id=$2", [id,req.decoded.id]);
+        const registroEncotrado = await pool.query("SELECT * FROM plantas WHERE id=$1 AND usuario_id=$2", [id, req.decoded.id]);
         if (!registroEncotrado) {
             return res.status(400).json({ message: 'La Especie no fue encontrada' });
         }
@@ -80,20 +80,21 @@ const crearRegistro = async (req, res) => {
                 nplanta.getUsuarioID(), nplanta.getTaxonomiaID(), nplanta.getNombreComun(), nplanta.getNombreCientifico()
             ])
 
-        res.json({
-            id: resultplant.rows[0].id,
-            userid: resultplant.rows[0].usuario_id,
-            taxonomiaid: resultplant.rows[0].taxonomia_id,
-            nco: resultplant.rows[0].nombrecomun,
-            nci: resultplant.rows[0].nombrecientifio,
-            reino: resulttax.rows[0].reino,
-            filo: resulttax.rows[0].filo,
-            clase: resulttax.rows[0].clase,
-            orden: resulttax.rows[0].orden,
-            familia: resulttax.rows[0].familia,
-            genero: resulttax.rows[0].genero,
-            especie: resulttax.rows[0].especie,
-        });
+            res.sendStatus(200);
+        //     res.json({
+        //     id: resultplant.rows[0].id,
+        //     userid: resultplant.rows[0].usuario_id,
+        //     taxonomiaid: resultplant.rows[0].taxonomia_id,
+        //     nco: resultplant.rows[0].nombrecomun,
+        //     nci: resultplant.rows[0].nombrecientifio,
+        //     reino: resulttax.rows[0].reino,
+        //     filo: resulttax.rows[0].filo,
+        //     clase: resulttax.rows[0].clase,
+        //     orden: resulttax.rows[0].orden,
+        //     familia: resulttax.rows[0].familia,
+        //     genero: resulttax.rows[0].genero,
+        //     especie: resulttax.rows[0].especie,
+        // });
 
 
 
@@ -133,8 +134,10 @@ const editarRegistro = async (req, res) => {
 const eliminarRegistro = async (req, res) => {
     try {
         const { id } = req.params;
-        const result = await pool.query('DELETE * FROM plantas WHERE id = $1 AND usuario_id=$2', [id,req.decoded.id]);
-        if (result.rowCount === 0) return res.status(400).json({ message: "La Especie no existe" });
+        const result = await pool.query('DELETE FROM plantas WHERE id = $1 ', [id]);
+        if (!result) return res.status(400).json({ message: "La Especie no existe" });
+        res.sendStatus(204);
+
     } catch (error) {
         if (error instanceof Error) {
             res.send(error.message);

@@ -1,14 +1,14 @@
 {
-  "name": "login-crud",
+  "name": "plantz",
   "version": "1.0.0",
-  "description": "",
+  "description": "Proyecto Plantz encargado de la gestión de especies de plantas por su taxonomía",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.js",
     "test": "jest --coverage"
   },
   "keywords": [],
-  "author": "",
+  "author": "Pastillo Donoso Joan Francisco",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",

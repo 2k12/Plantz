@@ -11,7 +11,7 @@ function Breadcrumbs() {
                 <ol className="list-reset flex flex-wrap">
                     <li className="text-white dark:text-white ms-4 md:ms-0 md:hover:text-purple-400 md:p-0 md:dark:hover:text-purple-500">
                         <div className="pl-10 md:pl-56">
-                            <Link to="/"> 🟢 Inicio</Link>
+                            <Link to="/"> 🟣 Inicio</Link>
                         </div>
                     </li>
                     {pathnames.map((path, index) => {
@@ -24,9 +24,9 @@ function Breadcrumbs() {
                                 className="paths text-white dark:text-white ms-2 md:hover:text-purple-400 md:p-0 md:dark:hover:text-purple-500"
                             >
                                 {isLast ? (
-                                    " > 🟢" + breadcrumbText
+                                    " > 🟣" + breadcrumbText
                                 ) : (
-                                    <Link to={routeTo}>{" > 🟢" + breadcrumbText}</Link>
+                                    <Link to={routeTo}>{" > 🟣" + breadcrumbText}</Link>
                                 )}
                             </li>
                         );
