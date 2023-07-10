@@ -1,13 +1,15 @@
 const { Router } = require('express');
 const {autenticacionRequeridaTaxonomo} = require("../middlewares/validateToken.js");
 const { leerRegistros,leerRegistro,crearRegistro,editarRegistro,eliminarRegistro} = require('../controllers/taxonomo.controller.js');
+// const esquemadeValidacion = require('../middlewares/validatormiddleware.js');
+// const { taxonomiaEsquema } = require('../schemas/validation.schema.js');
 
 const router = Router();
 
 router.get('/registrotaxonomico', autenticacionRequeridaTaxonomo,leerRegistros );
 router.get('/registrotaxonomico/:id', autenticacionRequeridaTaxonomo, leerRegistro);
-router.post('/registrotaxonomico',autenticacionRequeridaTaxonomo, crearRegistro );
-router.put('/registrotaxonomico/:id', autenticacionRequeridaTaxonomo, editarRegistro);
+router.post('/registrotaxonomico',autenticacionRequeridaTaxonomo,  crearRegistro );
+router.put('/registrotaxonomico/:id', autenticacionRequeridaTaxonomo,  editarRegistro);
 router.delete('/registrotaxonomico/:id', autenticacionRequeridaTaxonomo, eliminarRegistro);
 
 

@@ -6,7 +6,7 @@ function EspeciesCard({esp}) {
     return (
         <div className="bg-gray-900 m-3 rounded flex items-center justify-between">
             <div className="flex">
-                <h1 className="text-white ml-5">{esp.nombrecientifio}</h1>
+                <h1 className=" ml-5 font-bold text-purple-500">Especie: <span className="text-white font-normal pl-2">{esp.nombrecientifio}</span></h1>
             </div>
             <div className="flex flex-wrap items-center">
                 <button className=" text-white hover:bg-blue-500 bg-blue-700 pl-2 pr-2 rounded border m-2 border-blue-700">Ver</button>

@@ -24,19 +24,20 @@ const validacionUsuario = (usuario) => {
     }
 
 }
-const eliminacionespacios =(parametro)=>{
-    parametro = parametro.trim().replace(/\s+/g, '');
+
+const eliminacionespacios_noalfanumericos_digitos = (parametro) => {
+    parametro = parametro.replace(/[^a-zA-Z]/g, '');
     return parametro;
-}
+};  
 
-const validacionCorreo = (correo) => {
-    const regexCorreo = /^[\w-]+(\.[\w-]+)*@[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*(\.[a-zA-Z]{2,})$/;
-    return regexCorreo.test(correo);
-}
-const validacionContrasena = (contrasena) => {
-    const regexContrasena = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    return regexContrasena.test(contrasena);
+// const validacionCorreo = (correo) => {
+//     const regexCorreo = /^[\w-]+(\.[\w-]+)*@[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*(\.[a-zA-Z]{2,})$/;
+//     return regexCorreo.test(correo);
+// }
+// const validacionContrasena = (contrasena) => {
+//     const regexContrasena = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+//     return regexContrasena.test(contrasena);
  
-}
+// }
 
-module.exports = {validacionUsuario , eliminacionespacios}
+module.exports = {validacionUsuario , eliminacionespacios_noalfanumericos_digitos}

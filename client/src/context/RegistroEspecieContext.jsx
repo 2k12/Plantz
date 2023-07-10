@@ -13,10 +13,18 @@ export const useEspecie = () => {
 
 export function EspecieProvider({ children }) {
     const [especie, setEspecie] = useState([])
+    const [errores, setErrors] = useState([]);
 
     const agregarEspecie = async (especie) => {
-        const res = await peticionagregarEspecie(especie);
-        console.log(res);
+        try {
+            const res = await peticionagregarEspecie(especie);
+            console.log(res);            
+        } catch (error) {
+            if (error.response) {
+                setErrors(error.response.data.error);
+            }
+        }
+
     }
 
     const leerEspecies = async () => {
@@ -56,6 +64,7 @@ export function EspecieProvider({ children }) {
     return (
         <EspecieContext.Provider value={{
             especie,
+            errores,
             leerEspecies,
             leerEspecie,
             agregarEspecie,
