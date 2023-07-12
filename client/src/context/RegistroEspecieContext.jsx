@@ -41,7 +41,7 @@ export function EspecieProvider({ children }) {
         const res = await peticionleerEspecie(id);
         // console.log(res.data.rows[0]);
         // console.log(res.data.especie)
-        return res.data.especie;
+        return res.data;
     }
     const editarEspecie = async (id, especie) =>{
         try {

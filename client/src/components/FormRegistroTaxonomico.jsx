@@ -20,17 +20,17 @@ function Stepper() {
     useEffect(() => {
         async function cargarEspecie() {
             if (params.id) {
-                const especie = await leerEspecie(params.id);
-                // console.log(especie.nombre_comun)
-                setValue('nco', especie.nombre_comun)
-                setValue('nci', especie.nombre_cientifico)
-                setValue('reino', especie.reino)
-                setValue('filo', especie.filo)
-                setValue('clase', especie.clase)
-                setValue('orden', especie.orden)
-                setValue('familia', especie.familia)
-                setValue('genero', especie.genero)
-                setValue('especie', especie.especie)
+                const especiebdd = await leerEspecie(params.id);
+                // console.log(especiebdd)
+                setValue('nco', especiebdd.nombre_comun)
+                setValue('nci', especiebdd.nombre_cientifico)
+                setValue('reino', especiebdd.reino)
+                setValue('filo', especiebdd.filo)
+                setValue('clase', especiebdd.clase)
+                setValue('orden', especiebdd.orden)
+                setValue('familia', especiebdd.familia)
+                setValue('genero', especiebdd.genero)
+                setValue('especie', especiebdd.especie)
             }
         }
         cargarEspecie();
@@ -60,6 +60,7 @@ function Stepper() {
 
         if (params.id) {
             editarEspecie(params.id,formData)
+
         } else {
             agregarEspecie(formData);
         }

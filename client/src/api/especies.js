@@ -7,5 +7,9 @@ export const peticionagregarEspecie = (especie) => axios.post('/tax/registrotaxo
         "Content-Type": "multipart/form-datata"
     }
 });
-export const peticioneditarEspecie = (id,especie) => axios.put(`/tax/registrotaxonomico/${id}`,especie);
+export const peticioneditarEspecie = (id,especie) => axios.put(`/tax/registrotaxonomico/${id}`,especie,{
+    headers: {
+        "Content-Type": "multipart/form-datata"
+    }
+});
 export const peticioneliminarEspecie = (id) => axios.delete(`/tax/registrotaxonomico/${id}`);
