@@ -1,4 +1,4 @@
-class Planta {
+export class Planta {
     constructor(ID, UsuarioID, TaxonomiaID, NombreComun, NombreCientifico) {
         this.ID = ID;
         this.UsuarioID = UsuarioID;
@@ -28,6 +28,3 @@ class Planta {
     setNombreCientifico(NombreCientifico) {this.NombreCientifico = NombreCientifico;}
 }
 
-module.exports = {
-    Planta
-}

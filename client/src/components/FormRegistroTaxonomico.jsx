@@ -15,6 +15,7 @@ function Stepper() {
 
     const navigate = useNavigate();
     const params = useParams();
+    const [imagen, setImagen] = useState(null);
 
     useEffect(() => {
         async function cargarEspecie() {
@@ -35,11 +36,32 @@ function Stepper() {
         cargarEspecie();
     }, []);
 
-    const onSubmit = handleSubmit((data) => {
+    const handleImagenChange = (event) => {
+        const file = event.target.files[0];
+        setImagen(file);
+    };
+
+    const onSubmit = handleSubmit((data ,e) => {
+
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append('imagenm', imagen);
+        formData.append('reino', data.reino);
+        formData.append('filo', data.filo);
+        formData.append('clase', data.clase);
+        formData.append('orden', data.orden);
+        formData.append('familia', data.familia);
+        formData.append('genero', data.genero);
+        formData.append('especie', data.especie);
+        formData.append('nci', data.nci);
+        formData.append('nco', data.nco);
+
+
         if (params.id) {
-            editarEspecie(params.id, data)
+            editarEspecie(params.id,formData)
         } else {
-            agregarEspecie(data);
+            agregarEspecie(formData);
         }
         navigate('/registrotaxonomico');
 
@@ -79,7 +101,17 @@ function Stepper() {
                             <div className="mb-4">
 
                                 <label className="block mb-2  text-gray-900 dark:text-white text-sm font-normal " htmlFor="file_input">Imagen</label>
-                                <input className="  block w-full text-sm text-gray-900 border border-gray-300 rounded-md cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 " id="file_input" type="file" />
+                                <input className="  block w-full text-sm text-gray-900 border border-gray-300 rounded-md cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 " id="file_input" type="file" name="imagenm"
+                                    {...register('imagenm', { required: true })}
+                                    onChange={handleImagenChange}
+                                />
+                                {
+                                    errors.imagenm && (
+                                        <p className="text-red-500">
+                                            Ingrese una Imagen
+                                        </p>
+                                    )
+                                }
 
                             </div>
                             <div className="mb-4">
@@ -183,7 +215,7 @@ function Stepper() {
                                 {
                                     errors.genero && (
                                         <p className="text-red-500">
-                                            Ingrese un Género 
+                                            Ingrese un Género
                                         </p>
                                     )
                                 }

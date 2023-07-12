@@ -1,6 +1,6 @@
-const { z } = require('zod');
+import { z } from 'zod';
 
-const taxonomiaEsquema = z.object(
+export const taxonomiaEsquema = z.object(
     {
         reino: z.string({
             required_error: 'Reino requerido'
@@ -43,7 +43,7 @@ const taxonomiaEsquema = z.object(
         })
     });
 
-const usuarioEsquema = z.object({
+export const usuarioEsquema = z.object({
     nombre: z.string({
         required_error: 'Nombre requerido',
     }),
@@ -64,7 +64,7 @@ const usuarioEsquema = z.object({
     })
 });
 
-const loginEsquema = z.object({
+export const loginEsquema = z.object({
     email: z.string({
         required_error: 'Email requerido',
     })
@@ -78,8 +78,8 @@ const loginEsquema = z.object({
 });
 
 
-    module.exports = {
-        taxonomiaEsquema,
-        usuarioEsquema,
-        loginEsquema
-    }
+    // module.exports = {
+    //     taxonomiaEsquema,
+    //     usuarioEsquema,
+    //     loginEsquema
+    // }

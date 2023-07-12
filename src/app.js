@@ -1,10 +1,12 @@
-const express = require("express");
-const morgan = require("morgan");
-const cookieParser = require('cookie-parser');
-const cors = require('cors');
-const authRoutes = require("./routes/auth.routes.js");
-const taxonomoRoutes = require("./routes/taxonomo.routes.js");
-const adminRoutes = require("./routes/admin.routes.js");
+import express from "express";
+import morgan from "morgan";
+import cookieParser from 'cookie-parser';
+import cors from 'cors';
+import authRoutes from "./routes/auth.routes.js";
+import taxonomoRoutes from "./routes/taxonomo.routes.js";
+import adminRoutes from "./routes/admin.routes.js";
+import fileUpload from'express-fileupload';
+
 const app = express();
 
 // settings
@@ -20,7 +22,10 @@ app.use(cors({
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(cookieParser());
-
+app.use(fileUpload({
+    useTempFiles: true,
+    tempFileDir: './uploads'
+}));
 // routes
 app.use("/access", authRoutes);   // las rutas empezan con el prefijo establaecido
 app.use("/access/tax", taxonomoRoutes); // las rutas empezan con el prefijado access
@@ -33,4 +38,4 @@ app.use("/access/adm", adminRoutes);
 
 
 
-module.exports = app;
+export default app;

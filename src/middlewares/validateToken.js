@@ -1,6 +1,6 @@
-const jwt = require('jsonwebtoken');
-const { TOKEN_SECRET } = require('../config.js');
-const autenticacionRequeridaTaxonomo = (req, res, next) => {
+import jwt from 'jsonwebtoken';
+import { TOKEN_SECRET } from '../config.js' ;
+export const autenticacionRequeridaTaxonomo = (req, res, next) => {
     const { token } = req.cookies;
 
 
@@ -22,7 +22,7 @@ const autenticacionRequeridaTaxonomo = (req, res, next) => {
 
 };
 
-const autenticacionRequeridaAdmin = (req, res, next) => {
+export const autenticacionRequeridaAdmin = (req, res, next) => {
     const { token } = req.cookies;
 
 
@@ -44,7 +44,7 @@ const autenticacionRequeridaAdmin = (req, res, next) => {
 
 };
 
-const autenticacionRequerida = (req, res, next) => {
+export const autenticacionRequerida = (req, res, next) => {
     const { token } = req.cookies;
 
 
@@ -67,8 +67,8 @@ const autenticacionRequerida = (req, res, next) => {
 };
 
 
-module.exports = {
-    autenticacionRequeridaAdmin,
-    autenticacionRequeridaTaxonomo,
-    autenticacionRequerida
-}
+// module.exports = {
+//     autenticacionRequeridaAdmin,
+//     autenticacionRequeridaTaxonomo,
+//     autenticacionRequerida
+// }

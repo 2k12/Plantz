@@ -1,9 +1,9 @@
-class Imagen {
-    constructor(ID, Planta_ID, URLImagen, Descripcion) {
+export class Imagen {
+    constructor(ID, Planta_ID, URLImagen, Nombre) {
         this.ID = ID;
         this.Planta_ID = Planta_ID;
         this.URLImagen = URLImagen;
-        this.Descripcion = Descripcion;
+        this.Nombre = Nombre;
     }
 
     getID(){ return this.ID;}
@@ -12,12 +12,8 @@ class Imagen {
     setPlanta_ID(Planta_ID) {this.Planta_ID = Planta_ID;}
     getURLImagen(){ return this.URLImagen;}
     setURLImagen(URLImagen) {this.URLImagen = URLImagen;}
-    getDescripcion(){ return this.Descripcion;}
-    setDescripcion(Descripcion) {this.Descripcion = Descripcion;}
+    getNombre(){ return this.Nombre;}
+    setNombre(Nombre) {this.Nombre = Nombre;}
     
     
 }
-
-module.exports = {
-    Imagen
-} 

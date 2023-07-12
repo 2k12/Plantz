@@ -1,4 +1,4 @@
-class Taxonomia {
+export class Taxonomia {
     constructor(ID, Reino, Filo, Clase, Orden, Familia, Genero, Especie) {
         this.ID = ID;
         this.Reino = Reino;
@@ -89,7 +89,3 @@ class Taxonomia {
     }
 }
 
-module.exports =
-    {
-        Taxonomia
-    }

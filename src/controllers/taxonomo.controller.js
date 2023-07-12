@@ -1,14 +1,18 @@
-const { Planta } = require("../models/Planta.model.js");
-const { Taxonomia } = require("../models/Taxonomia.model.js");
-const { Imagen } = require("../models/Imagen.model.js");
+import { Planta } from "../models/Planta.model.js";
+import { Taxonomia } from "../models/Taxonomia.model.js";
+import { Imagen } from "../models/Imagen.model.js";
+import { subirArchivo} from '../services/s3.js';
+import { AWS_LINK_ARCHIVE }  from "../config.js";
+//   ! aui el error
+import  { validaciondearchivo } from "../validators/user.validator.js";
 
-// const { validacionUsuario, eliminacionespacios } = require("../validators/user.validator.js");
+import {pool} from '../db.js';
 
-const pool = require('../db.js');
-
-const leerRegistros = async (req, res) => {
+export const leerRegistros = async (req, res) => {
     try {
         const tdsregistros = await pool.query('SELECT * FROM plantas WHERE usuario_id=$1 ', [req.decoded.id]);
+        // const tdsregistros = await pool.query('SELECT p.*, i.* FROM plantas AS p INNER JOIN imagenes AS i ON p.id = i.plantaid WHERE p.usuario_id = $1', [req.decoded.id]);
+
         if (tdsregistros.rowCount === 0) return res.status(404);
         res.status(200).json(tdsregistros.rows);
     } catch (error) {
@@ -17,10 +21,12 @@ const leerRegistros = async (req, res) => {
         }
     }
 };
-const leerRegistro = async (req, res) => {
+export const leerRegistro = async (req, res) => {
     try {
         const { id } = req.params;
-        const registroEncotrado = await pool.query("SELECT * FROM plantas WHERE id=$1", [id]);
+        // const registroEncotrado = await pool.query("SELECT * FROM plantas WHERE id=$1", [id]);
+        const registroEncotrado = await pool.query('SELECT p.*, i.* FROM plantas AS p INNER JOIN imagenes AS i ON p.id = i.planta_id WHERE p.usuario_id = $1', [id]);
+
         if (!registroEncotrado) {
             return res.status(400).json({ message: 'La Especie no fue encontrada' });
         }
@@ -29,8 +35,9 @@ const leerRegistro = async (req, res) => {
 
         res.json({
             especie: {
-                "nombre_comun": registroEncotrado.rows[0].nombrecomun,
-                "nombre_cientifico": registroEncotrado.rows[0].nombrecientifio,
+                "nombre_comun": registroEncotrado.rows[0].plantas.nombrecomun,
+                "nombre_cientifico": registroEncotrado.rows[0].plantas.nombrecientifio,
+                "imagen": registroEncotrado.rows[0].imagenes.urlimagen,
                 "reino": leertaxonomia.rows[0].reino,
                 "filo": leertaxonomia.rows[0].filo,
                 "clase": leertaxonomia.rows[0].clase,
@@ -49,13 +56,23 @@ const leerRegistro = async (req, res) => {
         }
     }
 };
-const crearRegistro = async (req, res) => {
+export const crearRegistro = async (req, res) => {
     try {
-        const { imagenm, reino, filo, clase, orden, familia, genero, especie, nci, nco } = req.body;
+        const { reino, filo, clase, orden, familia, genero, especie, nci, nco } = req.body;
+        // const  imagenm  = req.files.imagenm.tempFilePath;
+        // res.json(imagenm
 
+        // req.files.file = imagenm
         const nplanta = new Planta();
         const ntaxonomia = new Taxonomia();
         const nimagen = new Imagen();
+        
+        // // proceso de subir y generacion de parametros de la imagen en aws 
+        const resultadodecarga = await subirArchivo(req.files.imagenm);
+        if (!resultadodecarga) return res.json({message: "Errror en la carga de la imagen"})
+        const nombrearchivo = req.files.imagenm.name;
+        const nombrelimpio = validaciondearchivo(nombrearchivo);
+        const urlimagen = `${AWS_LINK_ARCHIVE}${nombrelimpio}`;
 
         // taxonomia
         ntaxonomia.setReino(reino);
@@ -79,10 +96,19 @@ const crearRegistro = async (req, res) => {
         nplanta.setNombreCientifico(nci);
         nplanta.setTaxonomiaID(resulttax.rows[0].id);
 
-        var resultplant = await pool.query("INSERT INTO plantas (usuario_id,taxonomia_id,nombrecomun,nombrecientifio) VALUES ($1,$2,$3,$4) RETURNING *",
+        const resultplant = await pool.query("INSERT INTO plantas (usuario_id,taxonomia_id,nombrecomun,nombrecientifio) VALUES ($1,$2,$3,$4) RETURNING *",
             [
                 nplanta.getUsuarioID(), nplanta.getTaxonomiaID(), nplanta.getNombreComun(), nplanta.getNombreCientifico()
             ])
+
+        // imagen
+        nimagen.setPlanta_ID(resultplant.rows[0].id);
+        nimagen.setNombre(nombrelimpio);
+        nimagen.setURLImagen(urlimagen);
+    
+        const  resultimagen = await pool.query("INSERT INTO imagenes (planta_id,nombre,urlimagen) VALUES ($1,$2,$3)",[
+            nimagen.getPlantaID(),nimagen.getNombre(),nimagen.getURLImagen()
+        ])  
 
         res.sendStatus(200);
         //     res.json({
@@ -108,7 +134,7 @@ const crearRegistro = async (req, res) => {
         }
     }
 };
-const editarRegistro = async (req, res) => {
+export const editarRegistro = async (req, res) => {
 
     try {
         const { id } = req.params;
@@ -135,7 +161,7 @@ const editarRegistro = async (req, res) => {
         }
     }
 };
-const eliminarRegistro = async (req, res) => {
+export const eliminarRegistro = async (req, res) => {
     try {
         const { id } = req.params;
         const result = await pool.query('DELETE FROM plantas WHERE id = $1 ', [id]);
@@ -149,10 +175,10 @@ const eliminarRegistro = async (req, res) => {
     }
 };
 
-module.exports = {
-    leerRegistros,
-    leerRegistro,
-    crearRegistro,
-    editarRegistro,
-    eliminarRegistro
-}
+// module.exports = {
+//     leerRegistros,
+//     leerRegistro,
+//     crearRegistro,
+//     editarRegistro,
+//     eliminarRegistro
+// }

@@ -1,6 +1,6 @@
-const jwt = require('jsonwebtoken');
-const { TOKEN_SECRET, TOKEN_EXPIRATION_TIME } = require('../config.js');
-async function crearTokendeAcceso(payload) {
+import jwt from 'jsonwebtoken';
+import { TOKEN_SECRET, TOKEN_EXPIRATION_TIME } from '../config.js';
+export async function crearTokendeAcceso(payload) {
     // generacion de token (pase para saber si tiene autorizacion)
     return new Promise((resolve, reject) => {
         jwt.sign(
@@ -19,6 +19,3 @@ async function crearTokendeAcceso(payload) {
     })
 }
 
-module.exports={
-    crearTokendeAcceso
-}

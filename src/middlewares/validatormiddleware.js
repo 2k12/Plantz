@@ -7,4 +7,4 @@ const esquemadeValidacion = (schema) => (req,res,next) =>{
     }
 } 
 
-module.exports = esquemadeValidacion
+export default  esquemadeValidacion

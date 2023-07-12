@@ -1,16 +1,16 @@
-const { Taxonomia } = require("../models/Taxonomia.model.js");
-const { Usuario } = require("../models/User.model.js");
-const bcrypt = require('bcryptjs');
-const { validacionUsuario ,eliminacionespacios } = require("../validators/user.validator.js");
+import { Taxonomia } from "../models/Taxonomia.model.js";
+import { Usuario } from "../models/User.model.js";
+import bcrypt from 'bcryptjs';
+import { validacionUsuario  } from "../validators/user.validator.js";
 
 // const { validacionUsuario, eliminacionespacios } = require("../validators/user.validator.js");
 
-const pool = require('../db.js');
+import {pool} from '../db.js';
 
 
 // taxonomia
 
-const leertaxonomias = async (req, res) => {
+export const leertaxonomias = async (req, res) => {
     try {
         const tdsregistros = await pool.query('SELECT * FROM taxonomia');
         res.json(tdsregistros.rows);
@@ -20,7 +20,7 @@ const leertaxonomias = async (req, res) => {
         }
     }
 };
-const leertaxonomia = async (req, res) => {
+export const leertaxonomia = async (req, res) => {
     try {
         const { id } = req.params;
         const leertaxonomia = await pool.query("SELECT * FROM taxonomia WHERE id= $1 ", [id]);
@@ -44,7 +44,7 @@ const leertaxonomia = async (req, res) => {
         }
     }
 };
-const agregartaxonomia = async (req, res) => {
+export const agregartaxonomia = async (req, res) => {
     try {
         const { reino, filo, clase, orden, familia, genero, especie} = req.body;
 
@@ -79,7 +79,7 @@ const agregartaxonomia = async (req, res) => {
         }
     }
 };
-const editartaxonomia = async (req, res) => {
+export const editartaxonomia = async (req, res) => {
 
     try {
         const { id } = req.params;
@@ -99,7 +99,7 @@ const editartaxonomia = async (req, res) => {
         }
     }
 };
-const eliminartaxonomia = async (req, res) => {
+export const eliminartaxonomia = async (req, res) => {
     try {
         const { id } = req.params;
         const result = await pool.query('DELETE FROM taxonomia WHERE id = $1', [id]);
@@ -115,7 +115,7 @@ const eliminartaxonomia = async (req, res) => {
 // usuarios
 
 
-const leerusuarios = async (req, res) => {
+export const leerusuarios = async (req, res) => {
     try {
         const tdsregistros = await pool.query('SELECT * FROM usuarios');
         res.json(tdsregistros.rows);
@@ -125,7 +125,7 @@ const leerusuarios = async (req, res) => {
         }
     }
 };
-const leerusuario = async (req, res) => {
+export const leerusuario = async (req, res) => {
     try {
         const { id } = req.params;
         const leerusuario = await pool.query("SELECT * FROM usuarios WHERE id= $1 ", [id]);
@@ -147,7 +147,7 @@ const leerusuario = async (req, res) => {
         }
     }
 };
-const agregarusuario = async (req, res) => {
+export const agregarusuario = async (req, res) => {
     try {
         const { nombre, usuario, email, contrasena } = req.body;
         let usuarion = new Usuario();
@@ -187,7 +187,7 @@ const agregarusuario = async (req, res) => {
         }
     }
 };
-const editarusuario = async (req, res) => {
+export const editarusuario = async (req, res) => {
 
     try {
         const { id } = req.params;
@@ -207,7 +207,7 @@ const editarusuario = async (req, res) => {
         }
     }
 };
-const eliminarusuario = async (req, res) => {
+export const eliminarusuario = async (req, res) => {
     try {
         const { id } = req.params;
         const result = await pool.query('DELETE * FROM usuarios WHERE id = $1', [id]);
@@ -220,17 +220,17 @@ const eliminarusuario = async (req, res) => {
 };
 
 
-module.exports = {
-    // taxonomias
-    leertaxonomias,
-    leertaxonomia,
-    agregartaxonomia,
-    editartaxonomia,
-    eliminartaxonomia,
-    // usuarios
-    leerusuarios,
-    leerusuario,
-    agregarusuario,
-    editarusuario,
-    eliminarusuario
-}
+// module.exports = {
+//     // taxonomias
+//     leertaxonomias,
+//     leertaxonomia,
+//     agregartaxonomia,
+//     editartaxonomia,
+//     eliminartaxonomia,
+//     // usuarios
+//     leerusuarios,
+//     leerusuario,
+//     agregarusuario,
+//     editarusuario,
+//     eliminarusuario
+// }

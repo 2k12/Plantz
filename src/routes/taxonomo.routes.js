@@ -1,6 +1,6 @@
-const { Router } = require('express');
-const {autenticacionRequeridaTaxonomo} = require("../middlewares/validateToken.js");
-const { leerRegistros,leerRegistro,crearRegistro,editarRegistro,eliminarRegistro} = require('../controllers/taxonomo.controller.js');
+import { Router } from 'express';
+import {autenticacionRequeridaTaxonomo} from "../middlewares/validateToken.js";
+import { leerRegistros,leerRegistro,crearRegistro,editarRegistro,eliminarRegistro} from '../controllers/taxonomo.controller.js';
 // const esquemadeValidacion = require('../middlewares/validatormiddleware.js');
 // const { taxonomiaEsquema } = require('../schemas/validation.schema.js');
 
@@ -13,4 +13,4 @@ router.put('/registrotaxonomico/:id', autenticacionRequeridaTaxonomo,  editarReg
 router.delete('/registrotaxonomico/:id', autenticacionRequeridaTaxonomo, eliminarRegistro);
 
 
-module.exports = router ;
+export default router ;

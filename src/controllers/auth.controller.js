@@ -1,13 +1,13 @@
-const { Usuario } = require("../models/User.model.js");
-const { validacionUsuario, eliminacionespacios } = require("../validators/user.validator.js");
-const pool = require('../db.js');
-const bcrypt = require('bcryptjs');
-const { TOKEN_SECRET} = require('../config.js');
+import {Usuario} from "../models/User.model.js";
+import { validacionUsuario} from"../validators/user.validator.js";
+import {pool} from '../db.js';
+import bcrypt from 'bcryptjs';
+import { TOKEN_SECRET} from '../config.js';
 
-const jwt = require ('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 
-const { crearTokendeAcceso } = require('../libs/jwt.js');
-const register = async (req, res) => {
+import { crearTokendeAcceso } from '../libs/jwt.js';
+export const register = async (req, res) => {
     try {
 
 
@@ -26,7 +26,7 @@ const register = async (req, res) => {
 
             usuarion.setNombre(nombre);
             usuarion.setUsuario(usuario);
-            usuarion.setCorreoElectronico(eliminacionespacios(email));
+            usuarion.setCorreoElectronico(email);
             usuarion.setContrasena(contrasenaHash);
             usuarion.setRol(eliminacionespacios(rol));
 
@@ -59,7 +59,7 @@ const register = async (req, res) => {
         }
     }
 };
-const login = async (req, res) => {
+export const login = async (req, res) => {
     try {
         const { email, contrasena } = req.body;
 
@@ -93,7 +93,7 @@ const login = async (req, res) => {
 
 };
 
-const logout = (req, res) => {
+export const logout = (req, res) => {
     res.cookie('token', "", {
         expires: new Date(0),
     });
@@ -101,7 +101,7 @@ const logout = (req, res) => {
     return res.sendStatus(200);
 };
 
-const profile = async (req, res) => {
+export const profile = async (req, res) => {
     const usuarioEncontrado = await pool.query('SELECT * FROM usuarios WHERE id = $1', [req.decoded.id])
     if (!usuarioEncontrado) return res.status(400).json({ message: "Usuario no encontrado." });
 
@@ -113,7 +113,7 @@ const profile = async (req, res) => {
     });
 };
 
-const verifyToken = async (req,res) =>{
+export const verifyToken = async (req,res) =>{
     const { token } = req.cookies;
     if(!token) return res.status(401).json({message: "No Autorizado"})
 
@@ -134,10 +134,10 @@ const verifyToken = async (req,res) =>{
 
 };
 
-module.exports = {
-    register,
-    login,
-    logout,
-    profile,
-    verifyToken
-}
+// module.exports = {
+//     register,
+//     login,
+//     logout,
+//     profile,
+//     verifyToken
+// }

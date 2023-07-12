@@ -1,4 +1,4 @@
-class Usuario {
+export class Usuario {
     constructor(ID, Nombre, Usuario, CorreoElectronico, Contrasena,Rol) {
         this.ID = ID;
         this.Nombre = Nombre;
@@ -23,6 +23,3 @@ class Usuario {
 
 }
 
-module.exports = {
-    Usuario
-}
