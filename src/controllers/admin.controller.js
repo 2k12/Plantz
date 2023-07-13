@@ -103,7 +103,9 @@ export const eliminartaxonomia = async (req, res) => {
     try {
         const { id } = req.params;
         const result = await pool.query('DELETE FROM taxonomia WHERE id = $1', [id]);
-        if (result.rowCount === 0) return res.status(400).json({ message: "La Taxonomia no existe" });
+        if (!result) return res.status(400).json({ message: "La Taxonomia no existe" });
+        res.sendStatus(204);
+
     } catch (error) {
         if (error instanceof Error) {
             res.send(error.message);
@@ -218,19 +220,3 @@ export const eliminarusuario = async (req, res) => {
         }
     }
 };
-
-
-// module.exports = {
-//     // taxonomias
-//     leertaxonomias,
-//     leertaxonomia,
-//     agregartaxonomia,
-//     editartaxonomia,
-//     eliminartaxonomia,
-//     // usuarios
-//     leerusuarios,
-//     leerusuario,
-//     agregarusuario,
-//     editarusuario,
-//     eliminarusuario
-// }

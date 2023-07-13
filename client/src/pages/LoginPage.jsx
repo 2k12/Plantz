@@ -15,7 +15,7 @@ function LoginPage() {
 
   useEffect(() => {
     if (estalogeado) {
-      navigation('/registrotaxonomico')
+      navigation('/')
     }
   }, [estalogeado]);
 

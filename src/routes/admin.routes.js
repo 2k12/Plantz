@@ -17,6 +17,7 @@ router.post('/taxonomia',autenticacionRequeridaAdmin,  esquemadeValidacion(taxon
 router.put('/taxonomia/:id',autenticacionRequeridaAdmin, esquemadeValidacion(taxonomiaEsquema),editartaxonomia);
 router.delete('/taxonomia/:id',autenticacionRequeridaAdmin,eliminartaxonomia);
 
+
 // usuarios
 router.get('/usuarios',autenticacionRequeridaAdmin,leerusuarios);
 router.get('/usuarios/:id',autenticacionRequeridaAdmin, leerusuario);

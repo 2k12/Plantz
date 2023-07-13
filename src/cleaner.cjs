@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const uploadsFolder = path.join(__dirname, 'uploads'); // Ruta a la carpeta "uploads"
+const uploadsFolder = path.join(__dirname, '../uploads'); // Ruta a la carpeta "uploads"
 // const maxAge = 24 * 60 * 60 * 1000; // Tiempo de vida máximo de los archivos (en milisegundos) UN DIA
 const maxAge = 60 * 60 * 1000; // Tiempo de vida máximo de los archivos (en milisegundos) UNA HORA
 
@@ -34,7 +34,7 @@ const cleanup = () => {
                             return;
                         }
 
-                        // console.log(`Archivo "${file}" eliminado correctamente`);
+                        console.log(`Archivo "${file}" eliminado correctamente`);
                     });
                 }
             });

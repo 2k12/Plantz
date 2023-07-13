@@ -28,7 +28,7 @@ export const register = async (req, res) => {
             usuarion.setUsuario(usuario);
             usuarion.setCorreoElectronico(email);
             usuarion.setContrasena(contrasenaHash);
-            usuarion.setRol(eliminacionespacios(rol));
+            usuarion.setRol(rol);
 
 
 
