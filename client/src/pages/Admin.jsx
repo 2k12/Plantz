@@ -31,7 +31,7 @@ export default function AdminTemplate() {
                         </p>
                     </div>
                     <div className="px-6 pt-4 ">
-                        <Link to="#" className="inline-block  rounded w-full text-center px-3 py-1 pt-5 font-semibold text-white mr-2 mb-2 bg-green-700 hover:bg-green-600 h-20 text-2xl">
+                        <Link to="/agregar-registrotaxonomico" className="inline-block  rounded w-full text-center px-3 py-1 pt-5 font-semibold text-white mr-2 mb-2 bg-green-700 hover:bg-green-600 h-20 text-2xl">
                             Gestionar
                         </Link>
                     </div>

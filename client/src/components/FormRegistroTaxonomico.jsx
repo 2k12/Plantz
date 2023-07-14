@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import './nuevaespecie.css';
 import { useForm } from "react-hook-form";
 import { useEspecie } from "../context/RegistroEspecieContext";
+import { useAuth } from "../context/AuthContext";
 import { useNavigate, useParams } from "react-router-dom";
 
 function Stepper() {
@@ -12,6 +13,7 @@ function Stepper() {
 
     const { register, handleSubmit, setValue, formState: { errors } } = useForm();
     const { agregarEspecie, leerEspecie, editarEspecie } = useEspecie();
+    const { user } = useAuth();
 
     const navigate = useNavigate();
     const params = useParams();
@@ -41,7 +43,7 @@ function Stepper() {
         setImagen(file);
     };
 
-    const onSubmit = handleSubmit((data ,e) => {
+    const onSubmit = handleSubmit((data, e) => {
 
         e.preventDefault();
 
@@ -59,7 +61,7 @@ function Stepper() {
 
 
         if (params.id) {
-            editarEspecie(params.id,formData)
+            editarEspecie(params.id, formData)
 
         } else {
             agregarEspecie(formData);
@@ -69,7 +71,10 @@ function Stepper() {
 
     });
 
+
+
     return (
+
         <div className="flex flex-col items-center mt-36 w-96 container-fluid mx-auto">
             <div className="w-full max-w-xl p-8 bg-gray-900 rounded-lg shadow-md relative border border-purple-500">
                 <div className="flex justify-between mb-8 pl-10 pr-10">

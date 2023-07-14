@@ -7,7 +7,7 @@ import TaxonomiasCard from "../components/TaxonomiasCard";
 import { useAdmin } from "../context/AdminContext";
 import { useEffect } from "react";
 
-function RegistroTaxonomico() {
+function RegistroTaxonomia() {
     const { leerTaxonomias, taxonomia } = useAdmin();
     // console.log(object);
     useEffect(() => {
@@ -25,7 +25,7 @@ function RegistroTaxonomico() {
                         Módulo Taxonomía
                     </span>
                     <button className="nuevor bg-gray-900 border border-purple-500 hover:bg-purple-900 text-white font-bold text-sm py-2 px-4 rounded ml-5">
-                        <Link to="/agregar-registrotaxonomico"> Nuevo Registro </Link>
+                        <Link to="/agregar-taxonomia"> Nuevo Registro </Link>
                     </button>
                 </div>
             </div>
@@ -50,4 +50,4 @@ function RegistroTaxonomico() {
     );
 }
 
-export default RegistroTaxonomico;
+export default RegistroTaxonomia;

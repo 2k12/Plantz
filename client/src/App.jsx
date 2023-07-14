@@ -8,6 +8,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import RegistroTaxonomico from "./pages/RegistroTaxonomico";
 import NuevoRegistroTaxonomico from "./pages/NuevoRegistro";
+import NuevoRegistroTaxonomia from "./pages/NuevoRegistroTaxonomia";
 import Adminmodulos from "./pages/Admin";
 import Especie from "./pages/Especie";
 import Navbar from "./components/Navbar";
@@ -43,8 +44,8 @@ function App() {
                 <Route path='/adminmodulos' element={<Adminmodulos />} />
 
                 <Route path='/taxonomia' element={<RegistroTaxonomia/>} />
-                <Route path='/agregar-taxonomia' element={<NuevoRegistroTaxonomico />} />
-                <Route path='/editar-taxonomia/:id' element={<NuevoRegistroTaxonomico />} />
+                <Route path='/agregar-taxonomia' element={<NuevoRegistroTaxonomia />} />
+                <Route path='/editar-taxonomia/:id' element={<NuevoRegistroTaxonomia />} />
                 <Route path='/eliminar-registrotaxonomico' element={<h1>eliminar registro taxonomico</h1>} />
                 <Route path='/taxonomia/:id' element={<Especie />} />
 
