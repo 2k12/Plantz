@@ -6,11 +6,17 @@ import imagendefondo from "../assets/fondo.png";
 import EspecieCard from "../components/EspeciesCard";
 import { useEspecie } from "../context/RegistroEspecieContext";
 import { useEffect } from "react";
-
+import {  useAuth } from "../context/AuthContext";
+import {  useAdmin } from "../context/AdminContext";
 function RegistroTaxonomico() {
+    const { user } = useAuth();
     const { leerEspecies, especie } = useEspecie();
+    const { leerEspecies2, especiead} = useAdmin();
     // console.log(object);
     useEffect(() => {
+        if(user.rol==="admin"){
+            leerEspecies2()
+        }
         leerEspecies()
     }, []);
 
@@ -32,10 +38,12 @@ function RegistroTaxonomico() {
 
             <div className="flex items-center justify-center h-screen ">
                 <div className=" items-center justify-center w-11/12 h-64 md:w-3/4 lg:w-1/2 xl:w-2/3 overflow-y-scroll bg-gradient-to-b from-gray-500 to-gray-400 rounded border border-purple-500">
-                    {
+                    { user.rol!=="admin"?(
                     especie.map((esp) => (
                         <EspecieCard esp={esp}  key={esp.id}/>
-                    ))}
+                    ))):( especiead.map((esp) => (
+                        <EspecieCard esp={esp}  key={esp.id}/>
+                    )))}
                     {/* <p>Contenido del div con barra de desplazamiento</p> */}
                 </div>
 

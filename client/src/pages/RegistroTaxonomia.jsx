@@ -7,6 +7,7 @@ import TaxonomiasCard from "../components/TaxonomiasCard";
 import { useAdmin } from "../context/AdminContext";
 import { useEffect } from "react";
 
+
 function RegistroTaxonomia() {
     const { leerTaxonomias, taxonomia } = useAdmin();
     // console.log(object);

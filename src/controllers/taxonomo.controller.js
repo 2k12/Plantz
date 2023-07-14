@@ -22,6 +22,7 @@ export const leerRegistros = async (req, res) => {
         }
     }
 };
+
 export const leerRegistro = async (req, res) => {
     try {
         const { id } = req.params;

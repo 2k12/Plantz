@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import './nuevaespecie.css';
 import { useForm } from "react-hook-form";
 import { useEspecie } from "../context/RegistroEspecieContext";
-import { useAuth } from "../context/AuthContext";
 import { useNavigate, useParams } from "react-router-dom";
 
 function Stepper() {
@@ -13,7 +12,7 @@ function Stepper() {
 
     const { register, handleSubmit, setValue, formState: { errors } } = useForm();
     const { agregarEspecie, leerEspecie, editarEspecie } = useEspecie();
-    const { user } = useAuth();
+   
 
     const navigate = useNavigate();
     const params = useParams();

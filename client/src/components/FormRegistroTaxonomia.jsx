@@ -11,7 +11,7 @@ function Stepper() {
     };
 
     const { register, handleSubmit, setValue, formState: { errors } } = useForm();
-    const { agregarTaxonomia, leerTaxonomia, editarTaxonomia } = useAdmin();
+    const { agregarTaxonomia, leerTaxonomia, editarTaxonomia , taxonomia} = useAdmin();
 
     const navigate = useNavigate();
     const params = useParams();

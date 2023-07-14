@@ -11,7 +11,7 @@ export const autenticacionRequeridaTaxonomo = (req, res, next) => {
 
         req.decoded = decoded;
 
-        if (decoded.rol === "taxonomo") {
+        if (decoded.rol === "taxonomo"||decoded.rol === "admin") {
             next();
         }
         else{

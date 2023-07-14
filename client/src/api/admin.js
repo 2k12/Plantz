@@ -1,5 +1,20 @@
 import axios from "./axios";
 
+// especies
+
+export const peticionleerEspeciesad = () => axios.get('/adm/registrotaxonomico');
+export const peticionleerEspeciead = (id) => axios.get(`/adm/registrotaxonomico/${id}`);
+export const peticionagregarEspeciead = (especie) => axios.post('/adm/registrotaxonomico',especie, {
+    headers: {
+        "Content-Type": "multipart/form-datata"
+    }
+});
+export const peticioneditarEspeciead = (id,especie) => axios.put(`/adm/registrotaxonomico/${id}`,especie,{
+    headers: {
+        "Content-Type": "multipart/form-datata"
+    }
+});
+export const peticioneliminarEspeciead = (id) => axios.delete(`/adm/registrotaxonomico/${id}`);
 
 // taxonomias
 export const peticionleerTaxonomias = () => axios.get('/adm/taxonomia');
