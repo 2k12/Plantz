@@ -6,21 +6,21 @@ import { useEffect, useState } from "react";
 
 
 export default function EditButton() {
-    const [especie, setEspecie] = useState()
-    const { leerTaxonomia } = useAdmin();
+    const [usuario, setUsuario] = useState()
+    const { leerUsuario } = useAdmin();
     const params = useParams();
 
     useEffect(() => {
-        async function obtenerEspecie() {
+        async function obtenerUsuario() {
             try {
-                const especiebdd = await leerTaxonomia(params.id);
-                setEspecie(especiebdd);
+                const usuariobdd = await leerUsuario(params.id);
+                setUsuario(usuariobdd);
             } catch (error) {
                 console.error(error);
             }
         }
 
-        obtenerEspecie();
+        obtenerUsuario();
     }, []);
 
     return (
@@ -32,7 +32,7 @@ export default function EditButton() {
                             <MDBCard className='rounded p-3 '>
                                 <div className=" text-white rounded-t" style={{
                                     backgroundColor: "#2b1b34",
-                                    // backgroundImage: `url("${especie?.imagen}")`, height: '200px',
+                                    // backgroundImage: `url("${usuario?.imagen}")`, height: '200px',
                                     backgroundSize: 'cover',
                                     backgroundRepeat: 'no-repeat',
                                     backgroundPosition: 'center',
@@ -43,50 +43,34 @@ export default function EditButton() {
                                     <div className="d-flex text-justify text- py-1">
                                         <div className="px-3">
                                             <MDBCardText className="mb-1 text-3xl  border-b border-purple-500 text-white font-light pb-4">
-                                                {especie?.genero + " " + especie?.especie}
+                                                {usuario?.usuario}
                                             </MDBCardText>
                                             <MDBCardText className="mb-1 h5 border-b border-purple-500 text-purple-400">
-                                                REINO:
+                                                NOMBRE:
                                                 <span className='ml-5 text-lg  text-white'>
-                                                    {especie?.reino}
+                                                    {usuario?.nombre}
                                                 </span>
                                             </MDBCardText>
                                             <MDBCardText className="mb-1 h5 border-b border-purple-500 text-purple-400">
-                                                FILO:
+                                                EMAIL:
                                                 <span className='ml-5 text-lg text-white'>
-                                                    {especie?.filo}
+                                                    {usuario?.email}
                                                 </span>
                                             </MDBCardText>
                                             <MDBCardText className="mb-1 h5 border-b border-purple-500 text-purple-400">
-                                                CLASE:
+                                                ROL:
                                                 <span className='ml-5 text-lg text-white'>
-                                                    {especie?.clase}
+                                                    {usuario?.rol}
                                                 </span>
                                             </MDBCardText>
                                             <MDBCardText className="mb-1 h5 border-b border-purple-500 text-purple-400 ">
-                                                ORDEN:
-                                                <span className='ml-5 text-lg text-white'>
-                                                    {especie?.orden}
+                                                CONTRASEÑA:
+                                                <span className='text-lg text-white  block ' style={{ "maxWidth": "100%", "overflow": "hidden", "whiteSpace": "nowrap" }}>
+                                                    {usuario?.contrasena}
                                                 </span>
                                             </MDBCardText>
-                                            <MDBCardText className="mb-1 h5 border-b border-purple-500 text-purple-400">
-                                                FAMILIA:
-                                                <span className='ml-5 text-lg text-white'>
-                                                    {especie?.familia}
-                                                </span>
-                                            </MDBCardText>
-                                            <MDBCardText className="mb-1 h5 border-b border-purple-500 text-purple-400">
-                                                GENERO:
-                                                <span className='ml-5 text-lg text-white'>
-                                                    {especie?.genero}
-                                                </span>
-                                            </MDBCardText>
-                                            <MDBCardText className="mb-1 h5 border-b border-purple-500 text-purple-400">
-                                                ESPECIE:
-                                                <span className='ml-5 text-lg text-white'>
-                                                    {especie?.especie}
-                                                </span>
-                                            </MDBCardText>
+
+
                                             {/* SE PUEDE AGREGAR LOS CAMPOS PAR LA UBICACION ETC */}
 
                                         </div>

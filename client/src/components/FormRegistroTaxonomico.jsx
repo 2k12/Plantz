@@ -3,7 +3,8 @@ import './nuevaespecie.css';
 import { useForm } from "react-hook-form";
 import { useEspecie } from "../context/RegistroEspecieContext";
 import { useNavigate, useParams } from "react-router-dom";
-
+import { useAuth } from "../context/AuthContext";
+import { useAdmin } from "../context/AdminContext";
 function Stepper() {
     const [currentStep, setCurrentStep] = useState(1);
     const handleStepClick = (step) => {
@@ -12,29 +13,51 @@ function Stepper() {
 
     const { register, handleSubmit, setValue, formState: { errors } } = useForm();
     const { agregarEspecie, leerEspecie, editarEspecie } = useEspecie();
-   
+    const { agregarEspecie2, leerEspecie2, editarEspecie2 } = useAdmin();
+
 
     const navigate = useNavigate();
     const params = useParams();
     const [imagen, setImagen] = useState(null);
+    const { user } = useAuth();
 
     useEffect(() => {
-        async function cargarEspecie() {
-            if (params.id) {
-                const especiebdd = await leerEspecie(params.id);
-                // console.log(especiebdd)
-                setValue('nco', especiebdd.nombre_comun)
-                setValue('nci', especiebdd.nombre_cientifico)
-                setValue('reino', especiebdd.reino)
-                setValue('filo', especiebdd.filo)
-                setValue('clase', especiebdd.clase)
-                setValue('orden', especiebdd.orden)
-                setValue('familia', especiebdd.familia)
-                setValue('genero', especiebdd.genero)
-                setValue('especie', especiebdd.especie)
+        if (user.rol === "taxonomo") {
+            async function cargarEspecie() {
+                if (params.id) {
+                    const especiebdd = await leerEspecie(params.id);
+                    // console.log(especiebdd)
+                    setValue('nco', especiebdd.nombre_comun)
+                    setValue('nci', especiebdd.nombre_cientifico)
+                    setValue('reino', especiebdd.reino)
+                    setValue('filo', especiebdd.filo)
+                    setValue('clase', especiebdd.clase)
+                    setValue('orden', especiebdd.orden)
+                    setValue('familia', especiebdd.familia)
+                    setValue('genero', especiebdd.genero)
+                    setValue('especie', especiebdd.especie)
+                }
             }
+            cargarEspecie();
+        } else {
+            async function cargarEspeciead() {
+                if (params.id) {
+                    const especiebdd = await leerEspecie2(params.id);
+                    // console.log(especiebdd)
+                    setValue('nco', especiebdd.nombre_comun)
+                    setValue('nci', especiebdd.nombre_cientifico)
+                    setValue('reino', especiebdd.reino)
+                    setValue('filo', especiebdd.filo)
+                    setValue('clase', especiebdd.clase)
+                    setValue('orden', especiebdd.orden)
+                    setValue('familia', especiebdd.familia)
+                    setValue('genero', especiebdd.genero)
+                    setValue('especie', especiebdd.especie)
+                }
+            }
+            cargarEspeciead();
         }
-        cargarEspecie();
+
     }, []);
 
     const handleImagenChange = (event) => {
@@ -43,29 +66,56 @@ function Stepper() {
     };
 
     const onSubmit = handleSubmit((data, e) => {
-
         e.preventDefault();
 
-        const formData = new FormData();
-        formData.append('imagenm', imagen);
-        formData.append('reino', data.reino);
-        formData.append('filo', data.filo);
-        formData.append('clase', data.clase);
-        formData.append('orden', data.orden);
-        formData.append('familia', data.familia);
-        formData.append('genero', data.genero);
-        formData.append('especie', data.especie);
-        formData.append('nci', data.nci);
-        formData.append('nco', data.nco);
+
+        if (user.rol === "taxonomo") {
+            const formData = new FormData();
+            formData.append('imagenm', imagen);
+            formData.append('reino', data.reino);
+            formData.append('filo', data.filo);
+            formData.append('clase', data.clase);
+            formData.append('orden', data.orden);
+            formData.append('familia', data.familia);
+            formData.append('genero', data.genero);
+            formData.append('especie', data.especie);
+            formData.append('nci', data.nci);
+            formData.append('nco', data.nco);
 
 
-        if (params.id) {
-            editarEspecie(params.id, formData)
+            if (params.id) {
+                editarEspecie(params.id, formData)
 
-        } else {
-            agregarEspecie(formData);
+            } else {
+                agregarEspecie(formData);
+            }
+            navigate('/registrotaxonomico');
+
         }
-        navigate('/registrotaxonomico');
+        else {
+            const formData = new FormData();
+            formData.append('imagenm', imagen);
+            formData.append('reino', data.reino);
+            formData.append('filo', data.filo);
+            formData.append('clase', data.clase);
+            formData.append('orden', data.orden);
+            formData.append('familia', data.familia);
+            formData.append('genero', data.genero);
+            formData.append('especie', data.especie);
+            formData.append('nci', data.nci);
+            formData.append('nco', data.nco);
+
+
+            if (params.id) {
+                editarEspecie2(params.id, formData)
+
+            } else {
+                agregarEspecie2(formData);
+            }
+            navigate('/registrotaxonomico');
+        }
+
+
 
 
     });
@@ -103,22 +153,25 @@ function Stepper() {
                     <>
                         {/* <h2 id='nuevaespecie' className="text-2xl font-bold mb-4 text-white mx-auto">Registro de Nueva Especie</h2> */}
                         <form className="w-80 mx-auto" onSubmit={onSubmit}>
-                            <div className="mb-4">
+                            {params.id ? (<></>) : (
+                                <div className="mb-4">
 
-                                <label className="block mb-2  text-gray-900 dark:text-white text-sm font-normal " htmlFor="file_input">Imagen</label>
-                                <input className="  block w-full text-sm text-gray-900 border border-gray-300 rounded-md cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 " id="file_input" type="file" name="imagenm"
-                                    {...register('imagenm', { required: true })}
-                                    onChange={handleImagenChange}
-                                />
-                                {
-                                    errors.imagenm && (
-                                        <p className="text-red-500">
-                                            Ingrese una Imagen
-                                        </p>
-                                    )
-                                }
+                                    <label className="block mb-2  text-gray-900 dark:text-white text-sm font-normal " htmlFor="file_input">Imagen</label>
+                                    <input className="  block w-full text-sm text-gray-900 border border-gray-300 rounded-md cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 " id="file_input" type="file" name="imagenm"
+                                        {...register('imagenm', { required: true })}
+                                        onChange={handleImagenChange}
+                                    />
+                                    {
+                                        errors.imagenm && (
+                                            <p className="text-red-500">
+                                                Ingrese una Imagen
+                                            </p>
+                                        )
+                                    }
 
-                            </div>
+                                </div>
+                            )}
+
                             <div className="mb-4">
                                 <label className="block mb-2 font-normal text-sm text-white">Reino</label>
                                 <input

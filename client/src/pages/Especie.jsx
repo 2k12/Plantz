@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText } from 'mdb-react-ui-kit';
-import imagendefondo from "../assets/fondo.png";
+import imagendefondo from "../assets/fondo.webp";
 import { useEspecie } from "../context/RegistroEspecieContext";
 import { useEffect, useState } from "react";
 

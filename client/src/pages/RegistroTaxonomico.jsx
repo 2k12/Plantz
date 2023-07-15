@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import imagendefondo from "../assets/fondo.png";
+import imagendefondo from "../assets/fondo.webp";
 // import Navbar from "../components/Navbar";
 // import Footer from "../components/Footer";
 

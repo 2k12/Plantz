@@ -1,7 +1,8 @@
 import { createContext, useContext, useState } from "react";
-import { 
-    peticionleerEspeciesad,peticionleerEspeciead,peticionagregarEspeciead,peticioneditarEspeciead,peticioneliminarEspeciead,
-    peticionleerTaxonomias,peticionleerTaxonomia,peticionagregarTaxonomia,peticioneditarTaxonomia,peticioneliminarTaxonomia
+import {
+    peticionleerEspeciesad, peticionleerEspeciead, peticionagregarEspeciead, peticioneditarEspeciead, peticioneliminarEspeciead,
+    peticionleerTaxonomias, peticionleerTaxonomia, peticionagregarTaxonomia, peticioneditarTaxonomia, peticioneliminarTaxonomia,
+    peticionleerUsuarios, peticionleerUsuario, peticionagregarUsuario, peticioneditarUsuario, peticioneliminarUsuario
 
 } from "../api/admin";
 
@@ -18,16 +19,20 @@ export const useAdmin = () => {
 
 }
 
-export function AdminProvider({children}){
+export function AdminProvider({ children }) {
     const [taxonomia, setTaxononia] = useState([])
     const [especiead, setEspecie] = useState([])
+    const [usuarios, setUsuario] = useState([])
     const [errores, setErrors] = useState([]);
 
 
-    const agregarEspecie = async (especie) => {
+
+    // ? especies
+
+    const agregarEspecie2 = async (especie) => {
         try {
             const res = await peticionagregarEspeciead(especie);
-            console.log(res);            
+            console.log(res.data);
         } catch (error) {
             if (error.response) {
                 setErrors(error.response.data.error);
@@ -46,32 +51,32 @@ export function AdminProvider({children}){
         }
     }
 
-    const leerEspecie = async (id) =>{
+    const leerEspecie2 = async (id) => {
         const res = await peticionleerEspeciead(id);
         // console.log(res.data.rows[0]);
         // console.log(res.data.especie)
         return res.data;
     }
-    const editarEspecie = async (id, especie) =>{
+    const editarEspecie2= async (id, especie) => {
         try {
-            const res = await peticioneditarEspeciead(id,especie);
+            const res = await peticioneditarEspeciead(id, especie);
         } catch (error) {
             console.log(error)
         }
     }
-    const eliminarEspecie = async(id) =>{
+    const eliminarEspecie2 = async (id) => {
         try {
             const res = await peticioneliminarEspeciead(id);
             // console.log(res);
-            if(res.status === 204) setEspecie(especiead.filter((esp) => esp.id !== id )) ;
-            
+            if (res.status === 204) setEspecie(especiead.filter((esp) => esp.id !== id));
+
         } catch (error) {
             console.log(error);
         }
     };
 
 
-
+    // ? taxonomias
 
 
     const agregarTaxonomia = async (taxonomia) => {
@@ -92,25 +97,75 @@ export function AdminProvider({children}){
             console.log(error)
         }
     }
-    const leerTaxonomia = async (id) =>{
+    const leerTaxonomia = async (id) => {
         const res = await peticionleerTaxonomia(id);
         // console.log(res.data.rows[0]);
         // console.log(res.data.especie)
         return res.data;
     }
-    const editarTaxonomia = async (id, taxonomia) =>{
+    const editarTaxonomia = async (id, taxonomia) => {
         try {
-            const res = await peticioneditarTaxonomia(id,taxonomia);
+            const res = await peticioneditarTaxonomia(id, taxonomia);
         } catch (error) {
             console.log(error)
         }
     }
-    const eliminarTaxonomia = async(id) =>{
+    const eliminarTaxonomia = async (id) => {
         try {
             const res = await peticioneliminarTaxonomia(id);
             // console.log(res);
-            if(res.status === 204) setTaxononia(taxonomia.filter((esp) => esp.id !== id )) ;
-            
+            if (res.status === 204) setTaxononia(taxonomia.filter((esp) => esp.id !== id));
+
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    // ? usuarios
+
+
+    const agregarUsuario = async (usuario) => {
+        try {
+            const res = await peticionagregarUsuario(usuario);
+            // console.log(res.data);            
+        } catch (error) {
+            if (error.response) {
+                setErrors(error.response.data.error);
+            }
+        }
+    }
+    const leerUsuarios = async () => {
+        try {
+            const res = await peticionleerUsuarios();
+            setUsuario(res.data);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    const leerUsuario = async (id) => {
+        try {
+            const res = await peticionleerUsuario(id);
+            return res.data;
+            // console.log(res.data)
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+    const editarUsuario = async (id, usuario) => {
+        try {
+            const res = await peticioneditarUsuario(id, usuario);
+            console.log(res)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    const eliminarUsuario = async (id) => {
+        try {
+            const res = await peticioneliminarUsuario(id);
+            // console.log(res);
+            if (res.status === 204) setUsuario(usuarios.filter((esp) => esp.id !== id));
+
         } catch (error) {
             console.log(error);
         }
@@ -119,19 +174,25 @@ export function AdminProvider({children}){
 
     return (
         <AdminContext.Provider value={{
-            taxonomia,
             errores,
             especiead,
+            taxonomia,
+            usuarios,
             leerEspecies2,
-            leerEspecie,
-            agregarEspecie,
-            eliminarEspecie,
-            editarEspecie,
+            leerEspecie2,
+            agregarEspecie2,
+            editarEspecie2,
+            eliminarEspecie2,
             leerTaxonomias,
             leerTaxonomia,
             agregarTaxonomia,
-            eliminarTaxonomia,
             editarTaxonomia,
+            eliminarTaxonomia,
+            leerUsuarios,
+            leerUsuario,
+            agregarUsuario,
+            editarUsuario,
+            eliminarUsuario
         }}>
             {children}
         </AdminContext.Provider>

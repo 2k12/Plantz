@@ -1,17 +1,15 @@
+import imagendefondo from "../assets/fondo.webp";
 // import Navbar from "../components/Navbar";
 // import Footer from "../components/Footer";
-import MyComponent from "../components/Plantz";
-// import Breadcrumbs from "../components/Breadcrumbs";
-import imagendefondo from "../assets/fondo.webp";
-function IndexPage() {
+import FormRegistroUsuario from "../components/FormRegistroUsuario";
+
+function Usuario() {
+
     return (
         <div className="bg-gradient-to-r from-blue-500 to-purple-500 bg-cover bg-center" style={{ backgroundImage: `url(${imagendefondo})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh' }}>
-            {/* <Navbar /> */}
-            {/* <Breadcrumbs/> */}
-            <MyComponent />
-            {/* <Footer /> */}
+            <FormRegistroUsuario />
         </div>
     )
 }
 
-export default IndexPage
+export default Usuario

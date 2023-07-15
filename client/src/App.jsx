@@ -9,12 +9,16 @@ import RegisterPage from "./pages/RegisterPage";
 import RegistroTaxonomico from "./pages/RegistroTaxonomico";
 import NuevoRegistroTaxonomico from "./pages/NuevoRegistro";
 import NuevoRegistroTaxonomia from "./pages/NuevoRegistroTaxonomia";
+import NuevoRegistroUsuario from "./pages/NuevoRegistroUsuario";
 import Adminmodulos from "./pages/Admin";
 import Especie from "./pages/Especie";
 import Taxonomia from "./pages/Taxonomia";
+import Usuario from "./pages/Usuario";
+
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import RegistroTaxonomia from "./pages/RegistroTaxonomia";
+import RegistroUsuarios from "./pages/RegistroUsuarios";
 
 import ProtectedRoute from "./ProtectedRoute";
 import { EspecieProvider } from "./context/RegistroEspecieContext";
@@ -22,8 +26,9 @@ import { AdminProvider } from "./context/AdminContext";
 function App() {
   return (
     <AuthProvider>
-      <EspecieProvider>
-        <AdminProvider>
+      <AdminProvider>
+
+        <EspecieProvider>
           <BrowserRouter>
             <Breadcrumbs />
             <Navbar />
@@ -44,22 +49,30 @@ function App() {
 
                 <Route path='/adminmodulos' element={<Adminmodulos />} />
 
-                <Route path='/taxonomia' element={<RegistroTaxonomia/>} />
+                <Route path='/taxonomia' element={<RegistroTaxonomia />} />
                 <Route path='/agregar-taxonomia' element={<NuevoRegistroTaxonomia />} />
                 <Route path='/editar-taxonomia/:id' element={<NuevoRegistroTaxonomia />} />
                 <Route path='/eliminar-registrotaxonomico' element={<h1>eliminar registro taxonomico</h1>} />
                 <Route path='/taxonomia/:id' element={<Taxonomia />} />
 
+                <Route path='/usuarios' element={<RegistroUsuarios />} />
+                <Route path='/agregar-usuario' element={<NuevoRegistroUsuario />} />
+                <Route path='/editar-usuario/:id' element={<NuevoRegistroUsuario />} />
+                <Route path='/eliminar-registrotaxonomico' element={<h1>eliminar registro taxonomico</h1>} />
 
+                <Route path='/usuarios/:id' element={<Usuario />} />
+
+                {/* faltas este ↓↓ */}
                 <Route path='/profile' element={<h1>Profile</h1>} />
 
-                
+
               </Route>
             </Routes>
             <Footer />
           </BrowserRouter>
-        </AdminProvider>
-      </EspecieProvider>
+        </EspecieProvider>
+      </AdminProvider>
+
     </AuthProvider>
   )
 }

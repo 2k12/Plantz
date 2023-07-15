@@ -5,6 +5,7 @@ const EspecieContext = createContext();
 
 export const useEspecie = () => {
     const context = useContext(EspecieContext);
+    
     if (!context) {
         throw new Error("useEspecie se debe usar ocn EspecieProvider");
     }

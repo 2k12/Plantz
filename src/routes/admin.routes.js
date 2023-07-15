@@ -1,7 +1,7 @@
 import { Router} from  'express';
 import {autenticacionRequeridaAdmin} from "../middlewares/validateToken.js";
 import {
-    leerRegistros2,leerRegistro,crearRegistro,editarRegistro,eliminarRegistro,
+    leerRegistros2,leerRegistro2,crearRegistro2,editarRegistro2,eliminarRegistro2,
     leertaxonomias,leertaxonomia,agregartaxonomia,editartaxonomia,eliminartaxonomia,
     leerusuarios,leerusuario,agregarusuario,editarusuario,eliminarusuario
 
@@ -13,10 +13,10 @@ const router = Router();
 
 // especies
 router.get('/registrotaxonomico', autenticacionRequeridaAdmin,leerRegistros2 );
-router.get('/registrotaxonomico/:id', autenticacionRequeridaAdmin, leerRegistro);
-router.post('/registrotaxonomico',autenticacionRequeridaAdmin,  crearRegistro );
-router.put('/registrotaxonomico/:id', autenticacionRequeridaAdmin,  editarRegistro);
-router.delete('/registrotaxonomico/:id', autenticacionRequeridaAdmin, eliminarRegistro);
+router.get('/registrotaxonomico/:id', autenticacionRequeridaAdmin, leerRegistro2);
+router.post('/registrotaxonomico',autenticacionRequeridaAdmin,  crearRegistro2 );
+router.put('/registrotaxonomico/:id', autenticacionRequeridaAdmin,  editarRegistro2);
+router.delete('/registrotaxonomico/:id', autenticacionRequeridaAdmin, eliminarRegistro2);
 
 
 // taxonomia
@@ -31,7 +31,7 @@ router.delete('/taxonomia/:id',autenticacionRequeridaAdmin,eliminartaxonomia);
 router.get('/usuarios',autenticacionRequeridaAdmin,leerusuarios);
 router.get('/usuarios/:id',autenticacionRequeridaAdmin, leerusuario);
 router.post('/usuarios',autenticacionRequeridaAdmin,  esquemadeValidacion(usuarioEsquema), agregarusuario);
-router.put('/usuarios/:id',autenticacionRequeridaAdmin,esquemadeValidacion(usuarioEsquema), editarusuario);
+router.put('/usuarios/:id',autenticacionRequeridaAdmin, editarusuario);
 router.delete('/usuarios/:id',autenticacionRequeridaAdmin, eliminarusuario);
 
 //  

@@ -16,6 +16,7 @@ export const peticioneditarEspeciead = (id,especie) => axios.put(`/adm/registrot
 });
 export const peticioneliminarEspeciead = (id) => axios.delete(`/adm/registrotaxonomico/${id}`);
 
+
 // taxonomias
 export const peticionleerTaxonomias = () => axios.get('/adm/taxonomia');
 export const peticionleerTaxonomia = (id) => axios.get(`/adm/taxonomia/${id}`);
@@ -24,10 +25,11 @@ export const peticioneditarTaxonomia = (id,taxonomia) => axios.put(`/adm/taxonom
 export const peticioneliminarTaxonomia = (id) => axios.delete(`/adm/taxonomia/${id}` );
 
 
+
 // usuarios
 export const peticionleerUsuarios = () => axios.get('/adm/usuarios');
-export const peticionleerUsuario = () => axios.get('/adm/usuarios/:id');
-export const peticionagregarUsuario = () =>axios.post('/adm/usuarios');
-export const peticioneditarUsuario = () =>axios.put('/adm/usuarios/:id');
-export const peticioneleerUsuario = () =>axios.delete('/adm/usuarios/:id');
+export const peticionleerUsuario = (id) => axios.get(`/adm/usuarios/${id}`);
+export const peticionagregarUsuario = (usuario) =>axios.post(`/adm/usuarios`,usuario);
+export const peticioneditarUsuario = (id,usuario) =>axios.put(`/adm/usuarios/${id}`,usuario);
+export const peticioneliminarUsuario = (id) =>axios.delete(`/adm/usuarios/${id}`);
 

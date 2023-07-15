@@ -1,4 +1,5 @@
 import { useEspecie } from "../context/RegistroEspecieContext";
+import { useAdmin } from "../context/AdminContext";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
@@ -6,6 +7,7 @@ function EspeciesCard({ esp }) {
 
     const { user } = useAuth();
     const { eliminarEspecie } = useEspecie();
+    const { eliminarEspecie2 } = useAdmin();
     return (
         <>
             {user.rol === "taxonomo" ? (
@@ -34,7 +36,7 @@ function EspeciesCard({ esp }) {
                             <Link to={`/registrotaxonomico/${esp.id}`} className="text-white hover:bg-blue-500 bg-blue-700 pl-2 pr-2 rounded border m-2 border-blue-700">Ver</Link>
                             <Link to={`/editar-registrotaxonomico/${esp.id}`} className=" text-white hover:bg-green-500 bg-green-700 pl-2 pr-2 rounded border m-2 border-green-700">Editar</Link>
                             <button className=" text-white hover:bg-red-500 bg-red-700  pl-2 pr-2 rounded border m-2 border-red-700" onClick={() => {
-                                eliminarEspecie(esp.id);
+                                eliminarEspecie2(esp.id);
                             }}>Eliminar</button>
                         </div>
                     </div>
