@@ -22,7 +22,7 @@ function Stepper() {
     const { user } = useAuth();
 
     useEffect(() => {
-        if (user.rol === "taxonomo") {
+        if (user.rol === "taxonomo" || user.rol === "dig") {
             async function cargarEspecie() {
                 if (params.id) {
                     const especiebdd = await leerEspecie(params.id);
@@ -72,7 +72,7 @@ function Stepper() {
         e.preventDefault();
 
 
-        if (user.rol === "taxonomo") {
+        if (user.rol === "taxonomo" || user.rol === "dig") {
             const formData = new FormData();
             formData.append('imagenm', imagen);
             formData.append('reino', data.reino);
@@ -163,7 +163,7 @@ function Stepper() {
 
                                     <label className="block mb-2  text-gray-900 dark:text-white text-sm font-normal " htmlFor="file_input">Estado</label>
                                     <input className="w-full px-3 py-1 border border-gray-300 rounded-md dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="text" name="estado" placeholder="Estado"
-                                        {...register('estado', { required: true })}
+                                        {...register('estado', { required: true })} readOnly={user.rol === 'dig'}
                                     />
                                     {
                                         errors.estado && (

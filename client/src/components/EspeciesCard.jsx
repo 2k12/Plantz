@@ -17,7 +17,7 @@ function EspeciesCard({ esp }) {
 
     return (
         <>
-            {user.rol === "taxonomo" ? (
+            {user.rol === "taxonomo" || user.rol === "dig" ? (
                 <>
                     <div className="bg-gray-900 m-3 rounded flex items-center justify-between">
                         <div className="flex">

@@ -29,6 +29,7 @@ export const leerRegistros2 = async (req, res) => {
         }
     }
 };
+
 export const leerRegistro2 = async (req, res) => {
     try {
         const { id } = req.params;

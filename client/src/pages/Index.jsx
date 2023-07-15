@@ -6,13 +6,14 @@ import imagen2from from "../assets/4.webp";
 import imagen3from from "../assets/5.webp";
 import imagen4from from "../assets/7.webp";
 import Footer from "../components/Footer";
+import "./rt.css";
 
 function Index() {
 	return (
 		<>
 			<div className="w-full m-0 p-0 bg-cover bg-bottom" style={{ backgroundImage: `url(${imagendefondo})`, height: "60vh", maxHeight: "460px" }}>
 				<div className="container max-w-4xl mx-auto pt-16 md:pt-32 text-center break-normal ">
-					<p className="text-white font-extrabold text-3xl md:text-5xl " >
+					<p className="text-white font-light text-3xl md:text-7xl pt-8" id='tit'>
 						Plantz.
 					</p>
 					<p className="text-xl md:text-2xl text-gray-300">Sistema de Gestión de Plantas</p>
