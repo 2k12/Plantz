@@ -47,6 +47,7 @@ export const leerRegistro2 = async (req, res) => {
             // especie: {
                 "nombre_comun": registroEncotrado.rows[0].nombrecomun,
                 "nombre_cientifico": registroEncotrado.rows[0].nombrecientifio,
+                "estado": registroEncotrado.rows[0].estado,
                 "imagen": idimg.rows[0].urlimagen,
                 "reino": leertaxonomia.rows[0].reino,
                 "filo": leertaxonomia.rows[0].filo,
@@ -104,12 +105,13 @@ export const crearRegistro2 = async (req, res) => {
         nplanta.setNombreComun(nco);
         nplanta.setNombreCientifico(nci);
         nplanta.setTaxonomiaID(resulttax.rows[0].id);
+        nplanta.setEstado("verificado");
 
 
 
-        const resultplant = await pool.query("INSERT INTO plantas (usuario_id,taxonomia_id,nombrecomun,nombrecientifio) VALUES ($1,$2,$3,$4) RETURNING *",
+        const resultplant = await pool.query("INSERT INTO plantas (usuario_id,taxonomia_id,nombrecomun,nombrecientifio,estado) VALUES ($1,$2,$3,$4,$5) RETURNING *",
             [
-                nplanta.getUsuarioID(), nplanta.getTaxonomiaID(), nplanta.getNombreComun(), nplanta.getNombreCientifico()
+                nplanta.getUsuarioID(), nplanta.getTaxonomiaID(), nplanta.getNombreComun(), nplanta.getNombreCientifico(),nplanta.getEstado()
             ])
 
         // // imagen
@@ -149,9 +151,9 @@ export const editarRegistro2 = async (req, res) => {
 
     try {
         const { id } = req.params;
-        const { nco, nci, reino, filo, clase, orden, familia, genero, especie } = req.body;
+        const { nco, nci, reino, filo, clase, orden, familia, genero, especie,estado} = req.body;
 
-        const plantaencontrada = await pool.query('UPDATE plantas  SET nombrecomun= $1, nombrecientifio= $2 WHERE id = $3 ', [nco, nci, id]);
+        const plantaencontrada = await pool.query('UPDATE plantas  SET nombrecomun= $1, nombrecientifio= $2, estado=$3WHERE id = $4 ', [nco, nci,estado, id]);
         if (plantaencontrada.rowCount === 0) return res.status(404).json({ message: "Especie no encontrada!" });
 
         const plantaActualizada = await pool.query('SELECT taxonomia_id FROM plantas WHERE id = $1', [id]);

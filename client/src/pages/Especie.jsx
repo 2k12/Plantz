@@ -95,6 +95,12 @@ export default function EditButton() {
                                                     {especie?.especie}
                                                 </span>
                                             </MDBCardText>
+                                            <MDBCardText className="mb-1 h5 border-b border-purple-500 text-purple-400">
+                                                ESTADO:
+                                                <span className='ml-5 text-lg text-white'>
+                                                    {especie?.estado}
+                                                </span>
+                                            </MDBCardText>
                                             {/* SE PUEDE AGREGAR LOS CAMPOS PAR LA UBICACION ETC */}
 
                                         </div>

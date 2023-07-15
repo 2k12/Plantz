@@ -36,6 +36,7 @@ function Stepper() {
                     setValue('familia', especiebdd.familia)
                     setValue('genero', especiebdd.genero)
                     setValue('especie', especiebdd.especie)
+                    setValue('estado', especiebdd.estado)
                 }
             }
             cargarEspecie();
@@ -53,6 +54,8 @@ function Stepper() {
                     setValue('familia', especiebdd.familia)
                     setValue('genero', especiebdd.genero)
                     setValue('especie', especiebdd.especie)
+                    setValue('estado', especiebdd.estado)
+
                 }
             }
             cargarEspeciead();
@@ -81,6 +84,7 @@ function Stepper() {
             formData.append('especie', data.especie);
             formData.append('nci', data.nci);
             formData.append('nco', data.nco);
+            formData.append('estado', data.estado);
 
 
             if (params.id) {
@@ -104,6 +108,7 @@ function Stepper() {
             formData.append('especie', data.especie);
             formData.append('nci', data.nci);
             formData.append('nco', data.nco);
+            formData.append('estado', data.estado);
 
 
             if (params.id) {
@@ -153,7 +158,23 @@ function Stepper() {
                     <>
                         {/* <h2 id='nuevaespecie' className="text-2xl font-bold mb-4 text-white mx-auto">Registro de Nueva Especie</h2> */}
                         <form className="w-80 mx-auto" onSubmit={onSubmit}>
-                            {params.id ? (<></>) : (
+                            {params.id ? (
+                                <div className="mb-4">
+
+                                    <label className="block mb-2  text-gray-900 dark:text-white text-sm font-normal " htmlFor="file_input">Estado</label>
+                                    <input className="w-full px-3 py-1 border border-gray-300 rounded-md dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="text" name="estado" placeholder="Estado"
+                                        {...register('estado', { required: true })}
+                                    />
+                                    {
+                                        errors.estado && (
+                                            <p className="text-red-500">
+                                                Ingrese una Estado
+                                            </p>
+                                        )
+                                    }
+
+                                </div>
+                            ) : (
                                 <div className="mb-4">
 
                                     <label className="block mb-2  text-gray-900 dark:text-white text-sm font-normal " htmlFor="file_input">Imagen</label>
