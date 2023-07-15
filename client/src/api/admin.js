@@ -1,7 +1,7 @@
 import axios from "./axios";
 
 // especies
-
+export const peticionverificarEspecie = (id) => axios.patch(`/adm/registrotaxonomico/${id}`);
 export const peticionleerEspeciesad = () => axios.get('/adm/registrotaxonomico');
 export const peticionleerEspeciead = (id) => axios.get(`/adm/registrotaxonomico/${id}`);
 export const peticionagregarEspeciead = (especie) => axios.post('/adm/registrotaxonomico',especie, {

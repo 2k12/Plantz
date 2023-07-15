@@ -2,12 +2,19 @@ import { useEspecie } from "../context/RegistroEspecieContext";
 import { useAdmin } from "../context/AdminContext";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { useState } from "react";
 
 function EspeciesCard({ esp }) {
 
     const { user } = useAuth();
     const { eliminarEspecie } = useEspecie();
-    const { eliminarEspecie2 } = useAdmin();
+    const { eliminarEspecie2, verificarEspecie } = useAdmin();
+    const [especienoVerificada, setEspecienoVerificada] = useState(true);
+    const hacerqueVerifique = () => {
+        verificarEspecie(esp.id)
+        setEspecienoVerificada(false);
+    }
+
     return (
         <>
             {user.rol === "taxonomo" ? (
@@ -23,6 +30,7 @@ function EspeciesCard({ esp }) {
                             <button className=" text-white hover:bg-red-500 bg-red-700  pl-2 pr-2 rounded border m-2 border-red-700" onClick={() => {
                                 eliminarEspecie(esp.id);
                             }}>Eliminar</button>
+
                         </div>
                     </div>
                 </>) : (
@@ -38,6 +46,10 @@ function EspeciesCard({ esp }) {
                             <button className=" text-white hover:bg-red-500 bg-red-700  pl-2 pr-2 rounded border m-2 border-red-700" onClick={() => {
                                 eliminarEspecie2(esp.id);
                             }}>Eliminar</button>
+                            {esp.estado !== "verificado" && especienoVerificada ? (
+                                <button className=" text-white hover:bg-orange-500 bg-orange-700  pl-2 pr-2 rounded border m-2 border-orange-700" onClick={() => {
+                                    hacerqueVerifique();
+                                }}>Verificar</button>) : (<></>)}
                         </div>
                     </div>
 

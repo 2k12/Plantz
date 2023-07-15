@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import {
+import {  peticionverificarEspecie,
     peticionleerEspeciesad, peticionleerEspeciead, peticionagregarEspeciead, peticioneditarEspeciead, peticioneliminarEspeciead,
     peticionleerTaxonomias, peticionleerTaxonomia, peticionagregarTaxonomia, peticioneditarTaxonomia, peticioneliminarTaxonomia,
     peticionleerUsuarios, peticionleerUsuario, peticionagregarUsuario, peticioneditarUsuario, peticioneliminarUsuario
@@ -11,12 +11,10 @@ const AdminContext = createContext();
 
 export const useAdmin = () => {
     const context = useContext(AdminContext);
-
     if (!context) {
-        throw new Error("useAdmin se debe usar ocn AdminProvider");
+        throw new Error("useAdmin se debe usar con AdminProvider");
     }
     return context;
-
 }
 
 export function AdminProvider({ children }) {
@@ -28,6 +26,17 @@ export function AdminProvider({ children }) {
 
 
     // ? especies
+    const verificarEspecie = async (id) => {
+        try {
+            const res = await peticionverificarEspecie(id) 
+        } catch (error) {
+            if (error.response) {
+                setErrors(error.response.data.error);
+            }
+        }
+    }
+
+
 
     const agregarEspecie2 = async (especie) => {
         try {
@@ -178,6 +187,7 @@ export function AdminProvider({ children }) {
             especiead,
             taxonomia,
             usuarios,
+            verificarEspecie,
             leerEspecies2,
             leerEspecie2,
             agregarEspecie2,

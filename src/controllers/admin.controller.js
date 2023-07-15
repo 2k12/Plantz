@@ -153,7 +153,7 @@ export const editarRegistro2 = async (req, res) => {
         const { id } = req.params;
         const { nco, nci, reino, filo, clase, orden, familia, genero, especie,estado} = req.body;
 
-        const plantaencontrada = await pool.query('UPDATE plantas  SET nombrecomun= $1, nombrecientifio= $2, estado=$3WHERE id = $4 ', [nco, nci,estado, id]);
+        const plantaencontrada = await pool.query('UPDATE plantas  SET nombrecomun= $1, nombrecientifio= $2, estado=$3 WHERE id = $4 ', [nco, nci,estado, id]);
         if (plantaencontrada.rowCount === 0) return res.status(404).json({ message: "Especie no encontrada!" });
 
         const plantaActualizada = await pool.query('SELECT taxonomia_id FROM plantas WHERE id = $1', [id]);
@@ -188,7 +188,22 @@ export const eliminarRegistro2 = async (req, res) => {
     }
 };
 
+export const verificarRegistro = async ( req,res) =>{
+    try {
+        const { id } = req.params;
+        const nuevoEstado = "verificado"
+        const result = await pool.query("UPDATE PLANTAS SET estado=$1 WHERE id=$2",[nuevoEstado,id])
+        if (!result) {
+            return res.status(400).json({message: "NO SE PUDO ACTUALIZAR EL ESTADO DE LA ESPECIE"})
+        }
+        res.status(200).json({ message: "OK" });
 
+    } catch (error) {
+        if (error instanceof Error) {
+            res.send(error.message);
+        }
+    }
+};
 
 // taxonomia
 

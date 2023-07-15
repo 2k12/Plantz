@@ -1,6 +1,6 @@
 import { Router} from  'express';
 import {autenticacionRequeridaAdmin} from "../middlewares/validateToken.js";
-import {
+import { verificarRegistro,
     leerRegistros2,leerRegistro2,crearRegistro2,editarRegistro2,eliminarRegistro2,
     leertaxonomias,leertaxonomia,agregartaxonomia,editartaxonomia,eliminartaxonomia,
     leerusuarios,leerusuario,agregarusuario,editarusuario,eliminarusuario
@@ -17,6 +17,8 @@ router.get('/registrotaxonomico/:id', autenticacionRequeridaAdmin, leerRegistro2
 router.post('/registrotaxonomico',autenticacionRequeridaAdmin,  crearRegistro2 );
 router.put('/registrotaxonomico/:id', autenticacionRequeridaAdmin,  editarRegistro2);
 router.delete('/registrotaxonomico/:id', autenticacionRequeridaAdmin, eliminarRegistro2);
+router.patch('/registrotaxonomico/:id', autenticacionRequeridaAdmin, verificarRegistro);
+
 
 
 // taxonomia
