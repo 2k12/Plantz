@@ -6,6 +6,7 @@ import Breadcrumbs from "./components/Breadcrumbs";
 
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import AcercaPage from "./pages/Index";
 import RegistroTaxonomico from "./pages/RegistroTaxonomico";
 import NuevoRegistroTaxonomico from "./pages/NuevoRegistro";
 import NuevoRegistroTaxonomia from "./pages/NuevoRegistroTaxonomia";
@@ -37,6 +38,7 @@ function App() {
               <Route path='/' element={<IndexPage />} />
               <Route path='/login' element={<LoginPage />} />
               <Route path='/register' element={<RegisterPage />} />
+              <Route path='/acerca' element={<AcercaPage />} />
 
               <Route element={<ProtectedRoute />}>
 
@@ -68,7 +70,7 @@ function App() {
 
               </Route>
             </Routes>
-            <Footer />
+            {/* <Footer /> */}
           </BrowserRouter>
         </EspecieProvider>
       </AdminProvider>
