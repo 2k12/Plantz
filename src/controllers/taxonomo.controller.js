@@ -185,4 +185,3 @@ export const eliminarRegistro = async (req, res) => {
         }
     }
 };
-

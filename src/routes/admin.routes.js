@@ -13,7 +13,7 @@ const router = Router();
 
 // especies
 router.get('/registrotaxonomico', autenticacionRequeridaAdmin,leerRegistros2 );
-router.get('/registrotaxonomico/:id', autenticacionRequeridaAdmin, leerRegistro2);
+router.get('/registrotaxonomico/:id', autenticacionRequeridaAdmin, leerRegistro2); 
 router.post('/registrotaxonomico',autenticacionRequeridaAdmin,  crearRegistro2 );
 router.put('/registrotaxonomico/:id', autenticacionRequeridaAdmin,  editarRegistro2);
 router.delete('/registrotaxonomico/:id', autenticacionRequeridaAdmin, eliminarRegistro2);

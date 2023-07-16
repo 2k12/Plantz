@@ -79,6 +79,7 @@ export const login = async (req, res) => {
 
         res.json({
             id: usuarioEncontrado.rows[0].id,
+            nombre: usuarioEncontrado.rows[0].nombre,
             username: usuarioEncontrado.rows[0].usuario,
             email: usuarioEncontrado.rows[0].correoelectronico,
             rol: usuarioEncontrado.rows[0].rol
@@ -107,6 +108,7 @@ export const profile = async (req, res) => {
 
     return res.json({
         id: usuarioEncontrado.rows[0].id,
+        nombre: usuarioEncontrado.rows[0].nombre,
         username: usuarioEncontrado.rows[0].usuario,
         email: usuarioEncontrado.rows[0].correoelectronico,
         rol: usuarioEncontrado.rows[0].rol

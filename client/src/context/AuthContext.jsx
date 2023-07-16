@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { peticionregistro, peticionlogin, verificarlapeticiondeToken } from "../api/auth";
+import { peticionregistro, peticionlogin, verificarlapeticiondeToken ,peticionprofile} from "../api/auth";
 import Cookies from "js-cookie";
 export const AuthContext = createContext();
 
@@ -41,6 +41,19 @@ export const AuthProvider = ({ children }) => {
         try {
             const res = await peticionlogin(user);
             console.log(res.data);
+            setUser(res.data);
+            setEstalogeado(true);
+        } catch (error) {
+            console.log(error.response);
+            if (error.response) {
+                setErrors(error.response.data.error);
+            }
+        }
+    }
+    const cgprofile = async () => {
+        try {
+            const res = await peticionprofile();
+            // console.log(res.data);
             setUser(res.data);
             setEstalogeado(true);
         } catch (error) {
@@ -100,6 +113,7 @@ export const AuthProvider = ({ children }) => {
                 iniciodeSesion,
                 login,
                 logout,
+                cgprofile,
                 user,
                 estalogeado,
                 errores,

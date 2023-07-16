@@ -12,6 +12,7 @@ import AcercaPage from "./pages/Index";
 import Clasificacion from "./pages/Clasificacion";
 
 import ProtectedRoute from "./ProtectedRoute";
+import Profile from "./pages/Profile";
 
 import RegistroTaxonomico from "./pages/RegistroTaxonomico";
 import RegistroTaxonomia from "./pages/RegistroTaxonomia";
@@ -80,7 +81,7 @@ function App() {
                   <Route path='/usuarios/:id' element={<Usuario />} />
 
                   {/* faltas este ↓↓ */}
-                  <Route path='/profile' element={<h1>Profile</h1>} />
+                  <Route path='/profile' element={<Profile/>} />
 
 
                 </Route>
