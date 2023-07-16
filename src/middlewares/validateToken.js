@@ -55,7 +55,7 @@ export const autenticacionRequerida = (req, res, next) => {
 
         req.decoded = decoded;
 
-        if (decoded.rol === "taxonomo" || decoded.rol === "admin" || decoded ==="dig" || decoded ==="usuario" ) {
+        if (decoded.rol === "taxonomo" || decoded.rol === "admin" || decoded.rol ==="dig" || decoded.rol ==="usuario") {
             next();
         }
         else{

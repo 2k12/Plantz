@@ -1,8 +1,8 @@
-import {Usuario} from "../models/User.model.js";
-import { validacionUsuario} from"../validators/user.validator.js";
-import {pool} from '../db.js';
+import { Usuario } from "../models/User.model.js";
+import { validacionUsuario } from "../validators/user.validator.js";
+import { pool } from '../db.js';
 import bcrypt from 'bcryptjs';
-import { TOKEN_SECRET} from '../config.js';
+import { TOKEN_SECRET } from '../config.js';
 
 import jwt from 'jsonwebtoken';
 
@@ -15,7 +15,7 @@ export const register = async (req, res) => {
 
         const usuarioyaRegistrado = await pool.query('SELECT * FROM usuarios WHERE correoelectronico = $1', [email])
         if (usuarioyaRegistrado.rows.length > 0) {
-            return res.status(400).json(['Email ya Registrado.'] );
+            return res.status(400).json(['Email ya Registrado.']);
         }
         else {
             let usuarion = new Usuario();
@@ -113,15 +113,15 @@ export const profile = async (req, res) => {
     });
 };
 
-export const verifyToken = async (req,res) =>{
+export const verifyToken = async (req, res) => {
     const { token } = req.cookies;
-    if(!token) return res.status(401).json({message: "No Autorizado"})
+    if (!token) return res.status(401).json({ message: "No Autorizado" })
 
-    jwt.verify(token,  TOKEN_SECRET , async (err, user) => {
-        if(err) return res.status(401).json({mesage: "No Autorizado"});
+    jwt.verify(token, TOKEN_SECRET, async (err, user) => {
+        if (err) return res.status(401).json({ mesage: "No Autorizado" });
 
-        const usuarioEncontrado = await  pool.query('SELECT * FROM usuarios WHERE id=$1',[user.id])
-        if(!usuarioEncontrado) return res.status(401).json({message: "No Autorizado"});
+        const usuarioEncontrado = await pool.query('SELECT * FROM usuarios WHERE id=$1', [user.id])
+        if (!usuarioEncontrado) return res.status(401).json({ message: "No Autorizado" });
 
         return res.json({
             id: usuarioEncontrado.rows[0].id,
@@ -133,11 +133,3 @@ export const verifyToken = async (req,res) =>{
     })
 
 };
-
-// module.exports = {
-//     register,
-//     login,
-//     logout,
-//     profile,
-//     verifyToken
-// }

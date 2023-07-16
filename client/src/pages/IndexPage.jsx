@@ -1,5 +1,5 @@
 // import Navbar from "../components/Navbar";
-// import Footer from "../components/Footer";
+import Footer from "../components/Footer";
 import MyComponent from "../components/Plantz";
 // import Breadcrumbs from "../components/Breadcrumbs";
 import imagendefondo from "../assets/fondo.webp";
@@ -9,7 +9,7 @@ function IndexPage() {
             {/* <Navbar /> */}
             {/* <Breadcrumbs/> */}
             <MyComponent />
-            {/* <Footer /> */}
+            <Footer />
         </div>
     )
 }

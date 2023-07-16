@@ -26,33 +26,32 @@ function Index() {
 
 
 
-					<div className="bg-gray-200 w-full text-xl md:text-2xl text-gray-800 leading-normal rounded-t ">
+					<div className=" w-full text-xl md:text-2xl text-gray-800 leading-normal rounded-t ">
 
 						<div className="flex h-full bg-white rounded overflow-hidden shadow-lg ">
-							<a href="post.html" className="flex flex-wrap no-underline hover:no-underline">
-								<div className="w-full md:w-2/3 rounded-t">
-									<img src={imagen1from} className="h-full w-full shadow" alt="Cover" />
+							<div className="w-full md:w-2/3 rounded-t">
+								<img src={imagen1from} className="h-full w-full shadow" alt="Cover" />
+							</div>
+
+							<div className="w-full md:w-1/3 flex flex-col flex-grow flex-shrink ">
+								<div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
+									<p className="w-full text-gray-600 text-xs md:text-sm pt-6 px-6"></p>
+									<div className="w-full font-bold text-xl text-gray-900 px-6">Qué es Plantz. ?</div>
+									<p className="text-gray-800 font-serif text-base px-6 mb-5">
+										Plantz es un Aplicacion web desarrollada para la gestion relacion con el Reino Plantae (Plantas)
+										que permitira un gestion en base a la taxonomia que se registre para poder acceder a informacion valiosa desde cualquier parte de la ciudad.
+									</p>
 								</div>
 
-								<div className="w-full md:w-1/3 flex flex-col flex-grow flex-shrink ">
-									<div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
-										<p className="w-full text-gray-600 text-xs md:text-sm pt-6 px-6"></p>
-										<div className="w-full font-bold text-xl text-gray-900 px-6">Qué es Plantz. ?</div>
-										<p className="text-gray-800 font-serif text-base px-6 mb-5">
-											Plantz es un Aplicacion web desarrollada para la gestion relacion con el Reino Plantae (Plantas)
-											que permitira un gestion en base a la taxonomia que se registre para poder acceder a informacion valiosa desde cualquier parte de la ciudad.
-										</p>
-									</div>
-
-									<div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
-										<div className="flex items-center justify-between">
-											<img className="w-8 h-8 rounded-full mr-4 avatar" data-tippy-content="Author Name" src={hoja} alt="Avatar of Author" />
-											<p className="text-gray-600 text-xs md:text-sm">Plantz Team</p>
-										</div>
+								<div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
+									<div className="flex items-center justify-between">
+										<img className="w-8 h-8 rounded-full mr-4 avatar" data-tippy-content="Author Name" src={hoja} alt="Avatar of Author" />
+										<p className="text-gray-600 text-xs md:text-sm">Plantz Team</p>
 									</div>
 								</div>
+							</div>
 
-							</a>
+
 						</div>
 
 
@@ -119,13 +118,13 @@ function Index() {
 
 							<div className="w-full md:w-1/2 p-6 flex flex-col flex-grow flex-shrink">
 								<div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
-									<a href="#" className="flex flex-wrap no-underline hover:no-underline">
+									<div className="flex flex-wrap no-underline hover:no-underline">
 										<img src={imagen4from} className="h-full w-full rounded-t pb-6" alt="Post" />
 										<div className="w-full font-bold text-xl text-gray-900 px-6">Misión</div>
 										<p className="text-gray-800 font-serif text-base px-6 mb-5">
 											Nuestra misión es proporcionar a los entusiastas de las plantas una aplicación de gestión que les permita explorar, aprender y organizar plantas según su taxonomía. Nos esforzamos por ofrecer una plataforma intuitiva y completa que ayude a los usuarios a descubrir nuevas especies, aprender sobre su clasificación y características, y facilitar la gestión de sus propias colecciones de plantas. Nuestro objetivo es fomentar la pasión por la botánica y promover la conservación de la diversidad vegetal a través de una experiencia digital enriquecedora.
 										</p>
-									</a>
+									</div>
 								</div>
 								<div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
 									<div className="flex items-center justify-between">
@@ -137,18 +136,19 @@ function Index() {
 
 							<div className="w-full md:w-1/2 p-6 flex flex-col flex-grow flex-shrink">
 								<div className="flex-1 flex-row bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
-									<a href="#" className="flex flex-wrap no-underline hover:no-underline">
+									<div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
+
 										<img src={imagen3from} className="h-full w-full rounded-t pb-6" alt="Post" />
 										<div className="w-full font-bold text-xl text-gray-900 px-6">Visión</div>
 										<p className="text-gray-800 font-serif text-base px-6 mb-5">
 											Nuestra visión es convertirnos en la aplicación líder en gestión de plantas basada en taxonomía, reconocida por su precisión, funcionalidad y contenido de calidad. Buscamos ser la herramienta preferida por los amantes de las plantas, jardineros, botánicos y profesionales del sector, ofreciendo una amplia base de datos de plantas, información detallada sobre su taxonomía, características y cuidados, así como funciones avanzadas de organización y seguimiento. Aspiramos a ser una fuente confiable y accesible de conocimiento botánico, promoviendo la educación y la conexión con la naturaleza a través de la tecnología.
 										</p>
-									</a>
-								</div>
-								<div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
-									<div className="flex items-center justify-between">
-										<img className="w-8 h-8 rounded-full mr-4 avatar" data-tippy-content="Author Name" src={hoja} alt="Avatar of Author" />
-										<p className="text-gray-600 text-xs md:text-sm">Plantz Team</p>
+									</div>
+									<div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
+										<div className="flex items-center justify-between">
+											<img className="w-8 h-8 rounded-full mr-4 avatar" data-tippy-content="Author Name" src={hoja} alt="Avatar of Author" />
+											<p className="text-gray-600 text-xs md:text-sm">Plantz Team</p>
+										</div>
 									</div>
 								</div>
 							</div>

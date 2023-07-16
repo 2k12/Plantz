@@ -1,19 +1,22 @@
 import { useParams } from 'react-router-dom';
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText } from 'mdb-react-ui-kit';
 import imagendefondo from "../assets/fondo.webp";
-import { useEspecie } from "../context/RegistroEspecieContext";
+import { useUserall } from "../context/UserallContext";
+
 import { useEffect, useState } from "react";
 
 
 export default function EditButton() {
     const [especie, setEspecie] = useState()
-    const { leerEspecie } = useEspecie();
+    const { leerEspecie3 } = useUserall();
+
     const params = useParams();
 
     useEffect(() => {
+
         async function obtenerEspecie() {
             try {
-                const especiebdd = await leerEspecie(params.id);
+                const especiebdd = await leerEspecie3(params.id);
                 setEspecie(especiebdd);
             } catch (error) {
                 console.error(error);

@@ -5,6 +5,7 @@ import cors from 'cors';
 import authRoutes from "./routes/auth.routes.js";
 import taxonomoRoutes from "./routes/taxonomo.routes.js";
 import adminRoutes from "./routes/admin.routes.js";
+import userallRoutes from "./routes/userall.routes.js";
 import fileUpload from'express-fileupload';
 
 const app = express();
@@ -30,6 +31,7 @@ app.use(fileUpload({
 app.use("/access", authRoutes);   // las rutas empezan con el prefijo establaecido
 app.use("/access/tax", taxonomoRoutes); // las rutas empezan con el prefijado access
 app.use("/access/adm", adminRoutes);
+app.use("/access/all", userallRoutes);
 
 // manejo de rutas no encontradas (404) 
 // app.use((req, res, next) => {
