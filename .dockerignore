@@ -2,5 +2,6 @@ node_modules
 notas.txt
 .env
 
+/client
 /testing
 /coverage

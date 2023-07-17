@@ -12,12 +12,12 @@ const app = express();
 
 // settings
 app.set('port',process.env.PORT || 4000);
-app.set('url', `http://localhost:${app.get('port')}`);
+// app.set('url', `http://localhost:${app.get('port')}`);
 
 
 // middlewares
 app.use(cors({
-    origin: 'http://localhost:8080',
+    origin: 'https://plantz-one.vercel.app',
     credentials: true
 }));
 app.use(morgan('dev'));
@@ -28,10 +28,10 @@ app.use(fileUpload({
     tempFileDir: './uploads'
 }));
 // routes
-app.use("/access", authRoutes);   // las rutas empezan con el prefijo establaecido
-app.use("/access/tax", taxonomoRoutes); // las rutas empezan con el prefijado access
-app.use("/access/adm", adminRoutes);
-app.use("/access/all", userallRoutes);
+app.use( authRoutes);   // las rutas empezan con el prefijo establaecido
+app.use("/tax", taxonomoRoutes); // las rutas empezan con el prefijado access
+app.use("/adm", adminRoutes);
+app.use("/all", userallRoutes);
 
 // manejo de rutas no encontradas (404) 
 // app.use((req, res, next) => {

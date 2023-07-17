@@ -8,4 +8,4 @@ setInterval(cleanup,(60 * 60 * 1000));
 
 
 app.listen(app.get('port'));
-console.log(`Servidor en el puerto ${app.get('port')} || url: ${app.get('url')}`);
+console.log(`Servidor en el puerto ${app.get('port')} `);

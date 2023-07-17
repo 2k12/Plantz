@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: 'http://localhost:4000/access',
+    baseURL: 'https://plantz.fly.dev',
     withCredentials: true
 });
 
