@@ -1,9 +1,12 @@
 import React from 'react';
 import imagendefondo from "../assets/fondo.webp";
 import { Link } from 'react-router-dom';
-
+// import Cookies from "js-cookie";
 
 export default function AdminTemplate() {
+    // const miCookie = Cookies.get('token');
+    // console.log(miCookie)
+
     return (
         <div className="flex justify-center " style={{ backgroundImage: `url(${imagendefondo})`, backgroundSize: 'cover', backgroundPosition: 'center center', minHeight: '100vh' }}>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 mt-48 absolute ">
@@ -24,7 +27,7 @@ export default function AdminTemplate() {
                 <div className="max-w-sm rounded overflow-hidden shadow-lg border bg-gray-900  border-purple-500">
                     <img className="w-full" src="https://i.postimg.cc/8c8yPXgp/plantas-mexicanas-peligro-en-extincion-vegetacion.jpg" alt="Sunset in the mountains" />
                     <div className="px-6 py-4">
-                    <div className="text-xl mb-2 text-white text-center font-light mt-4">Modulo Especies</div>
+                        <div className="text-xl mb-2 text-white text-center font-light mt-4">Modulo Especies</div>
                         <p className="text-gray-300 text-base mt-2 text-center">
                             Modulo de Gestión de Especies.
                         </p>
@@ -38,7 +41,7 @@ export default function AdminTemplate() {
                 <div className="max-w-sm rounded overflow-hidden shadow-lg border bg-gray-900 border-purple-500">
                     <img className="w-full" src="https://i.postimg.cc/JhfgGzbC/Plantas-2685905361.jpg" alt="Sunset in the mountains" />
                     <div className="px-6 py-4">
-                    <div className="text-xl mb-2 text-white text-center font-light mt-4">Modulo Taxonomías</div>
+                        <div className="text-xl mb-2 text-white text-center font-light mt-4">Modulo Taxonomías</div>
                         <p className="text-gray-300 text-base mt-2 text-center">
                             Modulo de Gestión de Taxonomías.
                         </p>

@@ -17,64 +17,71 @@ function EspeciesCard({ esp }) {
     const location = useLocation();
 
     return (
-        
+
         <>
             {
-            
-            location.pathname !=="/clasificacion" ?(
 
-                user.rol === "taxonomo" || user.rol === "dig"  ? (
-                    <>
-                        <div className="bg-gray-900 m-3 rounded flex items-center justify-between">
-                            <div className="flex">
-                                <h1 className=" ml-5 font-bold text-purple-500">Especie: <span className="text-white font-normal pl-2">{esp.nombrecientifio}</span></h1>
+                location.pathname !== "/clasificacion" ? (
+
+                    user.rol === "taxonomo" || user.rol === "dig" ? (
+                        <>
+                            <div className="bg-gray-900 m-3 rounded flex items-center justify-between">
+                                <div className="flex">
+                                    <h1 className=" ml-5 font-bold text-purple-500">Especie: <span className="text-white font-normal pl-2">{esp.nombrecientifio}</span></h1>
+                                    {esp.estado === 'por verificar' && (
+                                        <span className="pl-3">❌</span>
+                                    )}
+                                    {esp.estado === 'verificado' && (
+                                         <span className="pl-3"> ✔</span>
+                                        // <FontAwesomeIcon icon={faCheck} />
+                                    )}
+                                </div>
+                                <div className="flex flex-wrap items-center">
+                                    {/* target="_blank"  */}
+                                    <Link to={`/registrotaxonomico/${esp.id}`} className="text-white hover:bg-blue-500 bg-blue-700 pl-2 pr-2 rounded border m-2 border-blue-700">Ver</Link>
+                                    <Link to={`/editar-registrotaxonomico/${esp.id}`} className=" text-white hover:bg-green-500 bg-green-700 pl-2 pr-2 rounded border m-2 border-green-700">Editar</Link>
+                                    <button className=" text-white hover:bg-red-500 bg-red-700  pl-2 pr-2 rounded border m-2 border-red-700" onClick={() => {
+                                        eliminarEspecie(esp.id);
+                                    }}>Eliminar</button>
+
+                                </div>
                             </div>
-                            <div className="flex flex-wrap items-center">
-                                {/* target="_blank"  */}
-                                <Link to={`/registrotaxonomico/${esp.id}`} className="text-white hover:bg-blue-500 bg-blue-700 pl-2 pr-2 rounded border m-2 border-blue-700">Ver</Link>
-                                <Link to={`/editar-registrotaxonomico/${esp.id}`} className=" text-white hover:bg-green-500 bg-green-700 pl-2 pr-2 rounded border m-2 border-green-700">Editar</Link>
-                                <button className=" text-white hover:bg-red-500 bg-red-700  pl-2 pr-2 rounded border m-2 border-red-700" onClick={() => {
-                                    eliminarEspecie(esp.id);
-                                }}>Eliminar</button>
-    
+                        </>) : (
+                        <>
+                            <div className="bg-gray-900 m-3 rounded flex items-center justify-between">
+                                <div className="flex">
+                                    <h1 className=" ml-5 font-bold text-purple-500">Especie: <span className="text-white font-normal pl-2">{esp.nombrecomun}</span></h1>
+                                </div>
+                                <div className="flex flex-wrap items-center">
+                                    {/* target="_blank"  */}
+                                    <Link to={`/registrotaxonomico/${esp.id}`} className="text-white hover:bg-blue-500 bg-blue-700 pl-2 pr-2 rounded border m-2 border-blue-700">Ver</Link>
+                                    <Link to={`/editar-registrotaxonomico/${esp.id}`} className=" text-white hover:bg-green-500 bg-green-700 pl-2 pr-2 rounded border m-2 border-green-700">Editar</Link>
+                                    <button className=" text-white hover:bg-red-500 bg-red-700  pl-2 pr-2 rounded border m-2 border-red-700" onClick={() => {
+                                        eliminarEspecie2(esp.id);
+                                    }}>Eliminar</button>
+                                    {esp.estado !== "verificado" && especienoVerificada ? (
+                                        <button className=" text-white hover:bg-orange-500 bg-orange-700  pl-2 pr-2 rounded border m-2 border-orange-700" onClick={() => {
+                                            hacerqueVerifique();
+                                        }}>Verificar</button>) : (<></>)}
+                                </div>
                             </div>
+
+                        </>)
+
+                ) : (<>
+                    <div className="bg-gray-900 m-3 rounded flex items-center justify-between">
+                        <div className="flex">
+                            <h1 className=" ml-5 font-bold text-purple-500">Especie: <span className="text-white font-normal pl-2">{esp.nombrecientifio}</span></h1>
                         </div>
-                    </>) : (
-                    <>
-                        <div className="bg-gray-900 m-3 rounded flex items-center justify-between">
-                            <div className="flex">
-                                <h1 className=" ml-5 font-bold text-purple-500">Especie: <span className="text-white font-normal pl-2">{esp.nombrecomun}</span></h1>
-                            </div>
-                            <div className="flex flex-wrap items-center">
-                                {/* target="_blank"  */}
-                                <Link to={`/registrotaxonomico/${esp.id}`} className="text-white hover:bg-blue-500 bg-blue-700 pl-2 pr-2 rounded border m-2 border-blue-700">Ver</Link>
-                                <Link to={`/editar-registrotaxonomico/${esp.id}`} className=" text-white hover:bg-green-500 bg-green-700 pl-2 pr-2 rounded border m-2 border-green-700">Editar</Link>
-                                <button className=" text-white hover:bg-red-500 bg-red-700  pl-2 pr-2 rounded border m-2 border-red-700" onClick={() => {
-                                    eliminarEspecie2(esp.id);
-                                }}>Eliminar</button>
-                                {esp.estado !== "verificado" && especienoVerificada ? (
-                                    <button className=" text-white hover:bg-orange-500 bg-orange-700  pl-2 pr-2 rounded border m-2 border-orange-700" onClick={() => {
-                                        hacerqueVerifique();
-                                    }}>Verificar</button>) : (<></>)}
-                            </div>
+                        <div className="flex flex-wrap items-center">
+                            {/* target="_blank"  */}
+                            <Link to={`/especies/${esp.id}`} className="text-white hover:bg-blue-500 bg-blue-700 pl-2 pr-2 rounded border m-2 border-blue-700">Ver</Link>
                         </div>
-    
-                    </>)
-
-            ):( <>
-                <div className="bg-gray-900 m-3 rounded flex items-center justify-between">
-                    <div className="flex">
-                        <h1 className=" ml-5 font-bold text-purple-500">Especie: <span className="text-white font-normal pl-2">{esp.nombrecientifio}</span></h1>
                     </div>
-                    <div className="flex flex-wrap items-center">
-                        {/* target="_blank"  */}
-                        <Link to={`/especies/${esp.id}`} className="text-white hover:bg-blue-500 bg-blue-700 pl-2 pr-2 rounded border m-2 border-blue-700">Ver</Link>
-                    </div>
-                </div>
 
-            </>)
-            
-            
+                </>)
+
+
             }
         </>
 

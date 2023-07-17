@@ -14,8 +14,10 @@ const router = Router();
 // especies
 router.get('/registrotaxonomico', autenticacionRequeridaAdmin,leerRegistros2 );
 router.get('/registrotaxonomico/:id', autenticacionRequeridaAdmin, leerRegistro2); 
-router.post('/registrotaxonomico',autenticacionRequeridaAdmin,  esquemadeValidacion(taxonomiaEsquema), crearRegistro2 );
-router.put('/registrotaxonomico/:id', autenticacionRequeridaAdmin,  esquemadeValidacion(taxonomiaEsquema), editarRegistro2);
+router.post('/registrotaxonomico',autenticacionRequeridaAdmin,   crearRegistro2 );
+// router.put('/registrotaxonomico/:id', autenticacionRequeridaAdmin,  esquemadeValidacion(taxonomiaEsquema), editarRegistro2);
+router.put('/registrotaxonomico/:id', autenticacionRequeridaAdmin, editarRegistro2);
+
 router.delete('/registrotaxonomico/:id', autenticacionRequeridaAdmin, eliminarRegistro2);
 router.patch('/registrotaxonomico/:id', autenticacionRequeridaAdmin, verificarRegistro);
 

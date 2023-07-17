@@ -34,7 +34,7 @@ export const register = async (req, res) => {
 
             const result = await pool.query("INSERT INTO usuarios (nombre,usuario,correoelectronico,contrasena,rol) VALUES ($1,$2,$3,$4,$5) RETURNING *", [usuarion.getNombre(), usuarion.getUsuario(), usuarion.getCorreoElectronico(), usuarion.getContrasena(), usuarion.getRol()]);
 
-            const token = await crearTokendeAcceso({ id: result.id })
+            const token = await crearTokendeAcceso({ id: result.id , rol: result.rol})
             res.cookie('token', token)
             // res.json({
             //     message: "Usuario Creado Satisfactoriamente"

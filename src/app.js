@@ -17,8 +17,10 @@ app.set('port',process.env.PORT || 4000);
 
 // middlewares
 app.use(cors({
-    origin: 'https://plantz-one.vercel.app',
-    credentials: true
+    // origin: 'https://plantz-one.vercel.app',
+    origin: 'http://localhost:8080',
+    credentials: true,
+ 
 }));
 app.use(morgan('dev'));
 app.use(express.json());
