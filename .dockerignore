@@ -1,6 +1,9 @@
 node_modules
 notas.txt
 .env
+fly.toml
+dts.json
+
 
 /client
 /testing

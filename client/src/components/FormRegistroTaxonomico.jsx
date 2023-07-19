@@ -129,7 +129,7 @@ function Stepper() {
 
     return (
 
-        <div className="flex flex-col items-center mt-36 w-96 container-fluid mx-auto">
+        <div className="flex flex-col items-center mt-36 w-96 container-fluid mx-auto ">
             <div className="w-full max-w-xl p-8 bg-gray-900 rounded-lg shadow-md relative border border-purple-500">
                 <div className="flex justify-between mb-8 pl-10 pr-10">
                     <div

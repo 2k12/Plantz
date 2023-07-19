@@ -73,10 +73,10 @@ export const login = async (req, res) => {
 
         if (!coinciden) return res.status(400).json({ message: 'Contraseña Incorrecta.' })
 
-
         const token = await crearTokendeAcceso({ id: usuarioEncontrado.rows[0].id, rol: usuarioEncontrado.rows[0].rol })
-        res.cookie('token', token)
-
+        res.cookie('token', token, { sameSite: 'none', secure: true })
+        // console.log(first)
+        // res.send({"token": token})
         res.json({
             id: usuarioEncontrado.rows[0].id,
             nombre: usuarioEncontrado.rows[0].nombre,

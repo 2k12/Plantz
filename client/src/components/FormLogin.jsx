@@ -46,7 +46,7 @@ function FormLogin() {
         <>
             <div className="w-full  container-fluid mx-auto " id="princ">
 
-                <form onSubmit={onSubmit} className={`shadow-md rounded px-8 pt-6 pb-8 mb-4 w-80 bg-gradient-to-b from-gray-900 to-gray-800 border border-purple-500  transition-opacity duration-400 ease-in ${loaded ? 'opacity-100' : 'opacity-0'}`}>
+                <form onSubmit={onSubmit} className={`shadow-md rounded px-8 pt-6 pb-8 mb-4 w-96 bg-gradient-to-b from-gray-900 to-gray-800 border border-purple-500  transition-opacity duration-400 ease-in ${loaded ? 'opacity-100' : 'opacity-0'}`}>
 
 
                     <div className="mb-4">

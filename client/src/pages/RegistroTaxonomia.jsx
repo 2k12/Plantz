@@ -6,10 +6,11 @@ import imagendefondo from "../assets/fondo.webp";
 import TaxonomiasCard from "../components/TaxonomiasCard";
 import { useAdmin } from "../context/AdminContext";
 import { useEffect } from "react";
+import DataTable from "../components/DataTable";
 
 
 function RegistroTaxonomia() {
-    const { leerTaxonomias, taxonomia } = useAdmin();
+    const { leerTaxonomias} = useAdmin();
     // console.log(object);
     useEffect(() => {
         leerTaxonomias()
@@ -17,13 +18,12 @@ function RegistroTaxonomia() {
 
     
     return (
-        <div className="bg-gradient-to-r from-blue-500 to-purple-500 bg-cover bg-center" style={{ backgroundImage: `url(${imagendefondo})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh' }}>
-            {/* <Navbar /> */}
+        <div className="mx-auto flex justify-center" style={{ backgroundImage: `url(${imagendefondo})`, backgroundPosition: 'center', minHeight: '100vh' }}>
 
-            <div className="text-white dark:text-white text-4xl font-normal tracking-wide absolute left-168 top-228 w-614 h-min-content flex flex-col mt-40 pl-10 md:pl-56 items-center">
-                <div className="flex items-center">
-                    <span className="mr-2 rEGISTRODEESPECIE text-5xl">
-                        Módulo Taxonomía
+            <div className="text-white dark:text-white text-4xl font-normal  absolute left-168 top-228 w-614 h-min-content flex flex-col mt-40 md:pl-56  ">
+                <div className="flex  ">
+                    <span className="rEGISTRODEESPECIE text-5xl">
+                        Registro Taxonomía
                     </span>
                     <button className="nuevor bg-gray-900 border border-purple-500 hover:bg-purple-900 text-white font-bold text-sm py-2 px-4 rounded ml-5">
                         <Link to="/agregar-taxonomia"> Nuevo Registro </Link>
@@ -31,21 +31,9 @@ function RegistroTaxonomia() {
                 </div>
             </div>
 
-            <div className="flex items-center justify-center h-screen ">
-                <div className=" items-center justify-center w-11/12 h-64 md:w-3/4 lg:w-1/2 xl:w-2/3 overflow-y-scroll bg-gradient-to-b from-gray-500 to-gray-400 rounded border border-purple-500">
-                    {
-                    taxonomia.map((esp) => (
-                        <TaxonomiasCard esp={esp}  key={esp.id}/>
-                    ))}
-                    {/* <p>Contenido del div con barra de desplazamiento</p> */}
-                </div>
+          
 
-            </div>
-
-            <div>
-                {/* Aquí puedes agregar otros elementos adicionales si es necesario */}
-            </div>
-
+            <DataTable/>
             {/* <Footer /> */}
         </div>
     );

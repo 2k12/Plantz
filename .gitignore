@@ -6,9 +6,11 @@ node_modules
 .vscode
 
 notas.txt
+fly.toml
+dts.json
 
 
-
+/client
 /testing
 /coverage
 .vercel

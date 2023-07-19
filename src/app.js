@@ -12,16 +12,17 @@ const app = express();
 
 // settings
 app.set('port',process.env.PORT || 4000);
-// app.set('url', `http://localhost:${app.get('port')}`);
+app.set('url', `http://localhost:${app.get('port')}`);
 
 
 // middlewares
 app.use(cors({
-    // origin: 'https://plantz-one.vercel.app',
-    origin: 'http://localhost:8080',
+    // origin: 'http://localhost:8080',
+    origin: 'https://plantz-five.vercel.app',
     credentials: true,
- 
+    sameSite: "none"
 }));
+
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(cookieParser());

@@ -22,7 +22,6 @@ router.delete('/registrotaxonomico/:id', autenticacionRequeridaAdmin, eliminarRe
 router.patch('/registrotaxonomico/:id', autenticacionRequeridaAdmin, verificarRegistro);
 
 
-
 // taxonomia
 router.get('/taxonomia',autenticacionRequeridaAdmin,leertaxonomias);
 router.get('/taxonomia/:id',autenticacionRequeridaAdmin, leertaxonomia);

@@ -1,6 +1,7 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { peticionregistro, peticionlogin, verificarlapeticiondeToken ,peticionprofile} from "../api/auth";
+import { peticionregistro, peticionlogin, verificarlapeticiondeToken, peticionprofile } from "../api/auth";
 import Cookies from "js-cookie";
+
 export const AuthContext = createContext();
 
 export const useAuth = () => {
@@ -11,7 +12,8 @@ export const useAuth = () => {
     return context;
 }
 export const AuthProvider = ({ children }) => {
-    
+    // const token = Cookies.get('token');
+    // console.log(token)
     const [user, setUser] = useState(null)
 
     const [estalogeado, setEstalogeado] = useState(false);
@@ -22,9 +24,9 @@ export const AuthProvider = ({ children }) => {
     const iniciodeSesion = async (user) => {
         try {
             const res = await peticionregistro(user);
-            console.log(res.data);
-            setUser(res.data);
-            setEstalogeado(true);
+            // console.log(res.data);
+                setUser(res.data);
+                setEstalogeado(true);
         } catch (error) {
             console.log(error.response);
             if (error.response) {
@@ -40,15 +42,14 @@ export const AuthProvider = ({ children }) => {
     const login = async (user) => {
         try {
             const res = await peticionlogin(user);
-            console.log(res.data);
-            setUser(res.data);
-            setEstalogeado(true);
+                setUser(res.data);
+                setEstalogeado(true);
         } catch (error) {
             console.log(error.response);
             if (error.response) {
                 setErrors(error.response);
             }
-            
+
             // if(error instanceof Error){
             //     setErrors(error.response.data)
             // }
@@ -58,8 +59,8 @@ export const AuthProvider = ({ children }) => {
         try {
             const res = await peticionprofile();
             // console.log(res.data);
-            setUser(res.data);
-            setEstalogeado(true);
+                setUser(res.data);
+                setEstalogeado(true);
         } catch (error) {
             console.log(error.response);
             if (error.response) {
@@ -68,7 +69,7 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
-    const logout = async() => {
+    const logout = async () => {
         try {
             Cookies.remove('token');
             setEstalogeado(false);

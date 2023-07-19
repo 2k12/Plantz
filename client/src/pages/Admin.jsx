@@ -1,6 +1,12 @@
 import React from 'react';
 import imagendefondo from "../assets/fondo.webp";
+import hoja from "../assets/hoja.png";
+import usuarios from "../assets/usuarios.webp";
+import especies from "../assets/especies.webp";
+import taxonomias from "../assets/taxonomias.webp";
+
 import { Link } from 'react-router-dom';
+import Footer from '../components/Footer';
 // import Cookies from "js-cookie";
 
 export default function AdminTemplate() {
@@ -8,53 +14,46 @@ export default function AdminTemplate() {
     // console.log(miCookie)
 
     return (
-        <div className="flex justify-center " style={{ backgroundImage: `url(${imagendefondo})`, backgroundSize: 'cover', backgroundPosition: 'center center', minHeight: '100vh' }}>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 mt-48 absolute ">
-                <div className="max-w-sm rounded overflow-hidden shadow-lg border bg-gray-900 border-purple-500">
-                    <img className="w-full" src="https://i.postimg.cc/Kj4SXHb0/users-3829501336.jpg" alt="Imagen Usuarios" />
-                    <div className="px-6 py-4">
-                        <div className="text-xl mb-2 text-white text-center font-light mt-4">Modulo Usuarios</div>
-                        <p className="text-gray-300 text-base mt-2 text-center">
-                            Modulo de Gestión de Usuarios.
-                        </p>
-                    </div>
-                    <div className="px-6 pt-4 ">
-                        <Link to="/usuarios" className="inline-block  rounded w-full text-center px-3 py-1 pt-5 font-semibold text-white mr-2 mb-2 bg-green-700 hover:bg-green-600 h-20 text-2xl">
-                            Gestionar
-                        </Link>
-                    </div>
+        <>
+            <div className="w-full m-0 p-0 bg-cover bg-bottom" style={{ backgroundImage: `url(${imagendefondo})`, height: "60vh", maxHeight: "480px" }}>
+                <div className="container max-w-4xl mx-auto pt-16 md:pt-32 text-center break-normal ">
+                    <p className="text-white font-light text-3xl md:text-7xl pt-20" id='tit'>
+                        Panel de Administrador
+                    </p>
+                    {/* <p className="text-xl md:text-2xl text-gray-300">Conéctate con la naturaleza a través del estudio de la taxonomía vegetal</p> */}
                 </div>
-                <div className="max-w-sm rounded overflow-hidden shadow-lg border bg-gray-900  border-purple-500">
-                    <img className="w-full" src="https://i.postimg.cc/8c8yPXgp/plantas-mexicanas-peligro-en-extincion-vegetacion.jpg" alt="Sunset in the mountains" />
-                    <div className="px-6 py-4">
-                        <div className="text-xl mb-2 text-white text-center font-light mt-4">Modulo Especies</div>
-                        <p className="text-gray-300 text-base mt-2 text-center">
-                            Modulo de Gestión de Especies.
-                        </p>
-                    </div>
-                    <div className="px-6 pt-4 ">
-                        <Link to="/registrotaxonomico" className="inline-block  rounded w-full text-center px-3 py-1 pt-5 font-semibold text-white mr-2 mb-2 bg-green-700 hover:bg-green-600 h-20 text-2xl">
-                            Gestionar
-                        </Link>
-                    </div>
-                </div>
-                <div className="max-w-sm rounded overflow-hidden shadow-lg border bg-gray-900 border-purple-500">
-                    <img className="w-full" src="https://i.postimg.cc/JhfgGzbC/Plantas-2685905361.jpg" alt="Sunset in the mountains" />
-                    <div className="px-6 py-4">
-                        <div className="text-xl mb-2 text-white text-center font-light mt-4">Modulo Taxonomías</div>
-                        <p className="text-gray-300 text-base mt-2 text-center">
-                            Modulo de Gestión de Taxonomías.
-                        </p>
-                    </div>
-                    <div className="px-6 pt-4 ">
-                        <Link to="/taxonomia" className="inline-block  rounded w-full text-center px-3 py-1 pt-5 font-semibold text-white mr-2 mb-2 bg-green-700 hover:bg-green-600 h-20 text-2xl">
-                            Gestionar
-                        </Link>
-                    </div>
-                </div>
-
-
             </div>
-        </div>
+
+            <div className="container px-4 md:px-0 max-w-6xl mx-auto">
+                <div className="flex flex-wrap justify-between -mx-5 -mt-24">
+                    <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink mb-28">
+                        <div className="flex-1 bg-white rounded overflow-hidden shadow-xl hover:bg-gray-200">
+                            <Link to="/usuarios" className="flex flex-wrap no-underline hover:no-underline">
+                                <img src={usuarios} className="h-full w-full rounded-t pb-5" alt="Post" />
+                                <div className="w-full font-bold text-4xl text-gray-900 px-6 text-center uppercase  mb-4">usuarios</div>
+                            </Link>
+                        </div>
+                    </div>
+                    <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink mb-28">
+                        <div className="flex-1 bg-white rounded overflow-hidden shadow-lg hover:bg-gray-200">
+                            <Link to="/registrotaxonomico" className="flex flex-wrap no-underline hover:no-underline">
+                                <img src={especies} className="h-full w-full rounded-t pb-5" alt="Post" />
+                                <div className="w-full font-bold text-4xl text-gray-900 px-6 text-center uppercase  mb-4">ESPECIES</div>
+                            </Link>
+                        </div>
+                    </div>
+                    <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink mb-28">
+                        <div className="flex-1 bg-white rounded overflow-hidden shadow-lg hover:bg-gray-200">
+                            <Link to="/taxonomia" href="#" className="flex flex-wrap no-underline hover:no-underline">
+                                <img src={taxonomias} className="h-full w-full rounded-t pb-5" alt="Post" />
+                                <div className="w-full font-bold text-4xl text-gray-900 px-6 text-center uppercase  mb-4">taxonomías</div>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* <Footer /> */}
+        </>
     );
 }

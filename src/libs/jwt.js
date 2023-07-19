@@ -7,7 +7,7 @@ export async function crearTokendeAcceso(payload) {
             payload,
             TOKEN_SECRET,
             {
-                expiresIn: TOKEN_EXPIRATION_TIME,
+                expiresIn: TOKEN_EXPIRATION_TIME
             },
             (err, token) => {
                 // if (err) console.log(err);

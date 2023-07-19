@@ -1,13 +1,13 @@
 version: '3.9'
 services:
   plantz:
-    image: 2k12/plantz
+    image: 2k12/plantz:init
     container_name: backend
     ports:
       - 4000:4000
     command: npm run dev
   plantzfront:
-    image: 2k12/plantzfront
+    image: 2k12/plantzfront:init
     container_name: front
     ports:
       - 8080:8080

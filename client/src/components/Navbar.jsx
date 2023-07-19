@@ -16,11 +16,11 @@ function Navbar() {
             {/* <div class="react-toggle-track-check mt-80"><span class="toggle_keGJ moon_1gwN"></span></div> */}
             <nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-purple-500">
                 <div className="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-3.5">
-                    <a href="/" className="flex items-center ">
+                    <Link to="/" className="flex items-center ">
                         <img src="https://i.postimg.cc/90LpP6Hv/hoja.png" className="h-8 mr-3" alt="Flowbite Logo" />
                         <span id='nombapp' className="self-center text-2xl font-normal whitespace-nowrap dark:text-white">Plantz.</span>
 
-                    </a>
+                    </Link>
                     <div className="flex md:order-2">
                         {estalogeado  ? (
                             <>
@@ -61,25 +61,20 @@ function Navbar() {
                         <ul className="flex flex-col p-4 md:p-0 mt-4  border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                             {estalogeado && user.rol == 'taxonomo' || estalogeado && user.rol == 'dig' ? (
                                 <li>
-                                    <a href="/registrotaxonomico" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-purple-400 md:p-0 md:dark:hover:text-purple-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" >Registro Taxonómico</a>
-                                </li>) : estalogeado && user.rol == 'admin' ? (
+                                    <Link to="/registrotaxonomico" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-purple-400 md:p-0 md:dark:hover:text-purple-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" >Registro Taxonómico</Link>                         </li>) : estalogeado && user.rol == 'admin' ? (
                                     <li>
                                         <Link to="/adminmodulos" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-purple-400 md:p-0 md:dark:hover:text-purple-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" >Modulos Administrador</Link>
                                     </li>
                                 ) :
                                 estalogeado && user.rol == 'dig' ? (<li>
-                                    <a href="#" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-purple-400 md:p-0 md:dark:hover:text-purple-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" >Modulos Digitador</a>
-                                </li>) : 
+                                    <Link to="#" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-purple-400 md:p-0 md:dark:hover:text-purple-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" >Modulos Digitador</Link>                           </li>) : 
                                 estalogeado && user.rol == 'usuario' ? (<li>
-                                    <a href="#" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-purple-400 md:p-0 md:dark:hover:text-purple-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" >Galería de Especies</a>
-                                </li>):( <li>
-                                    <a href="/registrotaxonomico" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-purple-400 md:p-0 md:dark:hover:text-purple-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" >Registro Taxonómico</a>
-                                </li>)}
+                                    <Link to="#" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-purple-400 md:p-0 md:dark:hover:text-purple-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" >Galería de Especies</Link>                             </li>):( <li>
+                                    <Link to="/registrotaxonomico" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-purple-400 md:p-0 md:dark:hover:text-purple-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" >Registro Taxonómico</Link>                            </li>)}
                             <li>
-                                <a href="/clasificacion" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-purple-400 md:p-0 md:dark:hover:text-purple-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Clasificación</a>
-                            </li>
+                                <Link to="/clasificacion" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-purple-400 md:p-0 md:dark:hover:text-purple-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Clasificación</Link>                       </li>
                             <li>
-                                <a href="/acerca" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-purple-500  md:p-0 md:dark:hover:text-purple-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Acerca de</a>
+                                <Link to="/acerca" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-purple-500  md:p-0 md:dark:hover:text-purple-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Acerca de</Link>
                             </li>
                         </ul>
                     </div>

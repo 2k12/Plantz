@@ -8,7 +8,7 @@ import imagen4from from "../assets/7.webp";
 import Footer from "../components/Footer";
 import "./rt.css";
 
-function Index() {
+function AcercaPage() {
 	return (
 		<>
 			<div className="w-full m-0 p-0 bg-cover bg-bottom " style={{ backgroundImage: `url(${imagendefondo})`, height: "60vh", maxHeight: "460px" }}>
@@ -152,7 +152,7 @@ function Index() {
 									</div>
 								</div>
 							</div>
-
+							
 
 
 							{/* <div className="w-full md:w-2/3 p-6 flex flex-col flex-grow flex-shrink">
@@ -227,10 +227,12 @@ function Index() {
 				</div>
 
 			</div>
-			<Footer />
+			<div className="h-20">
+            </div>
+			{/* <Footer /> */}
 
 		</>
 	);
 }
 
-export default Index;
+export default AcercaPage;
