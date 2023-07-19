@@ -2,7 +2,9 @@ import React from 'react';
 import imagendefondo from "../assets/fondo.webp";
 import hoja from "../assets/hoja.png";
 import imagen1from from "../assets/3.webp";
-import imagen2from from "../assets/4.webp";
+import planta6 from "../assets/planta6.webp";
+import planta7 from "../assets/planta7.webp";
+import planta8 from "../assets/planta8.webp";
 import imagen3from from "../assets/5.webp";
 import imagen4from from "../assets/7.webp";
 import Footer from "../components/Footer";
@@ -12,25 +14,27 @@ function AcercaPage() {
 	return (
 		<>
 			<div className="w-full m-0 p-0 bg-cover bg-bottom " style={{ backgroundImage: `url(${imagendefondo})`, height: "60vh", maxHeight: "460px" }}>
-				<div className="container max-w-4xl mx-auto pt-16 md:pt-32 text-center break-normal ">
-					<p className="text-white font-light text-3xl md:text-7xl pt-8" id='tit'>
+
+				<div className="container max-w-4xl mx-auto text-center break-normal pb-20 mb-20 ">
+					<p className="text-white font-light text-6xl md:text-8xl pt-48" id="tit">
 						Plantz.
 					</p>
 					<p className="text-xl md:text-2xl text-gray-300">Sistema de Gestión de Plantas</p>
 				</div>
 			</div>
 
-			<div className="container px-4 md:px-0 max-w-6xl mx-auto -mt-32">
+			<div className="container px-4 md:px-0 max-w-6xl mx-auto -mt-24">
+
 
 				<div className="mx-0 sm:mx-6 ">
 
 
-
 					<div className=" w-full text-xl md:text-2xl text-gray-800 leading-normal rounded-t ">
+
 
 						<div className="flex h-full bg-white rounded overflow-hidden shadow-lg ">
 							<div className="w-full md:w-2/3 rounded-t">
-								<img src={imagen1from} className="h-full w-full shadow" alt="Cover" />
+								<img src={planta6} className="h-full w-full shadow" alt="Cover" />
 							</div>
 
 							<div className="w-full md:w-1/3 flex flex-col flex-grow flex-shrink ">
@@ -119,7 +123,7 @@ function AcercaPage() {
 							<div className="w-full md:w-1/2 p-6 flex flex-col flex-grow flex-shrink">
 								<div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
 									<div className="flex flex-wrap no-underline hover:no-underline">
-										<img src={imagen4from} className="h-full w-full rounded-t pb-6" alt="Post" />
+										<img src={planta7} className="h-full w-full rounded-t pb-6" alt="Post" />
 										<div className="w-full font-bold text-xl text-gray-900 px-6">Misión</div>
 										<p className="text-gray-800 font-serif text-base px-6 mb-5">
 											Nuestra misión es proporcionar a los entusiastas de las plantas una aplicación de gestión que les permita explorar, aprender y organizar plantas según su taxonomía. Nos esforzamos por ofrecer una plataforma intuitiva y completa que ayude a los usuarios a descubrir nuevas especies, aprender sobre su clasificación y características, y facilitar la gestión de sus propias colecciones de plantas. Nuestro objetivo es fomentar la pasión por la botánica y promover la conservación de la diversidad vegetal a través de una experiencia digital enriquecedora.
@@ -138,7 +142,7 @@ function AcercaPage() {
 								<div className="flex-1 flex-row bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
 									<div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
 
-										<img src={imagen3from} className="h-full w-full rounded-t pb-6" alt="Post" />
+										<img src={planta8} className="h-full w-full rounded-t pb-6" alt="Post" />
 										<div className="w-full font-bold text-xl text-gray-900 px-6">Visión</div>
 										<p className="text-gray-800 font-serif text-base px-6 mb-5">
 											Nuestra visión es convertirnos en la aplicación líder en gestión de plantas basada en taxonomía, reconocida por su precisión, funcionalidad y contenido de calidad. Buscamos ser la herramienta preferida por los amantes de las plantas, jardineros, botánicos y profesionales del sector, ofreciendo una amplia base de datos de plantas, información detallada sobre su taxonomía, características y cuidados, así como funciones avanzadas de organización y seguimiento. Aspiramos a ser una fuente confiable y accesible de conocimiento botánico, promoviendo la educación y la conexión con la naturaleza a través de la tecnología.
@@ -152,7 +156,7 @@ function AcercaPage() {
 									</div>
 								</div>
 							</div>
-							
+
 
 
 							{/* <div className="w-full md:w-2/3 p-6 flex flex-col flex-grow flex-shrink">
@@ -228,7 +232,7 @@ function AcercaPage() {
 
 			</div>
 			<div className="h-20">
-            </div>
+			</div>
 			{/* <Footer /> */}
 
 		</>

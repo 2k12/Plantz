@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useAdmin } from "../context/AdminContext";
 import DataTable from "../components/DataTable";
-import Footer from "../components/Footer";
+import './class.css'
 
 
 function RegistroTaxonomico() {
@@ -45,26 +45,28 @@ function RegistroTaxonomico() {
     }, [itemList]);
 
     return (
-        <div className="mx-auto flex justify-center" style={{ backgroundImage: `url(${imagendefondo})`, backgroundPosition: 'center', minHeight: '100vh' }}>
-
-            <div className="text-white dark:text-white text-4xl font-normal  absolute left-168 top-228 w-614 h-min-content flex flex-col mt-40 md:pl-56   ">
-                <div className="flex  mt-14">
-                    <span className="rEGISTRODEESPECIE text-5xl">
-                        Registro Especie
-                    </span>
-                    <button className="nuevor bg-gray-900 border border-purple-500 hover:bg-purple-900 text-white font-bold text-sm py-2 px-4 rounded ml-5">
-                        <Link to="/agregar-registrotaxonomico"> Nuevo Registro </Link>
-                    </button>
+        <div className="mx-auto flex justify-center" style={{ backgroundImage: `url(${imagendefondo})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh' }}>
+            <div className="container mx-auto pt-28">
+                <div className="text-white pt-32 dark:text-white text-4xl font-normal absolute left-0 md:left-168 top-0 md:top-228 w-full md:w-614 h-min-content flex flex-col md:pl-56">
+                    <div className="flex mt-28 absolute pb-20">
+                        <span className="rEGISTRODEESPECIE text-5xl lg:text-5xl  md:text-6xl sm:text-4xl">
+                            Especies
+                        </span>
+                        <button className="nuevor bg-gray-900 border border-purple-500 hover:bg-purple-900 text-white font-bold text-sm py-2 px-4 rounded ml-5">
+                            <Link to="/agregar-registrotaxonomico"> Agregar </Link>
+                        </button>
+                    </div>
                 </div>
-            </div>
 
-            <div className="flex items-center justify-center h-screen mt-20">
-                <DataTable />
+                <div className="mt-32">
+                    <DataTable />
+                </div>
+                <div className="h-20"></div>
             </div>
-        <Footer/>
+            {/* <Footer /> */}
 
         </div>
-        
+
     );
 }
 

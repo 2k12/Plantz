@@ -89,7 +89,7 @@ function App(){
 
                   </Route>
                 </Routes>
-                {/* <Footer /> */}
+                <Footer />
               </BrowserRouter>
             </UserallProvider>
 

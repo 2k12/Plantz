@@ -17,8 +17,8 @@ app.set('url', `http://localhost:${app.get('port')}`);
 
 // middlewares
 app.use(cors({
-    // origin: 'http://localhost:8080',
-    origin: 'https://plantz-five.vercel.app',
+    origin: 'http://localhost:8080',
+    // origin: 'https://plantz-five.vercel.app',
     credentials: true,
     sameSite: "none"
 }));

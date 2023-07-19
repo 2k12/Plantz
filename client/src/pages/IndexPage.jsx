@@ -5,12 +5,20 @@ import MyComponent from "../components/Plantz";
 import { useEffect } from "react";
 import imagendefondo from "../assets/fondo.webp";
 import React from 'react';
+
 import hoja from "../assets/hoja.png";
 import imagen1from from "../assets/3.webp";
 import imagen2from from "../assets/4.webp";
 import imagen3from from "../assets/5.webp";
 import imagen4from from "../assets/7.webp";
+import planta1 from "../assets/planta1.webp";
+import planta2 from "../assets/planta2.webp";
+import planta3 from "../assets/planta3.webp";
+import planta4 from "../assets/planta4.webp";
+import planta5 from "../assets/planta5.webp";
+import poli from "../assets/poli.webp";
 import video1 from "../assets/vid1.mp4";
+
 import "./rt.css";
 import { useUserall } from "../context/UserallContext";
 
@@ -19,19 +27,19 @@ function IndexPage() {
     const { leerEspecies3, especieall } = useUserall();
 
     useEffect(() => {
-      leerEspecies3();
+        leerEspecies3();
     }, []);
-  
-  
+
+
 
     return (
         <>
             <div className="w-full m-0 p-0 bg-cover bg-bottoms " style={{ backgroundImage: `url(${imagendefondo})`, height: "60vh", maxHeight: "460px" }}>
-                <div className="container max-w-4xl mx-auto pt-16 md:pt-32 text-center break-normal ">
-                    <p className="text-white font-light text-3xl md:text-7xl pt-8" id='tit'>
+                <div className="container max-w-4xl mx-auto pt-40 md:pt-36 text-center break-normal ">
+                    <p className=" font-light text-5xl md:text-7xl pt-8 text-white" id='tit'>
                         Plantz.
                     </p>
-                    <p className="text-xl md:text-2xl text-gray-300">Conéctate con la naturaleza a través del estudio de la taxonomía vegetal</p>
+                    <p className="text-xl md:text-2xl text-gray-300">Sumérgete en el mundo verde con Plantz: ¡Descubre, aprende y comparte!</p>
                 </div>
             </div>
 
@@ -43,17 +51,17 @@ function IndexPage() {
 
                         <div className="flex h-full bg-white rounded overflow-hidden shadow-lg ">
                             <div className="w-full md:w-2/3 rounded-t">
-                                <img src={imagen2from} className="h-full w-full shadow" alt="Cover" />
+                                <img src={planta1} className="h-full w-full object-cover object-center shadow" alt="Cover" />
                             </div>
 
                             <div className="w-full md:w-1/3 flex flex-col flex-grow flex-shrink ">
                                 <div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
                                     <p className="w-full text-gray-600 text-xs md:text-sm pt-6 px-6"></p>
                                     <div className="w-full font-bold text-xl text-gray-900 px-6 text-center">ESPECIES REGISTRADAS</div>
-                                    <p className="text-gray-800 font-serif text-9xl  mx-auto justify-content text-center">
+                                    <p className="text-gray-800 font-serif text-9xl  mx-auto justify-content text-center pt-8">
                                         {especieall.length}
                                     </p>
-                                    <p className="text-gray-800 font-serif mx-auto text-justify p-2 mt-4 md:text-md pt-6 px-6">Cada día se registran mas especies gracias a los constantes aportes de los taxonomos registrados en la plataforma.</p>
+                                    <p className="text-gray-800 font-serif mx-auto text-justify p-2 mt-4 md:text-md pt-8 px-6">Cada día, el número de especies registradas aumenta gracias a las contribuciones continuas de los taxónomos que participan en nuestra plataforma.</p>
                                 </div>
 
                                 <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
@@ -71,16 +79,16 @@ function IndexPage() {
                         <div className="flex flex-wrap justify-between pt-12 -mx-6">
 
 
-                            <div className="w-full md:w-1/2 p-6 flex flex-col flex-grow flex-shrink " style={{width: "5em !important" }}>
+                            <div className="w-full md:w-1/2 p-6 flex flex-col flex-grow flex-shrink " style={{ width: "5em !important" }}>
                                 <div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
                                     <div className="flex flex-wrap  no-underline hover:no-underline ">
-                                        <img src={imagen4from} className="h-full w-full rounded-t pb-6" alt="Post" />
-                                        <div className="w-full font-bold  text-gray-900 px-6">Plantae</div>
+                                        <img src={planta3} className="h-full w-full rounded-t pb-6" alt="Post" />
+                                        <div className="w-full font-bold  text-gray-900 px-6 ">Mundo Plantae</div>
                                         <p className="text-gray-800 font-serif text-base px-6 mb-1">
                                             Grupo de organismos multicelulares eucariotas, fotosintéticos y autótrofos, que incluye plantas terrestres, acuáticas y algas. Producen oxígeno, fijan carbono y son la base de las cadenas alimenticias en los ecosistemas terrestres y acuáticos.
                                         </p>
                                     </div>
-                                    <img src={imagen1from} className="h-80 w-full rounded-t mt-2" alt="Post" />
+                                    <img src={planta2} className="h-80 w-full rounded-t mt-2" alt="Post" />
 
                                 </div>
                                 <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
@@ -142,11 +150,10 @@ function IndexPage() {
                             <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
                                 <div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
                                     <a href="#" className="flex flex-wrap no-underline hover:no-underline">
-                                        <img src="https://source.unsplash.com/collection/1118905/800x600" className="h-full w-full rounded-t pb-6" alt="Post" />
-                                        <p className="w-full text-gray-600 text-xs md:text-sm px-6">GETTING STARTED</p>
-                                        <div className="w-full font-bold text-xl text-gray-900 px-6">Lorem ipsum dolor sit amet.</div>
+                                        <img src={poli} className="h-full w-full rounded-t pb-6" alt="Post" />
+                                        <div className="w-full font-bold text-xl text-gray-900 px-6 pb-5">Protegiendo y Embelleciendo Nuestra Comunidad.</div>
                                         <p className="text-gray-800 font-serif text-base px-6 mb-5">
-                                            Lorem ipsum eu nunc commodo posuere et sit amet ligula.
+                                            Esta acción representa el esfuerzo conjunto de nuestra fuerza policial y la comunidad para crear espacios verdes, mejorar la calidad del aire y fomentar un entorno más saludable.
                                         </p>
                                     </a>
                                 </div>
