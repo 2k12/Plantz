@@ -35,69 +35,74 @@ import { AuthProvider } from "./context/AuthContext";
 import { UserallProvider } from "./context/UserallContext";
 
 
-
-function App(){
-
-    return (
-      <AuthProvider>
-        <AdminProvider>
-          <EspecieProvider>
-            <UserallProvider>
-
-              <BrowserRouter>
-                <Breadcrumbs />
-                <Navbar />
-
-                <Routes>
-                  <Route path='/' element={<IndexPage />} />
-                  <Route path='/login' element={<LoginPage />} />
-                  <Route path='/register' element={<RegisterPage />} />
-                  <Route path='/acerca' element={<AcercaPage />} />
-
-                  <Route path='/clasificacion' element={<Clasificacion />} />
-                  <Route path='/clasificacion/:id' element={<Especie />} />
-
-
-                  <Route element={<ProtectedRoute />}>
-
-                    <Route path='/registrotaxonomico' element={<RegistroTaxonomico />} />
-                    <Route path='/agregar-registrotaxonomico' element={<NuevoRegistroTaxonomico />} />
-                    <Route path='/editar-registrotaxonomico/:id' element={<NuevoRegistroTaxonomico />} />
-                    <Route path='/eliminar-registrotaxonomico' element={<h1>eliminar registro taxonomico</h1>} />
-                    <Route path='/registrotaxonomico/:id' element={<Especie />} />
-
-
-                    <Route path='/adminmodulos' element={<Adminmodulos />} />
-
-                    <Route path='/taxonomia' element={<RegistroTaxonomia />} />
-                    <Route path='/agregar-taxonomia' element={<NuevoRegistroTaxonomia />} />
-                    <Route path='/editar-taxonomia/:id' element={<NuevoRegistroTaxonomia />} />
-                    <Route path='/eliminar-registrotaxonomico' element={<h1>eliminar registro taxonomico</h1>} />
-                    <Route path='/taxonomia/:id' element={<Taxonomia />} />
-
-                    <Route path='/usuarios' element={<RegistroUsuarios />} />
-                    <Route path='/agregar-usuario' element={<NuevoRegistroUsuario />} />
-                    <Route path='/editar-usuario/:id' element={<NuevoRegistroUsuario />} />
-                    <Route path='/eliminar-registrotaxonomico' element={<h1>eliminar registro taxonomico</h1>} />
-
-                    <Route path='/usuarios/:id' element={<Usuario />} />
-
-                    {/* faltas este ↓↓ */}
-                    <Route path='/profile' element={<Profile />} />
+import { ToastContainer } from 'react-toastify';
 
 
 
-                  </Route>
-                </Routes>
-                <Footer />
-              </BrowserRouter>
-            </UserallProvider>
+function App() {
 
-          </EspecieProvider>
-        </AdminProvider>
+  return (
 
-      </AuthProvider>
-    )
-  }
+    <AuthProvider>
+      <ToastContainer style={{paddingTop: "8em"}} className={"md:mt-8 mt-16"}/>
+
+      <AdminProvider>
+        <EspecieProvider>
+          <UserallProvider>
+
+            <BrowserRouter>
+              <Breadcrumbs />
+              <Navbar />
+
+              <Routes>
+                <Route path='/' element={<IndexPage />} />
+                <Route path='/login' element={<LoginPage />} />
+                <Route path='/register' element={<RegisterPage />} />
+                <Route path='/acerca' element={<AcercaPage />} />
+
+                <Route path='/clasificacion' element={<Clasificacion />} />
+                <Route path='/clasificacion/:id' element={<Especie />} />
+
+
+                <Route element={<ProtectedRoute />}>
+
+                  <Route path='/registrotaxonomico' element={<RegistroTaxonomico />} />
+                  <Route path='/agregar-registrotaxonomico' element={<NuevoRegistroTaxonomico />} />
+                  <Route path='/editar-registrotaxonomico/:id' element={<NuevoRegistroTaxonomico />} />
+                  <Route path='/eliminar-registrotaxonomico' element={<h1>eliminar registro taxonomico</h1>} />
+                  <Route path='/registrotaxonomico/:id' element={<Especie />} />
+
+
+                  <Route path='/adminmodulos' element={<Adminmodulos />} />
+
+                  <Route path='/taxonomia' element={<RegistroTaxonomia />} />
+                  <Route path='/agregar-taxonomia' element={<NuevoRegistroTaxonomia />} />
+                  <Route path='/editar-taxonomia/:id' element={<NuevoRegistroTaxonomia />} />
+                  <Route path='/eliminar-registrotaxonomico' element={<h1>eliminar registro taxonomico</h1>} />
+                  <Route path='/taxonomia/:id' element={<Taxonomia />} />
+
+                  <Route path='/usuarios' element={<RegistroUsuarios />} />
+                  <Route path='/agregar-usuario' element={<NuevoRegistroUsuario />} />
+                  <Route path='/editar-usuario/:id' element={<NuevoRegistroUsuario />} />
+                  <Route path='/eliminar-registrotaxonomico' element={<h1>eliminar registro taxonomico</h1>} />
+
+                  <Route path='/usuarios/:id' element={<Usuario />} />
+
+                  {/* faltas este ↓↓ */}
+                  <Route path='/profile' element={<Profile />} />
+
+
+
+                </Route>
+              </Routes>
+              <Footer />
+            </BrowserRouter>
+          </UserallProvider>
+
+        </EspecieProvider>
+      </AdminProvider>
+    </AuthProvider>
+  )
+}
 
 export default App

@@ -14,8 +14,8 @@ export const register = async (req, res) => {
         const { nombre, usuario, email, contrasena } = req.body;
 
         const usuarioyaRegistrado = await pool.query('SELECT * FROM usuarios WHERE correoelectronico = $1', [email])
-        if (usuarioyaRegistrado.rows.length > 0) {
-            return res.status(400).json(['Email ya Registrado.']);
+        if (usuarioyaRegistrado.rowCount!==0) {
+            return res.status(400).json({error: 'Email ya Registrado.'});
         }
         else {
             let usuarion = new Usuario();
@@ -41,7 +41,7 @@ export const register = async (req, res) => {
             // })
 
 
-            res.json({
+            res.status(200).json({
                 id: result.rows[0].id,
                 username: result.rows[0].usuario,
                 email: result.rows[0].correoelectronico,
@@ -65,19 +65,19 @@ export const login = async (req, res) => {
 
         const usuarioEncontrado = await pool.query('SELECT * FROM usuarios WHERE correoelectronico = $1 ', [email]);
 
-        if (!usuarioEncontrado) return res.status(400).json({ message: 'Usuario no Encontrado.' });
+        if (usuarioEncontrado.rowCount===0) return res.status(400).json({ error: 'Usuario no Encontrado.' });
 
         // comparar la contraseña
         const coinciden = await bcrypt.compare(contrasena, usuarioEncontrado.rows[0].contrasena)   // string aleatorio
 
 
-        if (!coinciden) return res.status(400).json({ message: 'Contraseña Incorrecta.' })
+        if (!coinciden) return res.status(400).json({ error: 'Contraseña Incorrecta.' })
 
         const token = await crearTokendeAcceso({ id: usuarioEncontrado.rows[0].id, rol: usuarioEncontrado.rows[0].rol })
+
         res.cookie('token', token, { sameSite: 'none', secure: true })
-        // console.log(first)
-        // res.send({"token": token})
-        res.json({
+
+        res.status(200).json({
             id: usuarioEncontrado.rows[0].id,
             nombre: usuarioEncontrado.rows[0].nombre,
             username: usuarioEncontrado.rows[0].usuario,
@@ -88,7 +88,7 @@ export const login = async (req, res) => {
     } catch (error) {
         if (error instanceof Error) {
             // console.log(error.message);
-            res.status(500).json(error.message);
+            res.status(500).json(`verifique los datos proporcionados`);
         }
     }
 

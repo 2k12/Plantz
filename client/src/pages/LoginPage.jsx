@@ -22,10 +22,7 @@ function LoginPage() {
 
   return (
     <div className="bg-gradient-to-r from-blue-500 to-purple-500 bg-cover bg-center" style={{ backgroundImage: `url(${imagendefondo})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh' }}>
-      {/* <Navbar /> */}
       <FormLogin />
-      {/* <Footer /> */}
-
     </div>
   )
 }

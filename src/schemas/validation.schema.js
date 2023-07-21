@@ -60,7 +60,7 @@ export const usuarioEsquema = z.object({
     contrasena: z.string({
         required_error: 'Contraseña requerida',
     }).regex(/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,{
-        message: 'La contraseña debe tener mínimo 8 caracteres,1 Letra Mayuscula, Numeros y simbolos ( @$!%*?& )'
+        message: 'La contraseña debe tener mínimo 8 caracteres, 1 Letra Mayuscula, Numeros y símbolos ( @$!%*?& )'
     })
 });
 
@@ -72,8 +72,8 @@ export const loginEsquema = z.object({
 
     contrasena: z.string({
         required_error: 'Contraseña requerida',
-    }).min(8,{ message: 'La contraseña debe tener mínimo 8 caracteres'}).regex(/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,{
-        message: 'La contraseña debe tener (1 Mayúscula, Números, Símbolos (@$!%*?&))'
+    }).regex(/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,{
+        message: 'La contraseña debe tener mínimo 8 caracteres y tener (1 Mayúscula, Números, Símbolos (@$!%*?&))'
     })
 });
 

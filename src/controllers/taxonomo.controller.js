@@ -121,7 +121,9 @@ export const crearRegistro = async (req, res) => {
             nimagen.getPlantaID(), nimagen.getNombre(), nimagen.getURLImagen()
         ])
 
-        res.sendStatus(200);
+        res.sendStatus(200).json({message: "Especie Registrada con exito"});
+        if(!resultimagen) return res.sendStatus(400).json({message: "Error en el registro de la espeie"})
+
         //     res.json({
         //     id: resultplant.rows[0].id,
         //     userid: resultplant.rows[0].usuario_id,
@@ -164,7 +166,7 @@ export const editarRegistro = async (req, res) => {
             ]);
         if (editartax.rowCount === 0) { return res.status(404).json({ message: "La taxonomía no fue encontrada!" }) }
 
-        res.status(200).json({ message: "OK" });
+        res.status(200).json({ message: "Eespecie Editada Correctamente" });
 
     } catch (error) {
         if (error instanceof Error) {
@@ -177,8 +179,8 @@ export const eliminarRegistro = async (req, res) => {
         const { id } = req.params;
         const result = await pool.query('DELETE FROM plantas WHERE id = $1 ', [id]);
         if (!result) return res.status(400).json({ message: "La Especie no existe" });
-        res.sendStatus(204);
-
+        res.sendStatus(204).json({message: "Se elimino Correctamente."});
+        
     } catch (error) {
         if (error instanceof Error) {
             res.send(error.message);

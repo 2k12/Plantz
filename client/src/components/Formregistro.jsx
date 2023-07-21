@@ -1,30 +1,28 @@
 import "./formregistro.css";
 import { useForm } from "react-hook-form";
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useAuth } from "../context/AuthContext";
 
 
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Formregistro() {
     const [loaded, setLoaded] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { iniciodeSesion, errores } = useAuth();
+    const prevErrorsRef = useRef(null);
 
-    const notify = (errors) => {
-        toast.error(errors.join(' 📍 '), {
-            className: 'foo-bar',
-            theme: 'dark',
-        });
+    const [errorToShow, setErrorToShow] = useState(null);
+
+    const notify = (error) => {
+        toast.error(error);
     };
 
 
     const onSubmit = handleSubmit(async (values) => {
         await iniciodeSesion(values);
-        if (errores.length > 0) {
-            notify(errores);
-        }
+    
     });
 
 
@@ -35,10 +33,23 @@ function Formregistro() {
             setLoaded(true);
         }, 200); // Puedes ajustar el tiempo de retardo según tus necesidades
     }, []);
-
-
-
-
+    
+    useEffect(() => {
+        // Mostrar notificación solo si hay un mensaje de error
+        if (errorToShow !== null) {
+          notify(errorToShow);
+          setErrorToShow(null); // Reiniciar el estado local para evitar mostrar la notificación nuevamente en futuros cambios de errores
+        }
+      }, [errorToShow]);
+    
+      useEffect(() => {
+        // Actualizar el mensaje de error para mostrar en la notificación
+        if (prevErrorsRef.current !== null && prevErrorsRef.current.length > 0 && errores !== null && errores.length > 0 && prevErrorsRef.current !== errores) {
+          setErrorToShow(errores.join());
+        }
+        // Actualizar la referencia prevErrorsRef con el valor actual de errores
+        prevErrorsRef.current = errores;
+      }, [errores]);
 
     return (
         <>
@@ -108,13 +119,8 @@ function Formregistro() {
                             Forgot Password?
                         </a> */}
                     </div>
-                    {/* {errores.map((error, i) => (
-
-                        <div className="  text-purple-500" key={i}>
-                            {'📍' + error}
-                        </div>))} */}
                 </form>
-                <ToastContainer style={{fontSize: "14px", marginTop: "5em"}} />
+            
 
             </div>
 

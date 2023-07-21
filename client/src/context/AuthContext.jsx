@@ -1,6 +1,9 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import { peticionregistro, peticionlogin, verificarlapeticiondeToken, peticionprofile } from "../api/auth";
 import Cookies from "js-cookie";
+import { toast } from 'react-toastify';
+
+
 
 export const AuthContext = createContext();
 
@@ -25,12 +28,18 @@ export const AuthProvider = ({ children }) => {
         try {
             const res = await peticionregistro(user);
             // console.log(res.data);
-                setUser(res.data);
-                setEstalogeado(true);
+            setUser(res.data);
+            setEstalogeado(true);
+            if (res.status === 200) {
+                toast.success(`Usuario Registrado`)
+            }
+            setErrors([]);
+
         } catch (error) {
-            console.log(error.response);
+            // console.log(error.response);
             if (error.response) {
-                setErrors(error.response.data.error);
+                setErrors([error.response.data.error]);
+                toast.error(errores);
             }
             // else {
             //     setErrors([]);
@@ -42,12 +51,20 @@ export const AuthProvider = ({ children }) => {
     const login = async (user) => {
         try {
             const res = await peticionlogin(user);
-                setUser(res.data);
-                setEstalogeado(true);
+            setUser(res.data);
+            setEstalogeado(true);
+
+            if (res.status === 200) {
+                toast.success("Inicio de Sesión exitoso")
+            }
+            setErrors([]);
         } catch (error) {
-            console.log(error.response);
+            // console.log(error.response);
             if (error.response) {
-                setErrors(error.response);
+                // setErrors(error.response.data.error);
+                // toast.error(errores)
+                setErrors([error.response.data.error]);
+                toast.error(errores);
             }
 
             // if(error instanceof Error){
@@ -55,12 +72,13 @@ export const AuthProvider = ({ children }) => {
             // }
         }
     }
+
     const cgprofile = async () => {
         try {
             const res = await peticionprofile();
             // console.log(res.data);
-                setUser(res.data);
-                setEstalogeado(true);
+            setUser(res.data);
+            setEstalogeado(true);
         } catch (error) {
             console.log(error.response);
             if (error.response) {
@@ -74,7 +92,7 @@ export const AuthProvider = ({ children }) => {
             Cookies.remove('token');
             setEstalogeado(false);
             setUser(null);
-
+            toast.info(`Sesión Cerrada`)
         } catch (error) {
             console.log(error);
         }
