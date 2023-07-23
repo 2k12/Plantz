@@ -5,31 +5,31 @@ export const taxonomiaEsquema = z.object(
         reino: z.string({
             required_error: 'Reino requerido'
         }).regex(/^[A-Za-z\s]+$/, {
-            message: 'La cadena debe contener solo letras.',
+            message: 'El Reino debe contener solo letras.',
         }),
 
         filo: z.string({
             required_error: 'Filo requerido'
         }).regex(/^[A-Za-z\s]+$/, {
-            message: 'La cadena debe contener solo letras en minúscula.',
+            message: 'El Filo debe contener solo letras.',
         }),
 
         clase: z.string({
             required_error: 'Clase requerida'
         }).regex(/^[A-Za-z\s]+$/, {
-            message: 'La cadena debe contener solo letras en minúscula.',
+            message: 'La Clase debe contener solo letras.',
         }),
 
         orden: z.string({
             required_error: 'Orden requerido'
         }).regex(/^[A-Za-z\s]+$/, {
-            message: 'La cadena debe contener solo letras en minúscula.',
+            message: 'El Orden debe contener solo letras.',
         }),
 
         familia: z.string({
             required_error: 'Familia requerida'
         }).regex(/^[A-Za-z\s]+$/, {
-            message: 'La cadena debe contener solo letras en minúscula.',
+            message: 'La Familia debe contener solo letras.',
         }),
         genero: z.string({
             required_error: 'Genero requerido'
@@ -39,7 +39,7 @@ export const taxonomiaEsquema = z.object(
         especie: z.string({
             required_error: 'Especie requerida'
         }).regex(/^[a-z]+$/, {
-            message: 'La cadena debe contener solo letras en minúscula.',
+            message: 'La Especie debe contener solo letras en minúscula.',
         })
     });
 

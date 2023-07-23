@@ -44,7 +44,10 @@ function App() {
   return (
 
     <AuthProvider>
-      <ToastContainer style={{paddingTop: "8em"}} className={"md:mt-8 mt-16"}/>
+      <ToastContainer
+        position="top-right"
+        hideProgressBar={true}
+        />
 
       <AdminProvider>
         <EspecieProvider>

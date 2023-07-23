@@ -57,19 +57,14 @@ export const AuthProvider = ({ children }) => {
             if (res.status === 200) {
                 toast.success("Inicio de Sesión exitoso")
             }
+            
             setErrors([]);
         } catch (error) {
-            // console.log(error.response);
             if (error.response) {
-                // setErrors(error.response.data.error);
-                // toast.error(errores)
                 setErrors([error.response.data.error]);
                 toast.error(errores);
             }
 
-            // if(error instanceof Error){
-            //     setErrors(error.response.data)
-            // }
         }
     }
 

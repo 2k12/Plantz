@@ -1,5 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import { peticionagregarEspecie, peticioneliminarEspecie, peticionleerEspecies  , peticionleerEspecie, peticioneditarEspecie} from "../api/especies";
+import { toast } from 'react-toastify';
+
 
 const EspecieContext = createContext();
 
@@ -19,10 +21,19 @@ export function EspecieProvider({ children }) {
     const agregarEspecie = async (especie) => {
         try {
             const res = await peticionagregarEspecie(especie);
-            console.log(res);            
+            // console.log(res);        
+            if (res.status === 200) {
+                toast.success(`Especie Registrada`)
+            }else{
+                toast.error(`No se Registro la Especie`)
+            }
+            setErrors([]);
+            
         } catch (error) {
             if (error.response) {
-                setErrors(error.response.data.error);
+                setErrors([error.response.data.error]);
+                console.log(errores)
+                toast.error(`${errores}`);
             }
         }
 
@@ -44,6 +55,9 @@ export function EspecieProvider({ children }) {
         // console.log(res.data.especie)
         return res.data;
     }
+
+    // !por hacer la edicion de las especies 
+    
     const editarEspecie = async (id, especie) =>{
         try {
             const res = await peticioneditarEspecie(id,especie);
@@ -51,11 +65,16 @@ export function EspecieProvider({ children }) {
             console.log(error)
         }
     }
+
     const eliminarEspecie = async(id) =>{
         try {
             const res = await peticioneliminarEspecie(id);
             // console.log(res);
-            if(res.status === 204) setEspecie(especie.filter((esp) => esp.id !== id )) ;
+            if(res.status === 204) {
+                setEspecie(especie.filter((esp) => esp.id !== id ))
+                toast.success("Especie Eliminada")
+            }
+            setErrors([]);
             
         } catch (error) {
             console.log(error);

@@ -125,8 +125,10 @@ function AcercaPage() {
 									<div className="flex flex-wrap no-underline hover:no-underline">
 										<img src={planta7} className="h-full w-full rounded-t pb-6" alt="Post" />
 										<div className="w-full font-bold text-xl text-gray-900 px-6">Misión</div>
-										<p className="text-gray-800 font-serif text-base px-6 mb-5">
-											Nuestra misión es proporcionar a los entusiastas de las plantas una aplicación de gestión que les permita explorar, aprender y organizar plantas según su taxonomía. Nos esforzamos por ofrecer una plataforma intuitiva y completa que ayude a los usuarios a descubrir nuevas especies, aprender sobre su clasificación y características, y facilitar la gestión de sus propias colecciones de plantas. Nuestro objetivo es fomentar la pasión por la botánica y promover la conservación de la diversidad vegetal a través de una experiencia digital enriquecedora.
+										<p className="text-gray-800 font-serif text-base px-6 mb-5 mt-5">
+											Nuestra misión es proporcionar a los entusiastas de las plantas una aplicación de gestión que les permita explorar, aprender y organizar plantas según su taxonomía. </p> 
+										<p className="text-gray-800 font-serif text-base px-6 mb-5 ">
+											Nos esforzamos por ofrecer una plataforma intuitiva y completa que ayude a los usuarios a descubrir nuevas especies, aprender sobre su clasificación y características, y facilitar la gestión de sus propias colecciones de plantas. Nuestro objetivo es fomentar la pasión por la botánica y promover la conservación de la diversidad vegetal a través de una experiencia digital enriquecedora.
 										</p>
 									</div>
 								</div>
@@ -144,8 +146,10 @@ function AcercaPage() {
 
 										<img src={planta8} className="h-full w-full rounded-t pb-6" alt="Post" />
 										<div className="w-full font-bold text-xl text-gray-900 px-6">Visión</div>
-										<p className="text-gray-800 font-serif text-base px-6 mb-5">
-											Nuestra visión es convertirnos en la aplicación líder en gestión de plantas basada en taxonomía, reconocida por su precisión, funcionalidad y contenido de calidad. Buscamos ser la herramienta preferida por los amantes de las plantas, jardineros, botánicos y profesionales del sector, ofreciendo una amplia base de datos de plantas, información detallada sobre su taxonomía, características y cuidados, así como funciones avanzadas de organización y seguimiento. Aspiramos a ser una fuente confiable y accesible de conocimiento botánico, promoviendo la educación y la conexión con la naturaleza a través de la tecnología.
+										<p className="text-gray-800 font-serif text-base px-6 mb-5 mt-5">
+											Nuestra visión es convertirnos en la aplicación líder en gestión de plantas basada en taxonomía, reconocida por su precisión, funcionalidad y contenido de calidad.</p> 
+										<p className="text-gray-800 font-serif text-base px-6 mb-5 mt-5">
+											Buscamos ser la herramienta preferida por los amantes de las plantas, jardineros, botánicos y profesionales del sector, ofreciendo una amplia base de datos de plantas, información detallada sobre su taxonomía, características y cuidados, así como funciones avanzadas de organización y seguimiento. Aspiramos a ser una fuente confiable y accesible de conocimiento botánico, promoviendo la educación y la conexión con la naturaleza a través de la tecnología.
 										</p>
 									</div>
 									<div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">

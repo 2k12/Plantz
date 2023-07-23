@@ -1,5 +1,5 @@
-import {  S3Client, PutObjectCommand , ListObjectsCommand , GetObjectCommand}  from  "@aws-sdk/client-s3";
-import { AWS_BUCKET_NAME, AWS_BUCKET_REGION ,AWS_PUBLIC_KEY,AWS_SECRET_KEY } from  "../config.js";
+import { S3Client, PutObjectCommand, ListObjectsCommand, GetObjectCommand } from "@aws-sdk/client-s3";
+import { AWS_BUCKET_NAME, AWS_BUCKET_REGION, AWS_PUBLIC_KEY, AWS_SECRET_KEY } from "../config.js";
 import fs from "fs";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
@@ -12,25 +12,46 @@ const client = new S3Client({
 })
 
 
-export async function subirArchivo(file) {
-    const stream = fs.createReadStream(file.tempFilePath)
-    const uploadParams = {
-        Bucket: AWS_BUCKET_NAME,
-        Key: file.name,
-        Body: stream
-    }
-    const command = new PutObjectCommand(uploadParams)
-    return await client.send(command)
+// export async function subirArchivo(file) {
+//     const stream = fs.createReadStream(file.tempFilePath)
+//     const uploadParams = {
+//         Bucket: AWS_BUCKET_NAME,
+//         Key: file.name,
+//         Body: stream
+//     }
+//     const command = new PutObjectCommand(uploadParams)
+//     return await client.send(command)
 
+// }
+
+
+export async function subirArchivo(files) {
+    const promises = files.map(async (file) => {
+        const stream = fs.createReadStream(file.tempFilePath);
+        const uploadParams = {
+            Bucket: AWS_BUCKET_NAME,
+            Key: file.name,
+            Body: stream,
+        };
+        const command = new PutObjectCommand(uploadParams);
+        return await client.send(command);
+    });
+
+    try {
+        return await Promise.all(promises);
+    } catch (error) {
+        console.error("Error al subir archivos a S3:", error);
+        throw error;
+    }
 }
-async function leerArchivos(){
+async function leerArchivos() {
     const command = new ListObjectsCommand({
         Bucket: AWS_BUCKET_NAME
     })
     return await client.send(command)
 }
 
-async function leerArchivo(fileName){
+async function leerArchivo(fileName) {
     const command = new GetObjectCommand({
         Bucket: AWS_BUCKET_NAME,
         Key: fileName
@@ -38,16 +59,16 @@ async function leerArchivo(fileName){
     return await client.send(command)
 }
 
-async function generarUrlArchivo(fileName){
+async function generarUrlArchivo(fileName) {
     const command = new GetObjectCommand({
         Bucket: AWS_BUCKET_NAME,
         Key: fileName
     })
-    return await getSignedUrl(url, command , {expiresIn: 3600})
+    return await getSignedUrl(url, command, { expiresIn: 3600 })
 }
 
 
-async function descargarArchivo(fileName){
+async function descargarArchivo(fileName) {
     const command = new GetObjectCommand({
         Bucket: AWS_BUCKET_NAME,
         Key: fileName

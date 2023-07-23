@@ -82,6 +82,14 @@ function Stepper() {
                         {/* <h2 id='nuevaespecie' className="text-2xl font-bold mb-4 text-white mx-auto">Registro de Nueva Especie</h2> */}
                         <form className="w-80 mx-auto" onSubmit={onSubmit}>
                             <div className="mb-4">
+
+                                {/*  */}
+
+                                
+
+
+
+                                {/*  */}
                                 <label className="block mb-2 font-normal text-sm text-white">Reino</label>
                                 <input
                                     type="text"

@@ -64,21 +64,25 @@ export const leerRegistro = async (req, res) => {
 
 export const crearRegistro = async (req, res) => {
     try {
+        var fin = 0
         const { reino, filo, clase, orden, familia, genero, especie, nci, nco } = req.body;
-        // const  imagenm  = req.files.imagenm.tempFilePath;
-        // res.json(imagenm
+        const imagenm = req.files.imagenm;
+
+
+        // res.json(imagenm)
+
 
         // req.files.file = imagenm
         const nplanta = new Planta();
         const ntaxonomia = new Taxonomia();
-        const nimagen = new Imagen();
 
-        // // proceso de subir y generacion de parametros de la imagen en aws 
-        const resultadodecarga = await subirArchivo(req.files.imagenm);
-        if (!resultadodecarga) return res.json({ message: "Errror en la carga de la imagen" })
-        const nombrearchivo = req.files.imagenm.name;
-        const nombrelimpio = validaciondearchivo(nombrearchivo);
-        const urlimagen = `${AWS_LINK_ARCHIVE}${nombrelimpio}`;
+
+        // proceso de subir y generacion de parametros de la imagen en aws 
+
+        // if (!resultadodecarga) return res.json({ message: "Errror en la carga de la imagen" })
+        // const nombrearchivo = req.files.imagenm.name;
+        // const nombrelimpio = validaciondearchivo(nombrearchivo);
+        // const urlimagen = `${AWS_LINK_ARCHIVE}${nombrelimpio}`;
 
         // taxonomia
         ntaxonomia.setReino(reino);
@@ -94,7 +98,9 @@ export const crearRegistro = async (req, res) => {
             [ntaxonomia.getReino(), ntaxonomia.getFilo(), ntaxonomia.getClase(), ntaxonomia.getOrden(), ntaxonomia.getFamilia(), ntaxonomia.getGenero(), ntaxonomia.getEspecie(),
             ])
 
-
+        if (resulttax) {
+            fin++
+        }
 
         // planta
         nplanta.setUsuarioID(req.decoded.id);
@@ -105,45 +111,51 @@ export const crearRegistro = async (req, res) => {
             nplanta.setEstado("por verificar");
         } else {
             nplanta.setEstado("verificado");
-
         }
         const resultplant = await pool.query("INSERT INTO plantas (usuario_id,taxonomia_id,nombrecomun,nombrecientifio,estado) VALUES ($1,$2,$3,$4,$5) RETURNING *",
             [
                 nplanta.getUsuarioID(), nplanta.getTaxonomiaID(), nplanta.getNombreComun(), nplanta.getNombreCientifico(), nplanta.getEstado()
             ])
-
-        // imagen
-        nimagen.setPlanta_ID(resultplant.rows[0].id);
-        nimagen.setNombre(nombrelimpio);
-        nimagen.setURLImagen(urlimagen);
-
-        const resultimagen = await pool.query("INSERT INTO imagenes (planta_id,nombre,urlimagen) VALUES ($1,$2,$3)", [
-            nimagen.getPlantaID(), nimagen.getNombre(), nimagen.getURLImagen()
-        ])
-
-        res.sendStatus(200).json({message: "Especie Registrada con exito"});
-        if(!resultimagen) return res.sendStatus(400).json({message: "Error en el registro de la espeie"})
-
-        //     res.json({
-        //     id: resultplant.rows[0].id,
-        //     userid: resultplant.rows[0].usuario_id,
-        //     taxonomiaid: resultplant.rows[0].taxonomia_id,
-        //     nco: resultplant.rows[0].nombrecomun,
-        //     nci: resultplant.rows[0].nombrecientifio,
-        //     reino: resulttax.rows[0].reino,
-        //     filo: resulttax.rows[0].filo,
-        //     clase: resulttax.rows[0].clase,
-        //     orden: resulttax.rows[0].orden,
-        //     familia: resulttax.rows[0].familia,
-        //     genero: resulttax.rows[0].genero,
-        //     especie: resulttax.rows[0].especie,
-        // });
+        if (resultplant) {
+            fin++
+        }
+        const cargaarchivos = await subirArchivo(imagenm);
+        if (cargaarchivos) {
+            fin++
+        }
+        // // imagen
+        imagenm.forEach(async (element) => {
+            const nimagen = new Imagen();
+            // res.json(element)
+            const nombrearchivo = element.name
+            const urlimagen = `${AWS_LINK_ARCHIVE}${nombrearchivo}`;
+            nimagen.setPlanta_ID(resultplant.rows[0].id);
+            nimagen.setNombre(nombrearchivo);
+            nimagen.setURLImagen(urlimagen);
+            const resultimagen = await pool.query("INSERT INTO imagenes (planta_id,nombre,urlimagen) VALUES ($1,$2,$3)", [
+                nimagen.getPlantaID(), nimagen.getNombre(), nimagen.getURLImagen()
+            ])
+            if (!resultimagen) return res.status(400).json({ error: "No se cargaron las imagenes" })
 
 
+        });
+
+        // nimagen.setPlanta_ID(resultplant.rows[0].id);
+        // nimagen.setNombre(nombrelimpio);
+        // nimagen.setURLImagen(urlimagen);
+
+
+        if (!resultplant) return res.status(500).json({ error: "No se registro la Especie" });
+
+        if (fin === 3) {
+            res.sendStatus(200)
+        }
+        // ! esto no
 
     } catch (error) {
         if (error instanceof Error) {
-            res.send(error);
+            console.log(error.message);
+            // res.status(500).json(error.error);
         }
     }
 };
@@ -179,8 +191,8 @@ export const eliminarRegistro = async (req, res) => {
         const { id } = req.params;
         const result = await pool.query('DELETE FROM plantas WHERE id = $1 ', [id]);
         if (!result) return res.status(400).json({ message: "La Especie no existe" });
-        res.sendStatus(204).json({message: "Se elimino Correctamente."});
-        
+        res.sendStatus(204);
+
     } catch (error) {
         if (error instanceof Error) {
             res.send(error.message);

@@ -1,21 +1,12 @@
-// import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import MyComponent from "../components/Plantz";
-// import Breadcrumbs from "../components/Breadcrumbs";
 import { useEffect } from "react";
 import imagendefondo from "../assets/fondo.webp";
 import React from 'react';
 
 import hoja from "../assets/hoja.png";
-import imagen1from from "../assets/3.webp";
-import imagen2from from "../assets/4.webp";
 import imagen3from from "../assets/5.webp";
-import imagen4from from "../assets/7.webp";
 import planta1 from "../assets/planta1.webp";
 import planta2 from "../assets/planta2.webp";
 import planta3 from "../assets/planta3.webp";
-import planta4 from "../assets/planta4.webp";
-import planta5 from "../assets/planta5.webp";
 import poli from "../assets/poli.webp";
 import video1 from "../assets/vid1.mp4";
 
