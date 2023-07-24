@@ -1,11 +1,12 @@
 export class Planta {
-    constructor(ID, UsuarioID, TaxonomiaID, NombreComun, NombreCientifico, Estado) {
+    constructor(ID, UsuarioID, TaxonomiaID, NombreComun, NombreCientifico, Estado, Descripcion) {
         this.ID = ID;
         this.UsuarioID = UsuarioID;
         this.TaxonomiaID = TaxonomiaID;
         this.NombreComun = NombreComun;
         this.NombreCientifico = NombreCientifico;
         this.Estado = Estado;
+        this.Descripcion = Descripcion;
     }
 
     getID() {return this.ID;}
@@ -31,5 +32,9 @@ export class Planta {
     getEstado(){return this.Estado;}
 
     setEstado(Estado){this.Estado = Estado;}
+
+    getDescripcion(){return this.Descripcion;}
+
+    setDescripcion(Descripcion){this.Descripcion = Descripcion;}
 }
 

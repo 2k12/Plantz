@@ -32,7 +32,6 @@ export function EspecieProvider({ children }) {
         } catch (error) {
             if (error.response) {
                 setErrors([error.response.data.error]);
-                console.log(errores)
                 toast.error(`${errores}`);
             }
         }
@@ -51,8 +50,6 @@ export function EspecieProvider({ children }) {
 
     const leerEspecie = async (id) =>{
         const res = await peticionleerEspecie(id);
-        // console.log(res.data.rows[0]);
-        // console.log(res.data.especie)
         return res.data;
     }
 
@@ -61,8 +58,17 @@ export function EspecieProvider({ children }) {
     const editarEspecie = async (id, especie) =>{
         try {
             const res = await peticioneditarEspecie(id,especie);
+            if (res.status === 200) {
+                toast.success(`Edición de especie Completada`)
+            }else{
+                toast.error(`Edición de especie Fallida`)
+            }
+            setErrors([]);
         } catch (error) {
-            console.log(error)
+            if (error.response) {
+                setErrors([error.response.data.error]);
+                toast.error(`${errores}`);
+            }
         }
     }
 
@@ -77,7 +83,9 @@ export function EspecieProvider({ children }) {
             setErrors([]);
             
         } catch (error) {
-            console.log(error);
+            if (error.response) {
+                setErrors(error.response.data.error);
+            }
         }
     };
 

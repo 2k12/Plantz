@@ -37,6 +37,7 @@ export const leerRegistro3 = async (req, res) => {
                     "nombre_comun": registroEncotrado.rows[0].nombrecomun,
                     "nombre_cientifico": registroEncotrado.rows[0].nombrecientifio,
                     "estado": registroEncotrado.rows[0].estado,
+                    "descripcion": registroEncotrado.rows[0].descripcion,
                     "imagen1": idimg.rows[0].urlimagen,
                     "imagen2": idimg.rows[1].urlimagen,
                     "imagen3": idimg.rows[2].urlimagen,
@@ -55,6 +56,7 @@ export const leerRegistro3 = async (req, res) => {
                 // especie: {
                     "nombre_comun": registroEncotrado.rows[0].nombrecomun,
                     "nombre_cientifico": registroEncotrado.rows[0].nombrecientifio,
+                    "descripcion": registroEncotrado.rows[0].descripcion,
                     "estado": registroEncotrado.rows[0].estado,
                     "imagen1": idimg.rows[0].urlimagen,
                     "imagen2": idimg.rows[1].urlimagen,
@@ -74,6 +76,7 @@ export const leerRegistro3 = async (req, res) => {
                 // especie: {
                     "nombre_comun": registroEncotrado.rows[0].nombrecomun,
                     "nombre_cientifico": registroEncotrado.rows[0].nombrecientifio,
+                    "descripcion": registroEncotrado.rows[0].descripcion,
                     "estado": registroEncotrado.rows[0].estado,
                     "imagen1": idimg.rows[0].urlimagen,
                     "imagen2": idimg.rows[1].urlimagen,
@@ -93,7 +96,7 @@ export const leerRegistro3 = async (req, res) => {
             res.json({
                 // especie: {
                     "nombre_comun": registroEncotrado.rows[0].nombrecomun,
-                    "nombre_cientifico": registroEncotrado.rows[0].nombrecientifio,
+                    "nombre_cientifico": registroEncotrado.rows[0].nombrecientifio,            "descripcion": registroEncotrado.rows[0].descripcion,
                     "estado": registroEncotrado.rows[0].estado,
                     "imagen1": idimg.rows[0].urlimagen,
                     // "imagen2": idimg.rows[1].urlimagen,

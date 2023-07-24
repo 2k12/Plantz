@@ -27,6 +27,9 @@ function Stepper() {
 
     const handleValidation = (data) => {
         const errors = {};
+        if (!data.descripcion) {
+            errors.descripcion = "Ingrese una Descripción";
+        }
         if (!data.filo) {
             errors.filo = "Ingrese un Filo";
         }
@@ -63,6 +66,7 @@ function Stepper() {
                     // console.log(especiebdd)
                     setValue('nco', especiebdd.nombre_comun)
                     setValue('nci', especiebdd.nombre_cientifico)
+                    setValue('descripcion', especiebdd.descripcion)
                     setValue('reino', especiebdd.reino)
                     setValue('filo', especiebdd.filo)
                     setValue('clase', especiebdd.clase)
@@ -81,6 +85,7 @@ function Stepper() {
                     // console.log(especiebdd)
                     setValue('nco', especiebdd.nombre_comun)
                     setValue('nci', especiebdd.nombre_cientifico)
+                    setValue('descripcion', especiebdd.descripcion)
                     setValue('reino', especiebdd.reino)
                     setValue('filo', especiebdd.filo)
                     setValue('clase', especiebdd.clase)
@@ -89,7 +94,6 @@ function Stepper() {
                     setValue('genero', especiebdd.genero)
                     setValue('especie', especiebdd.especie)
                     setValue('estado', especiebdd.estado)
-
                 }
             }
             cargarEspeciead();
@@ -109,14 +113,16 @@ function Stepper() {
 
     };
 
-    const onSubmit = handleSubmit((data, e) => {
+    const onSubmit = handleSubmit(async (data, e) => {
         e.preventDefault();
-
 
         if (user.rol === "taxonomo" || user.rol === "dig") {
             const formData = new FormData();
-            for (let i = 0; i < imagen.length; i++) {
-                formData.append('imagenm', imagen[i]);
+
+            if (!params.id) {
+                for (let i = 0; i < imagen.length; i++) {
+                    formData.append('imagenm', imagen[i]);
+                }
             }
             // console.log(imagen)
             formData.append('reino', data.reino);
@@ -128,14 +134,15 @@ function Stepper() {
             formData.append('especie', data.especie);
             formData.append('nci', data.nci);
             formData.append('nco', data.nco);
+            formData.append('descripcion', data.descripcion);
             formData.append('estado', data.estado);
 
 
             if (params.id) {
-                editarEspecie(params.id, formData)
+                await editarEspecie(params.id, formData)
 
             } else {
-                agregarEspecie(formData);
+                await agregarEspecie(formData);
             }
             navigate('/registrotaxonomico');
 
@@ -152,16 +159,17 @@ function Stepper() {
             formData.append('especie', data.especie);
             formData.append('nci', data.nci);
             formData.append('nco', data.nco);
+            formData.append('descripcion', data.descripcion);
             formData.append('estado', data.estado);
-
+           
 
             if (params.id) {
-                editarEspecie2(params.id, formData)
-
+                await editarEspecie2(params.id, formData)
             } else {
-                agregarEspecie2(formData);
+                await agregarEspecie2(formData);
             }
             navigate('/registrotaxonomico');
+
         }
 
 
@@ -186,7 +194,8 @@ function Stepper() {
         setFormValues((prevFormValues) => ({
             ...prevFormValues,
             [name]: value,
-            nci: `${prevFormValues.genero} ${prevFormValues.especie}`,
+            // nci: name === 'genero' || name === 'especie' ? `${prevFormValues.especie}${prevFormValues[name]}` : prevFormValues.nci,
+            nci: name === 'genero' || name === 'especie' ? `${prevFormValues[name]} ${prevFormValues.especie}` : prevFormValues.nci,
         }));
         setFormErrors(handleValidation({ ...formValues, [name]: value }));
     };
@@ -274,10 +283,6 @@ function Stepper() {
                             ) : (
 
                                 <div className="mb-4">
-
-                                    {/*  */}
-
-
                                     <label className="block mb-2 text-sm  text-gray-900 dark:text-white" htmlFor="multiple_files">Subir Archivos</label>
                                     <input className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 py-1 pb-0" id="multiple_files" type="file" multiple name="imagenm"
                                         {...register('imagenm', { required: true })}
@@ -306,36 +311,59 @@ function Stepper() {
                                             </div>
                                         </div>
                                     )}
-
-
-                                    {/*  */}
-                                    {/* <label className="block mb-2  text-gray-900 dark:text-white text-sm font-normal " htmlFor="file_input">Imagen</label>
-                                    <input className="  block w-full text-sm text-gray-900 border border-gray-300 rounded-md cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 " id="file_input" type="file" name="imagenm"
-                                        {...register('imagenm', { required: true })}
-                                        onChange={handleImagenChange}
-                                    />
-                                    {
-                                        errors.imagenm && (
-                                            <p className="text-red-500">
-                                                Ingrese una Imagen
-                                            </p>
-                                        )
-                                    } */}
-
                                 </div>
                             )}
+                            <div className="mb-4">
+
+                                <div className="relative mt-8 mb-3" data-te-input-wrapper-init>
+                                    <textarea
+                                        className="pt-7 bg-gray-700 peer block min-h-[auto] w-full rounded border border-gray-600  px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0 "
+                                        id="exampleFormControlTextarea1"
+                                        rows="3"
+                                        {...register('descripcion', { required: true })}
+                                        onChange={handleChange}
+
+                                    ></textarea>
+                                    {
+                                        formErrors.descripcion && (
+                                            <p className="text-red-500">
+                                                {formErrors.descripcion}
+                                            </p>
+                                        )
+                                    }
+                                    <label
+                                        htmlFor="exampleFormControlTextarea1"
+                                        className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary text-sm"
+                                    >Descripción de la Especie</label
+                                    >
+
+                                </div>
+                            </div>
 
                             <div className="mb-4">
                                 <label className="block mb-2 font-normal text-sm text-white">Reino</label>
-                                <input
-                                    type="text"
-                                    className="w-full px-3 py-1 border rounded-md dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                    {...register('reino', { required: true })}
-                                    placeholder="Reino"
-                                    disabled
-                                    value={"Plantae"}
+                                {params.id ? (
+                                    <input
+                                        type="text"
+                                        className="w-full px-3 py-1 border rounded-md dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                        {...register('reino', { required: true })}
+                                        placeholder="Reino"
+                                        disabled
 
-                                />
+
+                                    />
+                                ) : (
+                                    <input
+                                        type="text"
+                                        className="w-full px-3 py-1 border rounded-md dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                        {...register('reino', { required: true })}
+                                        placeholder="Reino"
+                                        readOnly
+                                        value={"Plantae"}
+
+                                    />
+                                )}
+
                                 {
                                     errors.reino && (
                                         <p className="text-red-500">
@@ -351,7 +379,7 @@ function Stepper() {
                                     className="w-full px-3 py-1 border border-gray-300 rounded-md dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                                     {...register('filo', { required: true })}
                                     placeholder="Filo"
-                                    onChange={handleChange}
+                                // onChange={handleChange}
                                 />
                                 {
                                     formErrors.filo && (
@@ -368,7 +396,7 @@ function Stepper() {
                                     className="w-full px-3 py-1 border dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 rounded-md"
                                     {...register('clase', { required: true })}
                                     placeholder="Clase"
-                                    onChange={handleChange}
+                                // onChange={handleChange}
                                 />
                                 {
                                     formErrors.clase && (
@@ -385,7 +413,7 @@ function Stepper() {
                                     className="w-full px-3 py-1 border dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 rounded-md"
                                     {...register('orden', { required: true })}
                                     placeholder="Orden"
-                                    onChange={handleChange}
+                                // onChange={handleChange}
                                 />
                                 {
                                     formErrors.orden && (
@@ -411,7 +439,7 @@ function Stepper() {
                                     className="w-full px-3 py-1 border dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  rounded-md"
                                     {...register('familia', { required: true })}
                                     placeholder="Familia"
-                                    onChange={handleChange}
+                                // onChange={handleChange}
 
                                 />
                                 {
@@ -467,7 +495,7 @@ function Stepper() {
                                     {...register('nci', { required: true })}
                                     placeholder="Nombre Científico"
                                     value={formValues.nci}
-                                    // onChange={handleChange}
+                                // onChange={handleChange}
                                 // disabled
                                 />
                                 {

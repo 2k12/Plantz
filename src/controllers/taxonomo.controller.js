@@ -27,7 +27,6 @@ export const leerRegistro = async (req, res) => {
     try {
         const { id } = req.params;
         const registroEncotrado = await pool.query("SELECT * FROM plantas WHERE id=$1", [id]);
-        // const registroEncotrado = await pool.query('SELECT p.*, i.* FROM plantas AS p INNER JOIN imagenes AS i ON p.id = i.planta_id WHERE p.usuario_id = $1', [id]);
 
         if (!registroEncotrado) {
             return res.status(400).json({ message: 'La Especie no fue encontrada' });
@@ -42,6 +41,7 @@ export const leerRegistro = async (req, res) => {
             "nombre_comun": registroEncotrado.rows[0].nombrecomun,
             "nombre_cientifico": registroEncotrado.rows[0].nombrecientifio,
             "estado": registroEncotrado.rows[0].estado,
+            "descripcion": registroEncotrado.rows[0].descripcion,
             "imagen": idimg.rows[0].urlimagen,
             "reino": leertaxonomia.rows[0].reino,
             "filo": leertaxonomia.rows[0].filo,
@@ -53,6 +53,7 @@ export const leerRegistro = async (req, res) => {
             // }
 
         })
+
         // }
         // res.json(registroEncotrado.rows[0]);
     } catch (error) {
@@ -64,25 +65,13 @@ export const leerRegistro = async (req, res) => {
 
 export const crearRegistro = async (req, res) => {
     try {
+
         var fin = 0
-        const { reino, filo, clase, orden, familia, genero, especie, nci, nco } = req.body;
+        const { reino, filo, clase, orden, familia, genero, especie, nci, nco, descripcion } = req.body;
         const imagenm = req.files.imagenm;
 
-
-        // res.json(imagenm)
-
-
-        // req.files.file = imagenm
         const nplanta = new Planta();
         const ntaxonomia = new Taxonomia();
-
-
-        // proceso de subir y generacion de parametros de la imagen en aws 
-
-        // if (!resultadodecarga) return res.json({ message: "Errror en la carga de la imagen" })
-        // const nombrearchivo = req.files.imagenm.name;
-        // const nombrelimpio = validaciondearchivo(nombrearchivo);
-        // const urlimagen = `${AWS_LINK_ARCHIVE}${nombrelimpio}`;
 
         // taxonomia
         ntaxonomia.setReino(reino);
@@ -107,14 +96,17 @@ export const crearRegistro = async (req, res) => {
         nplanta.setNombreComun(nco);
         nplanta.setNombreCientifico(nci);
         nplanta.setTaxonomiaID(resulttax.rows[0].id);
+        nplanta.setDescripcion(descripcion);
+
         if (req.decoded.rol === "dig") {
             nplanta.setEstado("por verificar");
         } else {
             nplanta.setEstado("verificado");
         }
-        const resultplant = await pool.query("INSERT INTO plantas (usuario_id,taxonomia_id,nombrecomun,nombrecientifio,estado) VALUES ($1,$2,$3,$4,$5) RETURNING *",
+
+        const resultplant = await pool.query("INSERT INTO plantas (usuario_id,taxonomia_id,nombrecomun,nombrecientifio,estado,descripcion) VALUES ($1,$2,$3,$4,$5,$6) RETURNING *",
             [
-                nplanta.getUsuarioID(), nplanta.getTaxonomiaID(), nplanta.getNombreComun(), nplanta.getNombreCientifico(), nplanta.getEstado()
+                nplanta.getUsuarioID(), nplanta.getTaxonomiaID(), nplanta.getNombreComun(), nplanta.getNombreCientifico(), nplanta.getEstado(), nplanta.getDescripcion()
             ])
         if (resultplant) {
             fin++
@@ -123,7 +115,7 @@ export const crearRegistro = async (req, res) => {
         if (cargaarchivos) {
             fin++
         }
-        // // imagen
+        // imagen
         imagenm.forEach(async (element) => {
             const nimagen = new Imagen();
             // res.json(element)
@@ -155,7 +147,6 @@ export const crearRegistro = async (req, res) => {
     } catch (error) {
         if (error instanceof Error) {
             console.log(error.message);
-            // res.status(500).json(error.error);
         }
     }
 };
@@ -163,9 +154,9 @@ export const editarRegistro = async (req, res) => {
 
     try {
         const { id } = req.params;
-        const { nco, nci, reino, filo, clase, orden, familia, genero, especie, estado } = req.body;
+        const { nco, nci, reino, filo, clase, orden, familia, genero, especie, estado, descripcion } = req.body;
 
-        const plantaencontrada = await pool.query('UPDATE plantas  SET nombrecomun= $1, nombrecientifio= $2 ,estado=$3 WHERE id = $4 AND usuario_id=$5', [nco, nci, estado, id, req.decoded.id]);
+        const plantaencontrada = await pool.query('UPDATE plantas  SET nombrecomun= $1, nombrecientifio= $2 ,estado=$3 ,descripcion=$4 WHERE id = $5 AND usuario_id=$6', [nco, nci, estado, descripcion, id, req.decoded.id]);
         if (plantaencontrada.rowCount === 0) return res.status(404).json({ message: "Especie no encontrada!" });
 
         const plantaActualizada = await pool.query('SELECT taxonomia_id FROM plantas WHERE id = $1', [id]);
@@ -178,11 +169,12 @@ export const editarRegistro = async (req, res) => {
             ]);
         if (editartax.rowCount === 0) { return res.status(404).json({ message: "La taxonomía no fue encontrada!" }) }
 
-        res.status(200).json({ message: "Eespecie Editada Correctamente" });
+        res.sendStatus(200)
+
 
     } catch (error) {
         if (error instanceof Error) {
-            res.send(error.message);
+            console.log(error.message);
         }
     }
 };

@@ -16,7 +16,7 @@ export default function AdminTemplate() {
     return (
         <>
             <div className="w-full m-0 p-0 bg-cover bg-bottoms " style={{ backgroundImage: `url(${imagendefondo})`, height: "60vh", maxHeight: "480px" }}>
-                <div className="container max-w-4xl mx-auto pt-52 md:pt-36 text-center break-normal ">
+                <div className="container max-w-4xl mx-auto pt-60 md:pt-44 text-center break-normal ">
                     <span className=" font-light text-5xl md:text-7xl pt-8 text-yellow-400" id='tit'>
                         Administrador
                     </span>
@@ -54,7 +54,7 @@ export default function AdminTemplate() {
                     </div>
                 </div>
             </div>
-            <div className='pt-64' style={{ marginTop: "4px" }}>
+            <div className='pt-72' style={{ marginTop: "4px" }}>
 
             </div>
 

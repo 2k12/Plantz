@@ -34,7 +34,7 @@ function AcercaPage() {
 
 						<div className="flex h-full bg-white rounded overflow-hidden shadow-lg ">
 							<div className="w-full md:w-2/3 rounded-t">
-								<img src={planta6} className="h-full w-full shadow" alt="Cover" />
+								<img src={planta6} className="h-full w-full shadow object-cover object-center" alt="Cover" />
 							</div>
 
 							<div className="w-full md:w-1/3 flex flex-col flex-grow flex-shrink ">
