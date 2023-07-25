@@ -65,7 +65,7 @@ export default function EditButton() {
                                             </MDBCardText>
                                             <MDBCardText className="mb-1 h5 border-b border-purple-500 text-purple-400 ">
                                                 CONTRASEÑA:
-                                                <span className='text-lg text-white  block ' style={{ "maxWidth": "100%", "overflow": "hidden", "whiteSpace": "nowrap" }}>
+                                                <span className='text-lg text-white  block ' style={{ "overflow": "hidden" }}>
                                                     {usuario?.contrasena}
                                                 </span>
                                             </MDBCardText>

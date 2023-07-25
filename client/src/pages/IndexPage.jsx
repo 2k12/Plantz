@@ -30,7 +30,7 @@ function IndexPage() {
                     <p className=" font-light text-5xl md:text-7xl pt-8 text-white" id='tit'>
                         Plantz.
                     </p>
-                    <p className="text-xl md:text-2xl text-gray-300">Sumérgete en el mundo verde con Plantz: ¡Descubre, aprende y comparte!</p>
+                    <p className="text-xl md:text-2xl text-white">Sumérgete en el mundo verde con Plantz: ¡Descubre, aprende y comparte!</p>
                 </div>
             </div>
 
@@ -52,7 +52,7 @@ function IndexPage() {
                                     <p className="text-gray-800 font-serif text-9xl  mx-auto justify-content text-center pt-8">
                                         {especieall.length}
                                     </p>
-                                    <p className="text-gray-800 font-serif mx-auto text-justify p-2 mt-4 md:text-md pt-8 px-6">Cada día, el número de especies registradas aumenta gracias a las contribuciones continuas de los taxónomos que participan en nuestra plataforma.</p>
+                                    <p className="text-gray-800 font-serif mx-auto text-justify p-2 mt-4 md:text-md pt-8 px-6"  style={{textAlign: "justify"}}>Cada día, el número de especies registradas aumenta gracias a las contribuciones continuas de los taxónomos que participan en nuestra plataforma.</p>
                                 </div>
 
                                 <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
@@ -75,7 +75,7 @@ function IndexPage() {
                                     <div className="flex flex-wrap  no-underline hover:no-underline ">
                                         <img src={planta3} className="h-full w-full rounded-t pb-6" alt="Post" />
                                         <div className="w-full font-bold  text-gray-900 px-6 ">Mundo Plantae</div>
-                                        <p className="text-gray-800 font-serif text-base px-6 mb-1">
+                                        <p className="text-gray-800 font-serif text-base px-6 mb-1"  style={{textAlign: "justify"}}>
                                             Grupo de organismos multicelulares eucariotas, fotosintéticos y autótrofos, que incluye plantas terrestres, acuáticas y algas. Producen oxígeno, fijan carbono y son la base de las cadenas alimenticias en los ecosistemas terrestres y acuáticos.
                                         </p>
                                     </div>
@@ -95,8 +95,8 @@ function IndexPage() {
                                     <div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
 
                                         <img src={imagen3from} className="h-full w-full rounded-t pb-6" alt="Post" />
-                                        <div className="w-full font-bold text-xl text-gray-900 px-6">Sabias Que ? </div>
-                                        <p className="text-gray-800 font-serif text-base px-6 mb-5">
+                                        <div className="w-full font-bold text-xl text-gray-900 px-6">¿ Sabías que ? </div>
+                                        <p className="text-gray-800 font-serif text-base px-6 mb-5"  style={{textAlign: "justify"}}>
                                             <span className="text-green-600 text-2xl ">1.</span> La planta más pequeña del mundo es la azolla, una planta acuática flotante que tiene solo 1 milímetro de tamaño.
                                             <br />
                                             <span className="text-green-600 text-2xl ">2.</span>  Las plantas pueden comunicarse entre sí a través de señales químicas. Por ejemplo, cuando una planta es atacada por insectos, puede emitir sustancias químicas para alertar a otras plantas cercanas.
@@ -143,7 +143,7 @@ function IndexPage() {
                                     <a href="#" className="flex flex-wrap no-underline hover:no-underline">
                                         <img src={poli} className="h-full w-full rounded-t pb-6" alt="Post" />
                                         <div className="w-full font-bold text-xl text-gray-900 px-6 pb-5">Protegiendo y Embelleciendo Nuestra Comunidad.</div>
-                                        <p className="text-gray-800 font-serif text-base px-6 mb-5">
+                                        <p className="text-gray-800 font-serif text-base px-6 mb-5"  style={{textAlign: "justify"}}>
                                             Esta acción representa el esfuerzo conjunto de nuestra fuerza policial y la comunidad para crear espacios verdes, mejorar la calidad del aire y fomentar un entorno más saludable.
                                         </p>
                                     </a>

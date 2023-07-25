@@ -19,7 +19,7 @@ function AcercaPage() {
 					<p className="text-white font-light text-6xl md:text-8xl pt-48" id="tit">
 						Plantz.
 					</p>
-					<p className="text-xl md:text-2xl text-gray-300">Sistema de Gestión de Plantas</p>
+					<p className="text-xl md:text-2xl text-white">Sistema de Gestión de Plantas</p>
 				</div>
 			</div>
 
@@ -40,10 +40,9 @@ function AcercaPage() {
 							<div className="w-full md:w-1/3 flex flex-col flex-grow flex-shrink ">
 								<div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
 									<p className="w-full text-gray-600 text-xs md:text-sm pt-6 px-6"></p>
-									<div className="w-full font-bold text-xl text-gray-900 px-6">Qué es Plantz. ?</div>
-									<p className="text-gray-800 font-serif text-base px-6 mb-5">
-										Plantz es un Aplicacion web desarrollada para la gestion relacion con el Reino Plantae (Plantas)
-										que permitira un gestion en base a la taxonomia que se registre para poder acceder a informacion valiosa desde cualquier parte de la ciudad.
+									<div className="w-full font-bold text-3xl text-gray-900 px-6 mt-8">Qué es Plantz. ?</div>
+									<p className="text-gray-800 font-serif text-base px-6 mb-5 mt-8" style={{textAlign: "justify"}}>
+										Plantz es un Aplicación web que utiliza un sistema de gestión con el cual podrás descubrir las distintas especies dentro del mundo Plantae (Plantas) en base a su taxonomía. Ayudando así a los usuarios a descubrir nuevas especies, aprender sobre su clasificación, características, y facilitar la gestión de sus propias colecciones de plantas. 
 									</p>
 								</div>
 
@@ -54,82 +53,16 @@ function AcercaPage() {
 									</div>
 								</div>
 							</div>
-
-
 						</div>
-
-
 						<div className="flex flex-wrap justify-between pt-12 -mx-6">
-
-							{/* <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-								<div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
-									<a href="#" className="flex flex-wrap no-underline hover:no-underline">
-										<img src="https://source.unsplash.com/collection/225/800x600" className="h-64 w-full rounded-t pb-6" alt="Post" />
-										<p className="w-full text-gray-600 text-xs md:text-sm px-6">GETTING STARTED</p>
-										<div className="w-full font-bold text-xl text-gray-900 px-6">Lorem ipsum dolor sit amet.</div>
-										<p className="text-gray-800 font-serif text-base px-6 mb-5">
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo posuere et sit amet ligula.
-										</p>
-									</a>
-								</div>
-								<div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
-									<div className="flex items-center justify-between">
-										<img className="w-8 h-8 rounded-full mr-4 avatar" data-tippy-content="Author Name" src="http://i.pravatar.cc/300" alt="Avatar of Author" />
-										<p className="text-gray-600 text-xs md:text-sm">1 MIN READ</p>
-									</div>
-								</div>
-							</div>
-
-
-							<div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-								<div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
-									<a href="#" className="flex flex-wrap no-underline hover:no-underline">
-										<img src="https://source.unsplash.com/collection/3106804/800x600" className="h-64 w-full rounded-t pb-6" alt="Post" />
-										<p className="w-full text-gray-600 text-xs md:text-sm px-6">GETTING STARTED</p>
-										<div className="w-full font-bold text-xl text-gray-900 px-6">Lorem ipsum dolor sit amet.</div>
-										<p className="text-gray-800 font-serif text-base px-6 mb-5">
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit. ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ip Aliquam at ipsum eu nunc commodo posuere et sit amet ligula.
-										</p>
-									</a>
-								</div>
-								<div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
-									<div className="flex items-center justify-between">
-										<img className="w-8 h-8 rounded-full mr-4 avatar" data-tippy-content="Author Name" src="http://i.pravatar.cc/300" alt="Avatar of Author" />
-										<p className="text-gray-600 text-xs md:text-sm">1 MIN READ</p>
-									</div>
-								</div>
-							</div>
-
-							<div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-								<div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
-									<a href="#" className="flex flex-wrap no-underline hover:no-underline">
-										<img src="https://source.unsplash.com/collection/539527/800x600" className="h-64 w-full rounded-t pb-6" alt="Post" />
-										<p className="w-full text-gray-600 text-xs md:text-sm px-6">GETTING STARTED</p>
-										<div className="w-full  font-bold text-xl text-gray-900 px-6">Lorem ipsum dolor sit amet.</div>
-										<p className="text-gray-800 font-serif text-base px-6 mb-5">
-											Lorem ipsum eu nunc commodo posuere et sit amet ligula.
-										</p>
-									</a>
-								</div>
-								<div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
-									<div className="flex items-center justify-between">
-										<img className="w-8 h-8 rounded-full mr-4 avatar" data-tippy-content="Author Name" src="http://i.pravatar.cc/300" alt="Avatar of Author" />
-										<p className="text-gray-600 text-xs md:text-sm">1 MIN READ</p>
-									</div>
-								</div>
-							</div> */}
-
-
 							<div className="w-full md:w-1/2 p-6 flex flex-col flex-grow flex-shrink">
 								<div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
 									<div className="flex flex-wrap no-underline hover:no-underline">
 										<img src={planta7} className="h-full w-full rounded-t pb-6" alt="Post" />
-										<div className="w-full font-bold text-xl text-gray-900 px-6">Misión</div>
-										<p className="text-gray-800 font-serif text-base px-6 mb-5 mt-5">
-											Nuestra misión es proporcionar a los entusiastas de las plantas una aplicación de gestión que les permita explorar, aprender y organizar plantas según su taxonomía. </p> 
-										<p className="text-gray-800 font-serif text-base px-6 mb-5 ">
-											Nos esforzamos por ofrecer una plataforma intuitiva y completa que ayude a los usuarios a descubrir nuevas especies, aprender sobre su clasificación y características, y facilitar la gestión de sus propias colecciones de plantas. Nuestro objetivo es fomentar la pasión por la botánica y promover la conservación de la diversidad vegetal a través de una experiencia digital enriquecedora.
-										</p>
+										<div className="w-full font-bold text-3xl text-gray-900 px-6 text-center ">Misión</div>
+										<p className="text-gray-800 font-serif text-base px-6 mb-5 mt-5"  style={{textAlign: "justify"}}>
+											Proporcionar a los entusiastas de las plantas una aplicación de gestión que les permita explorar, aprender y organizar plantas según su taxonomía. </p> 
+										
 									</div>
 								</div>
 								<div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
@@ -145,12 +78,10 @@ function AcercaPage() {
 									<div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
 
 										<img src={planta8} className="h-full w-full rounded-t pb-6" alt="Post" />
-										<div className="w-full font-bold text-xl text-gray-900 px-6">Visión</div>
-										<p className="text-gray-800 font-serif text-base px-6 mb-5 mt-5">
-											Nuestra visión es convertirnos en la aplicación líder en gestión de plantas basada en taxonomía, reconocida por su precisión, funcionalidad y contenido de calidad.</p> 
-										<p className="text-gray-800 font-serif text-base px-6 mb-5 mt-5">
-											Buscamos ser la herramienta preferida por los amantes de las plantas, jardineros, botánicos y profesionales del sector, ofreciendo una amplia base de datos de plantas, información detallada sobre su taxonomía, características y cuidados, así como funciones avanzadas de organización y seguimiento. Aspiramos a ser una fuente confiable y accesible de conocimiento botánico, promoviendo la educación y la conexión con la naturaleza a través de la tecnología.
-										</p>
+										<div className="w-full font-bold text-3xl text-gray-900 px-6 text-center ">Visión</div>
+										<p className="text-gray-800 font-serif text-base px-6 mb-5 mt-5"  style={{textAlign: "justify"}}>
+											Convertirnos en la aplicación líder en gestión de plantas basada en taxonomía, reconocida por su precisión, funcionalidad y contenido de calidad.</p> 
+										
 									</div>
 									<div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
 										<div className="flex items-center justify-between">
